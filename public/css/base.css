@@ -1,0 +1,205 @@
+/************************* HOME ***************************/
+.accueil2{
+    z-index: -1;
+}
+
+.accueil{
+    display: flex;
+    margin-top: 40px;
+    padding-left: 15%;
+    position: relative;
+}
+.ac{
+    transform: translateX(1px);
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    z-index: -1;
+}
+a{
+    text-decoration: none;
+    color: white;
+    margin-left: 6%;
+}
+input.recherche{
+    margin-left: 6%;
+    background-color: #008ecf;
+    text-align: right;
+    padding-right: 16px;
+    height: 31px;
+    border-radius: 16px;
+    border: none;
+    outline: none;
+}
+input::placeholder {
+    color: white;
+}
+.recherche input:not(:placeholder-shown) {
+    color: white;
+}
+
+/* Navbar interface administrateur */
+.navbar{
+    display: flex;
+    width: 100%;
+    height: 70px;
+    background-color: #001a4b;
+}
+.navbar *{
+    margin:8px
+}
+.link{
+    position: absolute;
+    right: 0%;
+}
+.link *{
+    color: white;
+}
+.navbar h1{
+    color: white;
+}
+.navbar input{
+    margin-left: 40px;
+    height: 35px;
+    border-radius: 17px;
+    border: none;
+}
+
+/******************* LOGIN *********************/
+h3{
+    color: #00a3e6;
+    text-align: center;
+}
+.login{
+    display: flex;
+    position: relative;
+}
+.formulaire{
+    padding-left: 50px;
+    margin-right: 10%;
+    margin-left: auto;
+    border: 5px solid #00a3e6;
+    width: 24vw;
+    text-align: center;
+    height: 65vh;
+    display: block;
+    border-radius: 20px;
+    color: white;
+}
+.formulaire div{
+    margin-top: 77px;
+}
+.formulaire input{
+    background-color: #ffffff00;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid #00a3e6;
+}
+label{
+    padding-right: 20px;
+}
+.btn{
+    margin-top: 63px;
+    margin-left: 32%;
+    color:white;
+    border-radius: 25px;
+    height: 32px;
+    background-color: #00a3e6;
+    outline: none;
+    border: none;
+}
+.gauche{
+    width: 24vw;
+    height: 24vw;
+    border-radius: 11%;
+    transform: rotate(45deg);
+    position: absolute;
+    left: 5%;
+    bottom: 14%;
+    background-color: #EDE7F6;
+    box-shadow: 20px -19px 0px 11px #00a3e6;
+}
+/* *********************list users*********************** */
+.listUser, .listUser td{
+    border: 2px solid #ddd;
+    border-collapse: collapse;
+}
+.listUser{
+    margin: auto;
+    text-align: center;
+}
+.listUser .list{
+    box-shadow: inset 0px 3px 5px 0px #8d8d8d;
+
+}
+.listUser a{
+    margin-left: 0;
+}
+.listUser a>div{
+    background-color: #e77373;
+    padding: 10%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* **********************Seection******************** */
+/*the container must be positioned relative:*/
+.custom-select {
+    position: relative;
+    font-family: Arial;
+  }
+  
+  .custom-select select {
+    display: none; /*hide original SELECT element:*/
+  }
+  
+  .select-selected {
+    background-color: DodgerBlue;
+  }
+  
+  /*style the arrow inside the select element:*/
+  .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+  
+  /*point the arrow upwards when the select box is open (active):*/
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
+  
+  /*style the items (options), including the selected item:*/
+  .select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  /*style items (options):*/
+  .select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+  
+  /*hide the items when the select box is closed:*/
+  .select-hide {
+    display: none;
+  }
+  
+  .select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
