@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\testController;
 use Illuminate\Support\Facades\Route;
@@ -60,7 +61,7 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
     Route::get('{matiere}/Création contenu de cours', 'createRedirect')->name('creationCours');
     //mise a jour de contenue du cours
     Route::post('/Création contenu/{contenue}', 'updateCours');
-    
+
     // Route::post('/Création contenu', 'cours');
 
     //Ajout niveau
@@ -76,4 +77,10 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
     Route::get('{professeur}/Profil/Reset password', 'resetPassword')->name('resetPassword');
 
 
+});
+
+//INTERFACE ETUDIANT
+
+Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantController::class)->group(function(){
+    Route::get('/accueil', 'accueilRedirect')->name('accueil');
 });

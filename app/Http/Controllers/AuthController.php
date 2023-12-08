@@ -57,7 +57,7 @@ class AuthController extends Controller
                     {
                         return redirect()->intended(route('admin.accueil'));
                     }
-                    else if($type_user === 'etudiant')
+                    else if($type_user === 'etudiants')
                     {
                         return redirect()->intended(route('etudiant.accueil'));
                     }
