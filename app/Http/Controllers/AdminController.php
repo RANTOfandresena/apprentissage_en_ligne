@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EngagerProf;
+use App\Models\Matiere;
 use App\Models\Proffesseur;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class AdminController extends Controller
         // dd($a->professeur->nom);
         // return User::where('approved', false)->get();
         return view('admin.accueil', [
-            'usersData'  => User::where('approved', false)->get()
+            'usersData'  => User::where('approved', false)->get(),
+            'matieres'    => Matiere::all(),
         ]);
     }
     public function engager()

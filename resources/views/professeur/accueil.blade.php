@@ -58,6 +58,9 @@
             width:50%;
             height:30px;
         }
+        a.AjoutMatiere{
+            color: #000000;
+        }
     </style>
     <div class="cours">
         <h3> Voici toutes les matières que vous avez créer </h3>
@@ -74,7 +77,7 @@
                 </div>
             @endforeach
             <div style="text-align: center;padding-top: -7%;">
-                <p style="margin-top: 17%;">ajouter <br> une matiere </p>
+               <a href="{{route('professeur.creationMatiere')}}" class="AjoutMatiere"> <p style="margin-top: 17%;">ajouter <br> une matiere </p> </a>
             </div>
         </div>
     </div>
