@@ -3,7 +3,7 @@
         <h1> Engagez le meilleur pour former votre équipe </h1>
         <hr>
         <div class="alert" :class="message==='echec d\'envoye'?'rouge':''" v-show="alert">{{ message }}</div>
-        <div class="custom-select" v-section style="width:200px;">
+        <div style="width:200px;">
           <select  v-model="form.user" >
               <option value="etudiants" > etudiant </option>
               <option value="professeur" > professeur </option>
@@ -25,7 +25,7 @@
             <label for="post"><b>Post </b></label>
             <input type="text" placeholder="Entrer votre Post" v-model="form.post" required>            
         </div>
-        <div class="custom-select" style="width:200px;"  v-section>
+        <div style="width:200px;">
           <select  v-if="utilisateur==='etudiants'" v-model="form.departement">
               <option v-for="dep in departement" :value="dep.id"> {{ dep.nom }} </option>
           </select>          
@@ -41,9 +41,9 @@
 </template>
 <script>
 // import { generateCodeFrame } from 'vue/compiler-sfc'
-import section from '../directives/SectionDirective'
+// import section from '../directives/SectionDirective'
     export default{
-        directives:{section},
+        // directives:{section},
         data() {
             return {
                 form:{},
