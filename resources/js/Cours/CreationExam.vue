@@ -11,7 +11,6 @@
                     <div @click="reponse('fichier')">ficher</div>
                 </div>
             </div>
-
             <button class="btn jaune" >Valider</button>
         </div> 
         <div class="contenue">

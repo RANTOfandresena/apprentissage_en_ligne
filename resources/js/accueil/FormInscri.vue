@@ -3,8 +3,8 @@
         <h1> Engagez le meilleur pour former votre équipe </h1>
         <hr>
         <div class="alert" :class="message==='echec d\'envoye'?'rouge':''" v-show="alert">{{ message }}</div>
-        <div style="width:200px;">
-          <select  v-model="form.user" >
+        <div class="select-style">
+          <select >
               <option value="etudiants" > etudiant </option>
               <option value="professeur" > professeur </option>
               <option value="admin" > Admin </option>
@@ -25,7 +25,7 @@
             <label for="post"><b>Post </b></label>
             <input type="text" placeholder="Entrer votre Post" v-model="form.post" required>            
         </div>
-        <div style="width:200px;">
+        <div class="select-style">
           <select  v-if="utilisateur==='etudiants'" v-model="form.departement">
               <option v-for="dep in departement" :value="dep.id"> {{ dep.nom }} </option>
           </select>          
