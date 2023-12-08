@@ -46,8 +46,8 @@ class ProfesseurController extends Controller
             'matiere'   =>  $request->input('matiere'),
             'contenu_du_cour_id' => $contenu_du_cour->id,
             'categorie_id' =>  $request->input('categorie_id'),
-            'proffesseur_id' => Auth::user()->professeur->id
-
+            'proffesseur_id' => Auth::user()->professeur->id,
+            'description' => $request->input('description')
         ]);
         $matiere->contenu_du_cours()->sync($contenu_du_cour->id);
         return redirect()->route('professeur.accueil', [

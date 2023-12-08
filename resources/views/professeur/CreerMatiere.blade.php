@@ -27,8 +27,18 @@
                    <option value="{{ $categorie->id }}"> {{$categorie->categorie}} </option>
                 @endforeach
             </select>
-            </div>
+        </div>
             @error('categorie_id')
+
+            @enderror
+            <p></p>
+        <div>
+            <label for="description"> Ajouter une description de la matière : </label>
+            <textarea name="description" id="description" cols="30" rows="10">
+                
+            </textarea>
+        </div>
+            @error('description')
 
             @enderror
             <p></p>

@@ -12,7 +12,8 @@ class Matiere extends Model
     protected $fillable = [
         'matiere',
         'categorie_id',
-        'proffesseur_id'
+        'proffesseur_id',
+        'description'
     ];
 
     public function categorie()
