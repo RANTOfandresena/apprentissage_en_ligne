@@ -29,18 +29,17 @@
                     <div v-if="contenue.type==='question'">
                         <div v-if="contenue.type1!='quiz'">
                             <div class="question">
-                                <input :type="contenue.type1=='text'?'text':'file'" placeholder="Reponse des eleves" style="width: 45%;border-radius: 5px;">
+                                <input :type="contenue.type1=='text'?'text':'file'" placeholder="ecrire ici la vrai reponse" v-model="contenue.reponse" style="width: 45%;border-radius: 5px;">
                                 <div style="text-align: right;position: absolute;right: 5%;">
-                                    <div v-if="contenue.type1=='text'"><input  type="text" placeholder="Vrai reponse" v-model="contenue.reponse"></div>
                                     <div><i>Point:</i><input step="0.25" min="0" type="number" v-model="contenue.point"></div>
                                 </div>
                             </div>                            
                         </div>
                         <div v-else>
-                            <div @dblclick="contenue=edit" style="padding-left: 55px;padding-left: 55px;display: flex;flex-direction: column;align-content: stretch;align-items: center;">
+                            <div @dblclick="contenue=edit" style="margin-bottom: 26px;padding-left: 55px;padding-left: 55px;display: flex;flex-direction: column;align-content: stretch;align-items: center;">
                                 <div v-for="choix,i in contenue.choix" :key="choix">
-                                    <label class="container">
-                                        <p v-show="indexEdit!=i" @dblclick="indexEdit=i;edit=contenue">{{ choix.text }}</p>
+                                    <label class="container" @dblclick="indexEdit=i;edit=contenue">
+                                        <p v-show="indexEdit!=i" >{{ choix.text }}</p>
                                         <input type="checkbox" v-model="choix.reponse">
                                         <input v-show="contenue===edit && indexEdit==i" @keyup.enter="indexEdit=null" type="text" v-model="choix.text">
                                         <span class="checkmark"></span>
@@ -51,7 +50,7 @@
                                         <input type="checkbox" v-model="reponseValue">
                                         <span class="checkmark"></span>
                                 </label>
-                                <div style="position: absolute; right: 7%;"><i>Point:</i><input min="0" step="0.25" type="number" v-model="contenue.point"></div>
+                                <div style="position: absolute; right: 3%;"><i>Point:</i><input min="0" step="0.25" type="number" v-model="contenue.point"></div>
                             </div>
                             <span v-if="contenue==edit && indexEdit==null" v-show="!isInput"><h1 @click="isInput=true">+</h1></span>
                         </div>
@@ -150,7 +149,7 @@ export default{
         
     }
     .contenue{
-        width: 80%;
+        width: 100%;
         overflow-y: scroll;
         background-color: rgb(222, 222, 248);
     }
@@ -196,6 +195,9 @@ export default{
         justify-content: center;
         margin-bottom: 45px;
     }
+    .question input::placeholder{
+        color: rgb(63, 63, 63);
+    }
     input[type="number"]{
         width: 60px;
         border-radius: 2px;
@@ -214,6 +216,7 @@ export default{
   -ms-user-select: none;
   user-select: none;
   display: block;
+  margin-top: 18px;
 }
 
 /* Hide the browser's default checkbox */
@@ -282,7 +285,11 @@ export default{
 .component:hover .icon{
     display: block;
 }
+.component > div > div > div > div{
+    height: 27px;
+}
 .icon:hover{
     color: rgb(219, 68, 68);
 }
+
 </style>
