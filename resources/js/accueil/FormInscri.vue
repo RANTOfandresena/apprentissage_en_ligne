@@ -4,7 +4,7 @@
         <hr>
         <div class="alert" :class="message==='echec d\'envoye'?'rouge':''" v-show="alert">{{ message }}</div>
         <div class="select-style">
-          <select >
+          <select v-model="form.user">
               <option value="etudiants" > etudiant </option>
               <option value="professeur" > professeur </option>
               <option value="admin" > Admin </option>
