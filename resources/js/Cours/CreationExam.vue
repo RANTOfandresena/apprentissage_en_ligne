@@ -2,10 +2,9 @@
     <section style="height: 87vh;text-align: center;">
         <div class="parametre" >
             <button class="btn" @click="ajout('sujet')">+ Sujet/Question</button>
-            <button class="btn">+ fichier</button>
             <div class="quest">
-                <button class="btn">+ Reponse</button>
-                <div class="dropdown-content">
+                <button class="btn" @mouseover="handleMouseOver" @mouseout="handleMouseOut">+ Reponse</button>
+                <div @mouseover="handleMouseOver" v-show="afficheReponse" class="dropdown-content">
                     <div @click="reponse('text')">text</div>
                     <div @click="reponse('quiz')">quiz</div>
                     <div @click="reponse('fichier')">ficher</div>
@@ -16,7 +15,7 @@
         <div class="contenue">
             <div>
                 <div class="component" v-for="contenue in exam" :key="contenue">
-                    <i @click="suppressinContenue(contenue)"  class="fa fa-close icon" ></i>
+                    <i @click="suppressinContenue(contenue)" class="fa fa-close icon" style="z-index: 1;"></i>
                     <div v-if="contenue.type==='sujet'">
                         <p
                             :class="edit===contenue ? contenue.class+' couleurEdit ':contenue.class"
@@ -38,12 +37,14 @@
                         <div v-else>
                             <div @dblclick="contenue=edit" style="margin-bottom: 26px;padding-left: 55px;padding-left: 55px;display: flex;flex-direction: column;align-content: stretch;align-items: center;">
                                 <div v-for="choix,i in contenue.choix" :key="choix">
+                                    
                                     <label class="container" @dblclick="indexEdit=i;edit=contenue">
-                                        <p v-show="indexEdit!=i" >{{ choix.text }}</p>
+                                        <p style="margin-top: 1px;" v-show="indexEdit!=i" >{{ choix.text }}</p>
                                         <input type="checkbox" v-model="choix.reponse">
                                         <input v-show="contenue===edit && indexEdit==i" @keyup.enter="indexEdit=null" type="text" v-model="choix.text">
                                         <span class="checkmark"></span>
                                     </label>
+                                    <i @click="suppressinquiz(contenue,choix)" class="fa fa-close"></i>
                                 </div>
                                 <label v-if="contenue==edit" v-show="isInput" class="container">
                                         <input v-model="inputValeur" type="text" @keyup.enter="ajoutChoix(contenue)">
@@ -54,18 +55,10 @@
                             </div>
                             <span v-if="contenue==edit && indexEdit==null" v-show="!isInput"><h1 @click="isInput=true">+</h1></span>
                         </div>
-
                     </div>
                 </div>
             </div>
-            <div class="page">
-                <div class="pagination">
-                    <a >&laquo;</a>
-                    <a >&raquo;</a>
-                </div>
-            </div>
         </div>
-     
     </section>
 </template>
 
@@ -81,7 +74,8 @@ export default{
             exam:[],
             isInput:false,
             inputValeur:'',
-            reponseValue:false
+            reponseValue:false,
+            afficheReponse:false
         }
     },
     methods:{
@@ -92,6 +86,7 @@ export default{
             console.log(this.exam)
         },
         reponse(type){
+            this.afficheReponse=false
             var a={'type':'question','type1':type,'class':'','reponse':'','point':0};
             if(type=='quiz'){
                 a={'type':'question','type1':type,'class':'','choix':[],'point':0};
@@ -107,7 +102,17 @@ export default{
         },
         suppressinContenue(contenue){
             this.exam=this.exam.filter(a=>a!==contenue)
+        },
+        suppressinquiz(contenue,quiz){
+            contenue.choix=contenue.choix.filter(a=>a!==quiz)
+        },
+        handleMouseOver(){
+            this.afficheReponse=true
+        },
+        handleMouseOut(){
+            this.afficheReponse=false
         }
+
     }
     
 }
@@ -189,6 +194,9 @@ export default{
     .dropdown-content div:hover {background-color: #ddd;border-radius: 10px;box-shadow: 0px 0px 13px 4px rgb(0 0 0);}
 
     .quest:hover .dropdown-content {display: block;}
+    .dropdown-content > div:checked ~ .dropdown-content{
+        display: none;
+    }
     .question{
         display: flex;
         flex-direction: row;
@@ -278,18 +286,31 @@ export default{
 .icon{
     display: none;
     position: absolute;
-    left: 75%;
-    color: rgb(117, 117, 117); 
-    width: 100px;
+    left: 95%;
+    font-size: 20px;
+    color: rgb(117, 117, 117);
+}
+.kely{
+    left: 50%;
 }
 .component:hover .icon{
     display: block;
 }
 .component > div > div > div > div{
     height: 27px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 .icon:hover{
     color: rgb(219, 68, 68);
 }
+/* 
 
+height: 27px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+*/
 </style>
