@@ -40,10 +40,7 @@
     </form>
 </template>
 <script>
-// import { generateCodeFrame } from 'vue/compiler-sfc'
-// import section from '../directives/SectionDirective'
     export default{
-        // directives:{section},
         data() {
             return {
                 form:{},
