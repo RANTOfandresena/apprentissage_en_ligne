@@ -20,6 +20,9 @@ class AccueilController extends Controller
 
     public function createAccount()
     {
+        // Departement::create([
+        //     'nom' => 'Service Client'
+        // ]);
         return view('accueil.inscription');
     }
 
@@ -33,7 +36,7 @@ class AccueilController extends Controller
         if($type_user == 'professeur')
         {
             // $post = Proffesseur::create($request->validated());
-            
+
             $post = Proffesseur::create([
                 'nom' => $request->input('nom'),
                 'prenom' => $request->input('prenom'),
@@ -80,6 +83,6 @@ class AccueilController extends Controller
         }
 
         return "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin";// return redirect()->route('accueil')->with("success", "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin");
-        
+
     }
 }

@@ -10,7 +10,7 @@
     @csrf
 
     @method('PATCH')
-    
+
     @if($type_user == 'etudiants' || $type_user =='professeur')
         <div>
             <label for="nom"> Nom : </label>
@@ -31,7 +31,7 @@
         @if($type_user == 'etudiants')
             <div>
                 <label for="departement"> Département : </label>
-                <input type="text" readonly value="{{$user->type($type_user)->departement}}">
+                <input type="text" readonly value="{{$user->type($type_user)->departement->nom}}">
             </div>
         @elseif ($type_user == 'admin')
             <div>

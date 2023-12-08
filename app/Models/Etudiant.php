@@ -14,6 +14,7 @@ class Etudiant extends Model
         'prenom',
         'telephone',
         'email',
+        'departement_id'
     ];
 
     //Un étudiant appartient à un département

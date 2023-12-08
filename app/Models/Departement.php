@@ -10,7 +10,7 @@ class Departement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom'
+        'nom',
     ];
 
     //Les matières que doivent apprendre les département
