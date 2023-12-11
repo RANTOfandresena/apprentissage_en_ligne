@@ -21,7 +21,6 @@
             <div class="active"><a> niveau 1 </a></div>
             <div><a> niveau 2 </a></div>
         @endforeach
-        
         <div style="width: 181px;"><a href="{{route('professeur.ajoutNiveau', ['matiere' => $matiere->id] )}}"> Ajouter un autre niveau  </a></div>
     </div>
     <div id="cours" data-id="{{6}}"></div>
