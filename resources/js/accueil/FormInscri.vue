@@ -1,6 +1,6 @@
 <template>
     <form v-on:submit.prevent="envoyer()" class="container">
-        <h1> Engagez le meilleur pour former votre équipe </h1>
+        <h1> Engagez le meilleur pour former votre équipe <font-awesome-icon :icon="['far', 'laptop-mobile']" /> </h1>
         <hr>
         <div class="alert" :class="message==='echec d\'envoye'?'rouge':''" v-show="alert">{{ message }}</div>
         <div class="select-style">
@@ -96,7 +96,6 @@
                   this.message="echec d'envoye"
                   this.chargement=false
                 })
-                // console.log(this.form)
             },
             convertion(){
                 var data = new FormData()

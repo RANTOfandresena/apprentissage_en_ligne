@@ -6,10 +6,9 @@
 @include('professeur.navbarProf')
 
 @section('contenu')
+    <h1 style="text-align: center;color:#001a4b;"> INTRODUISEZ UNE NOUVELLE MATIERE </h1>
 
-    <h1> INTRODUISEZ UNE NOUVELLE MATIERE </h1>
-
-    <form action="" method="post">
+    <form class="creationM" action="" method="post">
 
         @csrf
         <div>
@@ -26,25 +25,26 @@
                 @foreach ($category as $categorie)
                    <option value="{{ $categorie->id }}"> {{$categorie->categorie}} </option>
                 @endforeach
-            </select>
+            </select><br>
+            <a href="{{ route('professeur.ajoutCategorie') }}">Ajouter une nouvelle catégorie</a>
         </div>
             @error('categorie_id')
 
             @enderror
             <p></p>
-        <div>
-            <label for="description"> Ajouter une description de la matière : </label>
-            <textarea name="description" id="description" cols="30" rows="10" value="{{ old('description', 'Nom_matiere a pour finalité d\'enseigner les bases du.... et de maîtriser le... ') }}">
+        <div class="description">
+            <div>
+                <label for="description"> Ajouter une description de la matière : </label><br>
+                <textarea name="description" id="description" cols="30" rows="10" value="{{ old('description', 'Nom_matiere a pour finalité d\'enseigner les bases du.... et de maîtriser le... ') }}"></textarea>
+            </div>
+                @error('description')
 
-            </textarea>
-        </div>
-            @error('description')
-
-            @enderror
+                @enderror
             <p></p>
+        </div>
         <button> VALIDER </button>
     </form>
-    <a href="{{ route('professeur.ajoutCategorie') }}"> <button> Ajouter une nouvelle catégorie </button></a>
+    
 
 
 

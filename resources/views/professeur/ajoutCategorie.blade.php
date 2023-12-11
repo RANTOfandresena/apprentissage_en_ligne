@@ -6,28 +6,29 @@
 @include('professeur.navbarProf')
 
 @section('contenu')
-    <h4> Ajouter une nouvelle catégorie pour les cours : </h4>
+    <h4 style="text-align: center;color:#001a4b;"> Ajouter une nouvelle catégorie pour les cours : </h4>
 
-    <form action="" method="post">
+    <form class="creationM" action="" method="post" style="display:flex;align-items: baseline;padding-bottom: 2px;">
 
         @csrf
         <label for="categorie"> Nom de la catégorie : </label>
         <input type="text" name="categorie" id="categorie">
-        <button> CONFIRMER </button>
+        <button style="margin-left: 14px;width: 94px;"> CONFIRMER </button>
     </form>
 
-    <h5> Liste des catégories existantes </h5>
-    <table>
-        <tr>
+    <h4 style="text-align: center;color:#001a4b;"> Liste des catégories existantes </h4>
+    <table class="listUser categorie">
+        <tr class="tete">
             <th> Nom </th>
             <th> Date de création  </th>
         </tr>
-        @foreach ( $category as $categorie )
-            <tr>
-                <td> {{ $categorie->categorie}} </td>
-                <td> {{ $categorie->created_at}} </td>
-            </tr>
-        @endforeach
-
+        <tbody class="list">
+            @foreach ( $category as $categorie )
+                <tr>
+                    <td><p> {{ $categorie->categorie}} </p></td>
+                    <td><p> {{ $categorie->created_at}} </p></td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 @endsection
