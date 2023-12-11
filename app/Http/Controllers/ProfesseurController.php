@@ -119,6 +119,14 @@ class ProfesseurController extends Controller
         ]);
     }
 
+    //Affichage des contenus de cours par matière
+    public function affichageCours(Matiere $matiere, Contenu_du_cour $contenu)
+    {
+        return view('professeur.affichageCours',[
+            'matiere' => $matiere,
+            'content' => $contenu
+        ]);
+    }
     //Ajout niveau
     public function ajoutRedirect(Matiere $matiere)
     {

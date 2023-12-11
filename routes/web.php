@@ -76,7 +76,8 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
     //RESET PASSWORD
     Route::get('{professeur}/Profil/Reset password', 'resetPassword')->name('resetPassword');
 
-
+    //Affichage des cours par matière
+    Route::get('{matiere}-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
 });
 
 //INTERFACE ETUDIANT

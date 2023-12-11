@@ -70,7 +70,7 @@
                     <h2>{{ $matiere->matiere }}</h2>
                     <h3>Catégorie : {{ $matiere->categorie->categorie }}</h3>
                     <section>
-                        <div style="background-color:green;border-bottom-left-radius: 10px;">Voir</div>
+                        <div style="background-color:green;border-bottom-left-radius: 10px;"> <a href="{{ route('professeur.affichageCours', ['matiere' => $matiere->id, 'contenu' =>  $matiere->contenu_du_cours[0]->id]) }}"> Voir </a></div>
                         <div style="background-color:red;border-bottom-right-radius: 10px;"><a href="{{route('professeur.creationCours', ['matiere' => $matiere->id, 'contenu' =>  $matiere->contenu_du_cours[0]->id])}}" class="matiere">Ameliorer</a></div>
                     </section>
                 </div>
