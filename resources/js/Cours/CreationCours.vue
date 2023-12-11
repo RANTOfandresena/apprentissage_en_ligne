@@ -105,10 +105,10 @@ export default{
         }
     },
     mounted(){
-        axios.get("/Interface professeur/Création contenu/"+this.idCours)
+        axios.get("/Interface professeur/"+this.idCours+"/Création contenu/")
         .then((response)=>{
-            console.log(response.data)
-            this.chapitres=response.data
+            console.log(JSON.parse(response.data.contenue))
+            this.chapitres=JSON.parse(response.data.contenue)
         })
         .catch((error)=>{
             console.log(error)
@@ -176,14 +176,13 @@ export default{
             this.chapitre.partie[this.partie].cours=this.chapitre.partie[this.partie].cours.filter(a=>a!==contenue)
         },
         suppressinChapitre(chp){
-            this.chapitres.filter(a=>a!==chp)
-            console.log(this.chapitres)
+            this.chapitres=this.chapitres.filter(a=>a!=chp)
         },
         insertion(){
             var data=new FormData()
             data.append('cours',JSON.stringify(this.chapitres))
             axios
-                .post("/Interface professeur/Création contenu/"+this.idCours,data)
+                .post("/Interface professeur/"+this.idCours+"/Création contenu/",data)
                 .then((response)=>{
                     console.log(response)
                 })
@@ -235,9 +234,9 @@ export default{
     }
     .jaune{
         background-color: #fdbe00;
-        position: absolute;
-        bottom: 10px;
-        margin-left: 7%;
+    }
+    .pagination{
+        display: flex;
     }
     .pagination a {color: black;float: left;padding: 8px 16px;text-decoration: none; transition: background-color .3s;}
 
@@ -247,7 +246,7 @@ export default{
     .page{
         background-color:#ffff;
         position: absolute;
-        bottom: 0px;
+        bottom: -53.5vh;
     }
     .icon{
         display: none;

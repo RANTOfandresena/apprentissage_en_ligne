@@ -166,4 +166,7 @@ class ProfesseurController extends Controller
         $cour->save();
         return "Cours enregistré avec succèes";
     }
+    public function getCours(Contenu_du_cour $contenue){
+        return $contenue;
+    }
 }

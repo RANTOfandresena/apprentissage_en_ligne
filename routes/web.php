@@ -60,7 +60,9 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
     //Création de contenu de cours
     Route::get('{matiere}-{contenu}/Création contenu de cours', 'createRedirect')->name('creationCours');
     //mise a jour de contenue du cours
-    Route::post('/Création contenu/{contenue}', 'updateCours');
+    //Interface%20professeur/Cr%C3%A9ation%20contenu/13
+    Route::get('{contenue}/Création contenu', 'getCours');
+    Route::post('{contenue}/Création contenu', 'updateCours');
 
     // Route::post('/Création contenu', 'cours');
 
