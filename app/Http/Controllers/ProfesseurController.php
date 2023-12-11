@@ -114,7 +114,7 @@ class ProfesseurController extends Controller
         // return $matiere->contenu_du_cours[1]->niveau;
         return view('professeur.creationCours',[
             'matiere' => $matiere,
-            'contenu' => $contenu
+            'content' => $contenu
             // 'matiere' => Matiere::with('contenu_du_cours')
         ]);
     }
