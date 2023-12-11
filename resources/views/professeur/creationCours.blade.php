@@ -17,8 +17,11 @@
         <p> {{ $contenu->id }} </p>
     @endforeach
 
-   <a href="{{route('professeur.ajoutNiveau', ['matiere' => $matiere->id] )}}"> <button> Ajouter un autre niveau </button> </a>
-
+    <div class="niveau">
+        <div class="active"><a> niveau 1 </a></div>
+        <div><a> niveau 2 </a></div>
+        <div style="width: 181px;"><a href="{{route('professeur.ajoutNiveau', ['matiere' => $matiere->id] )}}"> Ajouter un autre niveau  </a></div>
+    </div>
     <div id="cours" data-id="{{6}}"></div>
     @vite('resources/js/Cours/app.js')
 @endsection
