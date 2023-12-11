@@ -11,6 +11,8 @@ use App\Models\Proffesseur;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Cast\Int_;
+use Ramsey\Uuid\Type\Integer;
 
 class ProfesseurController extends Controller
 {
@@ -107,12 +109,12 @@ class ProfesseurController extends Controller
     }
 
     //Création de contenu de cours
-    public function createRedirect(Matiere $matiere)
+    public function createRedirect(Matiere $matiere, Contenu_du_cour $contenu)
     {
-        // return $matiere->contenu_du_cours[0]->niveau;
+        // return $matiere->contenu_du_cours[1]->niveau;
         return view('professeur.creationCours',[
-            'matiere' => $matiere
-
+            'matiere' => $matiere,
+            'contenu' => $contenu
             // 'matiere' => Matiere::with('contenu_du_cours')
         ]);
     }

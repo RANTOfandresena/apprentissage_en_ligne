@@ -58,7 +58,7 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
     Route::post('/Création matiere', 'storeMatiere');
 
     //Création de contenu de cours
-    Route::get('{matiere}/Création contenu de cours', 'createRedirect')->name('creationCours');
+    Route::get('{matiere}-{contenu}/Création contenu de cours', 'createRedirect')->name('creationCours');
     //mise a jour de contenue du cours
     Route::post('/Création contenu/{contenue}', 'updateCours');
 
