@@ -12,7 +12,7 @@
         <h3>AUTHENTIFICATION</h3>
         <div>
             <label for="nom"> Nom ou Email: </label>
-            <input type="text" name="email_or_name" id="nom">
+            <input type="text" name="email_or_name" id="nom" value="{{old('email_or_name')}}">
         </div>
         <div>
             @error('email_or_name')
@@ -22,7 +22,7 @@
 
         <div>
             <label for="mdp"> Mot de passe: </label>
-            <input type="password" name="password" id="mdp">
+            <input type="password" name="password" id="mdp" value="{{ old('password') }}">
         </div>
         <div>
             @error('password')

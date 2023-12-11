@@ -109,8 +109,10 @@ class ProfesseurController extends Controller
     //Création de contenu de cours
     public function createRedirect(Matiere $matiere)
     {
+        // return $matiere->contenu_du_cours[0]->niveau;
         return view('professeur.creationCours',[
             'matiere' => $matiere
+
             // 'matiere' => Matiere::with('contenu_du_cours')
         ]);
     }
