@@ -5,7 +5,6 @@
 @include('professeur.navbarProf')
 
 @section('contenu')
-    <h1> Bienvenue </h1>
     <style>
         .matiere{
             color:black;
