@@ -18,11 +18,11 @@
     <div class="niveau">
         @foreach ($matiere->contenu_du_cours as $contenu )
             <p> {{ $contenu->id }} </p>
-            <div class="active"><a> niveau 1 </a></div>
-            <div><a> niveau 2 </a></div>
+            <div><a href="{{ route('professeur.creationCours' , ['matiere' => $matiere->id, 'contenu' =>  $contenu->id ]) }}"> Niveau {{ $contenu->niveau }} </a></div>
         @endforeach
+
         <div style="width: 181px;"><a href="{{route('professeur.ajoutNiveau', ['matiere' => $matiere->id] )}}"> Ajouter un autre niveau  </a></div>
     </div>
-    <div id="cours" data-id="{{6}}"></div>
+    <div id="cours" data-id="{{$contenu}}"></div>
     @vite('resources/js/Cours/app.js')
 @endsection
