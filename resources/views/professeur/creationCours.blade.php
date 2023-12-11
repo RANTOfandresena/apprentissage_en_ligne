@@ -17,7 +17,7 @@
 
     <div class="niveau">
         @foreach ($matiere->contenu_du_cours as $contenu )
-            <p> {{ $contenu->id }} </p>
+            {{-- <p> {{ $contenu->id }} </p> --}}
             <div><a href="{{ route('professeur.creationCours' , ['matiere' => $matiere->id, 'contenu' =>  $contenu->id ]) }}"> Niveau {{ $contenu->niveau }} </a></div>
         @endforeach
 
