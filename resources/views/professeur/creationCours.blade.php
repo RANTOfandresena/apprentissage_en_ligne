@@ -23,7 +23,6 @@
 
         <div style="width: 181px;"><a href="{{route('professeur.ajoutNiveau', ['matiere' => $matiere->id] )}}"> Ajouter un autre niveau  </a></div>
     </div>
-    {{$content}}
     <div id="cours" data-id="{{$content}}"></div>
     @vite('resources/js/Cours/app.js')
 @endsection
