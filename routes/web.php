@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\testController;
+use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,3 +87,13 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
 Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantController::class)->group(function(){
     Route::get('/accueil', 'accueilRedirect')->name('accueil');
 });
+
+//Test envoie d'email
+// Route::get('/send-test-email', function () {
+//     Mail::raw('Test email content', function ($message) {
+//         $message->to('angevoni@gamil.com');
+//         $message->subject('Test email');
+//     });
+
+//     return 'Test email sent!';
+// });
