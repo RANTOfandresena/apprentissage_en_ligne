@@ -1,5 +1,4 @@
 <template>
-
     <section style="height: 100vh;text-align: center;">
     
         <div style="width: 20vw;">
@@ -79,9 +78,10 @@ export default{
         }
     },
     mounted(){
-        axios.get("/Interface professeur/Création contenu/"+this.idCours)
+        axios.get("/Interface professeur/"+this.idCours+"/Création contenu/")
         .then((response)=>{
-            this.chapitres=response.data
+            console.log(JSON.parse(response.data.contenue))
+            this.chapitres=JSON.parse(response.data.contenue)
         })
         .catch((error)=>{
             console.log(error)
