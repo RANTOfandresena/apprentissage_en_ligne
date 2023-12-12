@@ -54,7 +54,7 @@
                             <p :class="coms.user ? 'border':''">{{ coms.message }}</p>
                         </div>
                     </div>
-                </div>
+                </div>s
                 <div class="send">
                     <textarea name="" id="" cols="50" rows="3"></textarea><div>icon</div>
                 </div>
@@ -86,14 +86,6 @@ export default{
         .catch((error)=>{
             console.log(error)
         })
-        axios.get('/message.json')
-            .then((response)=>{
-                this.commentaire=response.data
-                // console.log(JSON.stringify(response.data))
-            })
-            .catch((error)=>{
-                console.log(error)
-            })
     },
     computed:{
         numPartie(){

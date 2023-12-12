@@ -120,7 +120,7 @@ class ProfesseurController extends Controller
     }
 
     //Affichage des contenus de cours par matière
-    public function affichageCours(Matiere $matiere, Contenu_du_cour $contenu)
+    public function affichageCours(Matiere $matiere, String $contenu)
     {
         return view('professeur.affichageCours',[
             'matiere' => $matiere,
