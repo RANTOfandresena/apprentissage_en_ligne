@@ -1,6 +1,5 @@
 <template>
     <section style="height: 100vh;text-align: center;">
-    
         <div style="width: 20vw;">
             <p style="color: white;" @click="commentaires">chapitre</p><br>
             <div class="chapitree" v-for="chp in chapitres" :key="chp"
@@ -14,6 +13,7 @@
                 <div v-if="chapitre===chp " class="radius bas"><div></div></div>
             </div>
         </div>
+        <transition name="reduit">
         <div class="contenue" style="width: 80%;">
             <div v-if="numchapitre!==null">
                 <div class="contenuee"  v-for="contenue in numchapitre.partie[numPartie].cours" :key="contenue">
@@ -30,6 +30,7 @@
                     <input v-if="contenue.type==='input'" type="text"><button v-if="contenue.type=='input'">Envoyer</button>
                 </div>
             </div>
+            
             <div class="page" v-if="numchapitre!==null">
                 <div class="pagination">
                     <a >&laquo;</a>
@@ -42,11 +43,12 @@
                 </div>
             </div>
         </div>
+        </transition>
         
         <!--  -->
         <transition name="affiche">
             <div class="sidenav" v-if="active" ><a>&times;</a>
-                <div style="height: 100%;overflow-y: scroll;">
+                <div style="height: 86%;overflow-y: scroll;">
                     <div v-for="coms in commentaire">
                         <div :class="coms.user ? 'float':''">
                             <h4>{{ coms.nom }}</h4>
@@ -222,7 +224,7 @@ export default{
         transition: 0.5s;
         padding-left: 10px;
         padding-right: 10px;
-        padding-bottom: 60px;
+        /* padding-bottom: 60px; */
     }
 
     .sidenav > div > div{
@@ -284,11 +286,40 @@ export default{
         padding-top: 8px;
         border-radius: 10px;
     }
-    .affiche-enter-active, .affiche-leave-active{
+    /* .affiche-enter-active{
         transition: transform 1s;
     }
-    .affiche-enter, .affiche-leave-active{
+    .affiche-leave-active{
         transform: translateX(500px);
+    } */
+    .affiche-enter-active{
+        animation: affiche 1s;
     }
+    .affiche-leave-active{
+        animation: reduit 1s;
+    }
+    @keyframes affiche {
+        from{transform:translateX(0px);}
+        to{transform: translateX(500px);}
+    }
+    @keyframes reduit {
+        from{transform:translateX(500px);}
+        to{transform: translateX(0px);}
+    }
+    .reduit-enter-active{
+        animation: affiche 1s;
+    }
+    .reduit-leave-active{
+        animation: reduit 1s;
+    }
+    /* @keyframes affiche {
+        from{transform:translateX(0px);}
+        to{transform: translateX(500px);}
+    }
+    @keyframes reduit {
+        from{transform:translateX(500px);}
+        to{transform: translateX(0px);}
+    }
+    */
 
 </style>
