@@ -17,6 +17,10 @@ class AccueilController extends Controller
     {
         return view('accueil.home');
     }
+    public function video()
+    {
+        return view('video');
+    }
 
     public function createAccount()
     {

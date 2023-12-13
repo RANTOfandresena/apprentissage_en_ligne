@@ -13,7 +13,6 @@
                 <div v-if="chapitre===chp " class="radius bas"><div></div></div>
             </div>
         </div>
-        <transition name="reduit">
         <div class="contenue" style="width: 80%;">
             <div v-if="numchapitre!==null">
                 <div class="contenuee"  v-for="contenue in numchapitre.partie[numPartie].cours" :key="contenue">
@@ -30,7 +29,6 @@
                     <input v-if="contenue.type==='input'" type="text"><button v-if="contenue.type=='input'">Envoyer</button>
                 </div>
             </div>
-            
             <div class="page" v-if="numchapitre!==null">
                 <div class="pagination">
                     <a >&laquo;</a>
@@ -43,25 +41,23 @@
                 </div>
             </div>
         </div>
-        </transition>
-        
         <!--  -->
-        <transition name="affiche">
-            <div class="sidenav" v-if="active" ><a>&times;</a>
-                <div style="height: 86%;overflow-y: scroll;">
-                    <div v-for="coms in commentaire">
-                        <div :class="coms.user ? 'float':''">
-                            <h4>{{ coms.nom }}</h4>
-                            <p :class="coms.user ? 'border':''">{{ coms.message }}</p>
-                        </div>
+        <!-- v-if="active" -->
+        <div class="sidenav"  ><a>&times;</a>
+            <div style="height: 100%;overflow-y: scroll;">
+                <div v-for="coms in commentaire">
+                    <div :class="coms.user ? 'float':''">
+                        <h4>{{ coms.nom }}</h4>
+                        <p :class="coms.user ? 'border':''">{{ coms.message }}</p>
                     </div>
-                </div>s
-                <div class="send">
-                    <textarea name="" id="" cols="50" rows="3"></textarea><div>icon</div>
                 </div>
-            </div>        
-        </transition>
+            </div>
+            <div class="send">
+                <textarea name="" id="" cols="50" rows="3"></textarea><div>icon</div>
+            </div>
+        </div>
     </section>
+
 
 </template>
 <script>
@@ -224,7 +220,7 @@ export default{
         transition: 0.5s;
         padding-left: 10px;
         padding-right: 10px;
-        /* padding-bottom: 60px; */
+        padding-bottom: 60px;
     }
 
     .sidenav > div > div{
@@ -286,40 +282,11 @@ export default{
         padding-top: 8px;
         border-radius: 10px;
     }
-    /* .affiche-enter-active{
+    .affiche-enter-active, .affiche-leave-active{
         transition: transform 1s;
     }
-    .affiche-leave-active{
+    .affiche-enter, .affiche-leave-active{
         transform: translateX(500px);
-    } */
-    .affiche-enter-active{
-        animation: affiche 1s;
     }
-    .affiche-leave-active{
-        animation: reduit 1s;
-    }
-    @keyframes affiche {
-        from{transform:translateX(0px);}
-        to{transform: translateX(500px);}
-    }
-    @keyframes reduit {
-        from{transform:translateX(500px);}
-        to{transform: translateX(0px);}
-    }
-    .reduit-enter-active{
-        animation: affiche 1s;
-    }
-    .reduit-leave-active{
-        animation: reduit 1s;
-    }
-    /* @keyframes affiche {
-        from{transform:translateX(0px);}
-        to{transform: translateX(500px);}
-    }
-    @keyframes reduit {
-        from{transform:translateX(500px);}
-        to{transform: translateX(0px);}
-    }
-    */
 
 </style>
