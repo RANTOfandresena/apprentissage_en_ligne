@@ -1,7 +1,5 @@
 import'../bootstrap';
 import { createApp } from 'vue';
-// import App from './CreationCours.vue';afiichageCours
-// import App from './CreationCours.vue';
 import App from './CreationCours.vue';
 document.addEventListener('DOMContentLoaded', function () {
     var id=document.getElementById('cours').dataset.id

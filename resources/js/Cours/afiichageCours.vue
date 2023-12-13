@@ -1,7 +1,5 @@
 <template>
-
     <section style="height: 100vh;text-align: center;">
-    
         <div style="width: 20vw;">
             <p style="color: white;" @click="commentaires">chapitre</p><br>
             <div class="chapitree" v-for="chp in chapitres" :key="chp"
@@ -43,24 +41,26 @@
                 </div>
             </div>
         </div>
-        
-        <!--  -->
-        <transition name="affiche">
-            <div class="sidenav" v-if="active" ><a>&times;</a>
-                <div style="height: 100%;overflow-y: scroll;">
-                    <div v-for="coms in commentaire">
-                        <div :class="coms.user ? 'float':''">
-                            <h4>{{ coms.nom }}</h4>
-                            <p :class="coms.user ? 'border':''">{{ coms.message }}</p>
+    </section>
+        <div class="sidenav1">
+            <div class="loader centre"></div>
+            <div class="sidenav"  ><a>&times;</a>
+                <div style="overflow-y: scroll;height: 80vh;">
+                    <div><!--  -->
+                        <div v-for="coms in commentaire">
+                            <div :class="coms.user ? 'float':''">
+                                <h4>{{ coms.nom }}</h4>
+                                <p :class="coms.user ? 'border':''">{{ coms.message }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="send">
                     <textarea name="" id="" cols="50" rows="3"></textarea><div>icon</div>
                 </div>
-            </div>        
-        </transition>
-    </section>
+            </div>
+        </div>
+
 
 </template>
 <script>
@@ -79,21 +79,14 @@ export default{
         }
     },
     mounted(){
-        axios.get("/Interface professeur/Création contenu/"+this.idCours)
+        axios.get("/Interface professeur/"+this.idCours+"/Création contenu/")
         .then((response)=>{
-            this.chapitres=response.data
+            console.log(JSON.parse(response.data.contenue))
+            this.chapitres=JSON.parse(response.data.contenue)
         })
         .catch((error)=>{
             console.log(error)
         })
-        axios.get('/message.json')
-            .then((response)=>{
-                this.commentaire=response.data
-                // console.log(JSON.stringify(response.data))
-            })
-            .catch((error)=>{
-                console.log(error)
-            })
     },
     computed:{
         numPartie(){
@@ -217,80 +210,6 @@ export default{
     }
     .haut div{
         border-bottom-right-radius: 100%;
-    }
-    .sidenav {
-        width: 500px;
-        position: relative;
-        z-index: 1;
-        top: 0;
-        font-size: 12px;
-        right: 0;
-        background-color: #f1f1f1;
-        /* overflow-x: hidden; */
-        transition: 0.5s;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 60px;
-    }
-
-    .sidenav > div > div{
-        margin-bottom: 10px;
-    }
-    .sidenav >div > div > div > h4{
-        margin-bottom: 0;
-        background-color: #ccc7c7;;
-        width: max-content;
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 10px 10px 0 0;
-    }
-    .sidenav >div > div > div > p{
-        margin-top: 0;
-        margin-bottom: 0;
-        padding: 10px;
-        max-width: 86%;
-        background-color: #f1f1f1;;
-        width: max-content;
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 0 10px 10px 10px;
-        box-shadow: 0px 4px 20px 1px #000000;
-    }
-    .float{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-    .border{
-        border-radius: 10px 0 10px 10px !important;
-    }
-    .send{
-        display: flex;
-        position: relative;
-        width: 100%;
-        padding: 5px;
-        background-color: #ccc7c7;
-        z-index: 1;
-        margin-left: -10px;
-        margin-right: -10px;
-        box-shadow: 0px 1px 20px 0px #001a4b;
-    }
-    .send textarea{
-        height: 25px;
-        /* width: 80%; */
-        box-shadow: 0px 4px 20px 1px #001a4b;
-        border-radius: 5px;
-
-    }
-    .send div{
-        cursor: pointer;
-        box-shadow: 0px 4px 20px 1px #001a4b;
-        margin-left: 10px;
-        width: 25px;
-        height: 25px;
-        text-align: center;
-        padding-top: 8px;
-        border-radius: 10px;
     }
     .affiche-enter-active, .affiche-leave-active{
         transition: transform 1s;

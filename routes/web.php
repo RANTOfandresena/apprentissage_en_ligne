@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 //Accueil principal
 Route::get('/', [AccueilController::class, 'redirection'])->name('accueil');
+Route::get('/video', [AccueilController::class, 'video'])->name('video');
 
 //Création de compte
 Route::get('/account', [AccueilController::class, 'createAccount'])->name('create.account');
