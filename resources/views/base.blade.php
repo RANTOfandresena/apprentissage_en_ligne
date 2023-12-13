@@ -15,7 +15,7 @@
     @php
         $routeName = request()->route()->getName();
 
-        echo($routeName);
+        // echo($routeName);
     @endphp
     {{-- Utilisateurs connectés --}}
     @auth

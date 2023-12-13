@@ -43,20 +43,100 @@ input::placeholder {
     color: white;
 }
 
-/* Navbar interface administrateur */
+/******************************ADMINISTRATEUR**************************************/
+
+/*Navbar interface administrateur */
+.fondNavbar{
+    border: 1px solid #02A0E6;
+    background-color: #02A0E6;
+    display: flex;
+    width: 88vw;
+    height: 10vh;
+    justify-content: center;
+    margin: auto;
+}
+
+.navbarAdmin{
+    width: 100%;
+    border:1px solid #00143d;
+    background-color: #00143dab;
+    padding: 5px;
+    height: 12vh;
+    position: absolute;
+    z-index: 2;
+}
+
+.linkAdmin{
+    width: max-content;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    /* float: right; */
+}
+.linkAdmin a, input, button{
+    margin-left: 4vw;
+}
+.btn_deconnexion_admin{
+    border: #00143d;
+    background-color: #00143d;
+    border-radius: 6px;
+    color: #FFFFFF;
+    padding: 15px;
+}
+.recherche_admin{
+    border-style: none;
+    border-radius: 6px;
+    height: 36px;
+}
+.recherche_admin::placeholder{
+    color: #4e4e4e;
+    font-size: 10px;
+    text-align: right;
+}
+.image{
+    background-image: url(../css/assets/woman-5462074_1280.jpg);
+    width: 100%;
+    height: 108vh;
+    transform: scaleX(-1);
+}
+.rect1{
+    border: 1px solid #00143d80;
+    background-color: #00143d80;
+    width: 44vw;
+    height: 118vh;
+    position: absolute;
+    top: -32vw;
+    left: -28vw;
+    transform: rotate(-49deg);
+    z-index: 3;
+}
+.rect2{
+    border: 1px solid #02a2e681;
+    background-color: #02a2e681;
+    width: 44vw;
+    height: 118vh;
+    position: absolute;
+    top: -30vw;
+    left: -25vw;
+    transform: rotate(-49deg);
+    z-index: 1;
+}
+/******************************************************************************************************/
 .navbar{
     display: flex;
     width: 100%;
     height: 70px;
     background-color: #001a4b;
 }
+
+
 .navbar *{
     margin:8px
 }
-.link{
+/* .link{
     position: absolute;
     right: 0%;
-}
+} */
 .link *{
     color: white;
 }
@@ -271,10 +351,10 @@ label{
 }
 .niveau{
     display: flex;
-    
+
     text-align: center;
 }
-.niveau > div{   
+.niveau > div{
     width: 100px;
     height: 22px;
     margin-right: 1px;
@@ -285,8 +365,8 @@ label{
 }
 .niveau > div:hover{
     background-color: rgb(0, 0, 71);
-    
-} 
+
+}
 .niveau > div > a{
     color: #0086bb;
 }
