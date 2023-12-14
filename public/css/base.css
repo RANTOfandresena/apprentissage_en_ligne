@@ -1,3 +1,13 @@
+/* fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Philosopher');
+@import url('https://fonts.googleapis.com/css2?family=Nothing You Could Do');
+@import url('https://fonts.googleapis.com/css2?family=Jura');
+/*********************************************************************************************/
+body{
+    margin:0;
+    overflow-x: hidden;
+}
 /************************* HOME ***************************/
 .accueil2{
     z-index: -1;
@@ -58,12 +68,11 @@ input::placeholder {
 
 .navbarAdmin{
     width: 100%;
-    border:1px solid #00143d;
     background-color: #00143dab;
     padding: 5px;
     height: 12vh;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
 }
 
 .linkAdmin{
@@ -73,8 +82,9 @@ input::placeholder {
     text-align: center;
     /* float: right; */
 }
-.linkAdmin a, input, button{
-    margin-left: 4vw;
+.linkAdmin a, .linkAdmin input, .linkAdmin button{
+    margin-left: 44px;
+    font-family: 'Jura';
 }
 .btn_deconnexion_admin{
     border: #00143d;
@@ -96,30 +106,109 @@ input::placeholder {
 .image{
     background-image: url(../css/assets/woman-5462074_1280.jpg);
     width: 100%;
-    height: 108vh;
+    height: 98vh;
     transform: scaleX(-1);
 }
 .rect1{
-    border: 1px solid #00143d80;
-    background-color: #00143d80;
+    background-color: #00143dbb;
     width: 44vw;
     height: 118vh;
     position: absolute;
-    top: -32vw;
-    left: -28vw;
-    transform: rotate(-49deg);
-    z-index: 3;
+    top: -488px;
+    left: -471px;
+    transform: rotate(-36deg);
+    z-index: 2;
 }
 .rect2{
-    border: 1px solid #02a2e681;
-    background-color: #02a2e681;
+    background-color: #02a2e6bb;
     width: 44vw;
     height: 118vh;
     position: absolute;
-    top: -30vw;
-    left: -25vw;
-    transform: rotate(-49deg);
+    top: -462px;
+    left: -414px;
+    transform: rotate(-36deg);
     z-index: 1;
+}
+.rect3{
+    background-color: #001a4b;
+    width: 805px;
+    height: 917px;
+    position: absolute;
+    top: 7px;
+    right: -167px;
+    transform: rotate(25deg);
+}
+.rect4{
+    background-color: #00143d;
+    width: 326px;
+    height: 342px;
+    transform: rotate(25deg);
+    position: absolute;
+    top: 379px;
+    right: 172px;
+}
+div.partie2{
+    background-color: #FFFFFF;
+    border:1px solid #3b3b3b;
+    width: 100%;
+    height: 500px;
+    z-index: 6;
+    position: absolute;
+}
+div.partie1{
+    z-index: 7;
+}
+h1.ODATA{
+    position: absolute;
+    top: 196px;
+    right: 92px;
+    color: #FFFFFF;
+    letter-spacing: 5px;
+    font-family: 'Philosopher';
+    font-size: 43px;
+}
+h2.Connaissance{
+    position: absolute;
+    top: 309px;
+    right: 71px;
+    word-spacing: 11px;
+    line-height: 1.5;
+    font-size: 24px;
+    letter-spacing: 6px;
+    color: #FFFFFF;
+    font-family: 'Nothing You Could Do';
+}
+span.Connaissance{
+    color: #02a0e6;
+}
+p.titrePart{
+    color: #02a0e6;
+    font-family: 'Philosopher';
+    text-indent: 183px;
+    font-weight: 700;
+    word-spacing: 2px;
+    font-size: 19px;
+    font-style: italic;
+}
+p.PhraseAppel{
+    color: #00143d;
+    font-weight: 900;
+    font-size: 34px;
+    text-indent: 117px;
+    position: relative;
+    top: -17px;
+}
+button.Voir_plus{
+    border: #00143d;
+    background-color: #00143d;
+    width: 127px;
+    height: 44px;
+    color: #FFFFFF;
+    border-radius: 3px;
+    position: relative;
+    left: 222px;
+    top: 81px;
+    font-family: 'Jura';
 }
 /******************************************************************************************************/
 .navbar{
@@ -374,16 +463,14 @@ label{
     background-color: rgb(0, 0, 71);
     /* color: white; */
 }
-<<<<<<< HEAD
-=======
 /*"""""""""""""""""""" chargement """"""""""""""""""""""*/
 .loader {
     width: 50px;
     height: 50px;
     display: flex;
     color: #514b82;
-    background:
-      linear-gradient(currentColor 0 0) right  /51% 100%,
+    background-color:
+    linear-gradient(currentColor 0 0) right  /51% 100%,
       linear-gradient(currentColor 0 0) bottom /100% 51%;
     background-repeat: no-repeat;
     animation: l17-0 2s infinite linear .25s;
@@ -499,4 +586,3 @@ label{
     left: 0;
     z-index: 1;
 }
->>>>>>> 4a8afe0b5772580fac7ddc0e383fccba791f9ecc

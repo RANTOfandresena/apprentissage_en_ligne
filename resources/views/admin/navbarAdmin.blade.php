@@ -1,5 +1,6 @@
 @section('navbar')
 
+<div class="partie1">
     <div class="navbarAdmin">
         <div class="fondNavbar">
             <div class="linkAdmin">
@@ -24,9 +25,20 @@
     </div>
 
     {{-- Décorations --}}
-<div class="rect1"></div>
-<div class="rect2"></div>
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
 
+    {{-- Phrases --}}
+    <h1 class="ODATA"> ODATA-LEARNING </h1>
+    <h2 class="Connaissance"> <span class="Connaissance">CONNAISSANCE</span> <br> A PORTER DE MAIN</h2>
+</div>
 
+<div class="partie2">
+    <p class="titrePart">Les cours récement crées</p>
+    <p class="PhraseAppel">Faîtes sortir leur potentiel</p>
+    <button class="Voir_plus"> Voir plus </button>
+</div>
 
 @endsection
