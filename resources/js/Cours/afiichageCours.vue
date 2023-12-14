@@ -1,7 +1,13 @@
 <template>
+    <transition name="chargement">
+        <div v-if="chargement" class="sidenav1" key="active"> <!-- v-if -->
+            <div class="loader centre"></div>
+        </div>    
+    </transition>
+
     <section style="height: 100vh;text-align: center;">
         <div style="width: 20vw;">
-            <p style="color: white;" @click="commentaires">chapitre</p><br>
+            <p style="color: white;">chapitre</p><br>
             <div class="chapitree" v-for="chp in chapitres" :key="chp"
                 :class="chapitre===chp ? 'chp':''"
                 >
@@ -15,8 +21,8 @@
         </div>
         <div class="contenue" style="width: 80%;">
             <div v-if="numchapitre!==null">
-                <div class="contenuee"  v-for="contenue in numchapitre.partie[numPartie].cours" :key="contenue">
-                    <i class="fa fa-comment-o icon" style="font-size:24px"></i>
+                <div @dblclick="commentaires" class="contenuee"  v-for="contenue in numchapitre.partie[numPartie].cours" :key="contenue">
+                    <i @click="commentaires" class="fa fa-comment-o icon" style="font-size:24px"></i>
                     <!-- si paragraphe -->
                     <p v-if="contenue.type==='paragraphe'">{{ contenue.text }}</p>
                     <!-- si titre -->
@@ -31,7 +37,7 @@
             </div>
             <div class="page" v-if="numchapitre!==null">
                 <div class="pagination">
-                    <a >&laquo;</a>
+                    <p >&laquo;</p>
                     <a
                         :class="partie==i-1?'active':''"
                         @click="partie=i-1"
@@ -42,11 +48,12 @@
             </div>
         </div>
     </section>
-        <div class="sidenav1">
-            <div class="loader centre"></div>
-            <div class="sidenav"  ><a>&times;</a>
+    <transition name="affiche">
+        <div class="sidenav1" v-if="active" key="active"> <!-- v-if -->
+        <div v-if="chargement" class="loader centre"></div>
+            <div class="sidenav"  ><p style="font-size: 25px;" @click="commentaires">&times;</p>
                 <div style="overflow-y: scroll;height: 80vh;">
-                    <div><!--  -->
+                    <div><!-- v-if axios -->
                         <div v-for="coms in commentaire">
                             <div :class="coms.user ? 'float':''">
                                 <h4>{{ coms.nom }}</h4>
@@ -60,8 +67,7 @@
                 </div>
             </div>
         </div>
-
-
+    </transition>
 </template>
 <script>
 import axios from 'axios'
@@ -75,16 +81,20 @@ export default{
             chapitre:null,
             partie:0,
             commentaire:[],
-            active:false
+            active:false,
+            chargement:false
         }
     },
     mounted(){
+        this.chargement=true
         axios.get("/Interface professeur/"+this.idCours+"/Création contenu/")
         .then((response)=>{
             console.log(JSON.parse(response.data.contenue))
             this.chapitres=JSON.parse(response.data.contenue)
+            this.chargement=false
         })
         .catch((error)=>{
+            this.chargement=false
             console.log(error)
         })
     },
@@ -211,11 +221,35 @@ export default{
     .haut div{
         border-bottom-right-radius: 100%;
     }
-    .affiche-enter-active, .affiche-leave-active{
-        transition: transform 1s;
+    .affiche-enter-active{
+        animation: apparition .5s;
     }
-    .affiche-enter, .affiche-leave-active{
-        transform: translateX(500px);
+    .affiche-leave-active{
+        animation: disparition .5s;
     }
+    @keyframes apparition {
+        from{transform: scale(0,0);opacity: 0;}
+        to{transform: scale(1,1);opacity: 1;}
+    }
+    @keyframes disparition {
+        from{transform: scale(1,1);opacity: 1;}
+        to{transform: scale(3,3);opacity: 0;}
+    }
+    .chargement-enter-active{
+        animation: apparition1 .5s;
+    }
+    .chargement-leave-active{
+        animation: disparition1 .5s;
+    }
+    @keyframes apparition1 {
+        from{opacity: 0;}
+        to{opacity: 1;}
+    }
+    @keyframes disparition1 {
+        from{opacity: 1;}
+        to{opacity: 0;}
+    }
+
+
 
 </style>

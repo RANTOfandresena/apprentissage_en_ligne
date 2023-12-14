@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\matiere as RequestsMatiere;
 use App\Models\Categorie;
 use App\Models\Chat;
+use App\Models\Commentaire;
 use App\Models\Contenu_du_cour;
 use App\Models\Matiere;
 use App\Models\Proffesseur;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\Cast\Int_;
-use Ramsey\Uuid\Type\Integer;
 
 class ProfesseurController extends Controller
 {
@@ -52,6 +51,7 @@ class ProfesseurController extends Controller
             // 'description' => $request->input('description')
         ]);
         $matiere->contenu_du_cours()->sync($contenu_du_cour->id);
+
         return redirect()->route('professeur.accueil', [
             'matieres' => Matiere::where('proffesseur_id', Auth::user()->professeur->id)->get()
         ])->with('success', 'Nouvelle matière ajoutée avec succès');
@@ -122,6 +122,10 @@ class ProfesseurController extends Controller
     //Affichage des contenus de cours par matière
     public function affichageCours(Matiere $matiere, String $contenu)
     {
+        // $coms = Commentaire::create([
+        //     'comentaires'   =>  "1ere coms",
+        // ]);
+        // $coms->contenu_du_cours()->sync($contenu);
         return view('professeur.affichageCours',[
             'matiere' => $matiere,
             'content' => $contenu
