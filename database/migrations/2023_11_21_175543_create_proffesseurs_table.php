@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Commentaire;
 use App\Models\Proffesseur;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
