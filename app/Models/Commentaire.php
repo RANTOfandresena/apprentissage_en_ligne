@@ -15,4 +15,7 @@ class Commentaire extends Model
     public function contenu_du_cours(){
         return $this->belongsToMany(Contenu_du_cour::class);
     }
+    public function use(){
+        return $this->belongsToMany(User::class);
+    }
 }
