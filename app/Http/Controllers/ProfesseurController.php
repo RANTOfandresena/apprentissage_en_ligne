@@ -25,9 +25,6 @@ class ProfesseurController extends Controller
     //View création de matières
     public function CreationMatiereRedirect()
     {
-        // Categorie::create([
-        //     'categorie' => 'Langue'
-        // ]);
         return view('professeur.CreerMatiere', [
             'category' => Categorie::all()
         ]);
@@ -126,6 +123,7 @@ class ProfesseurController extends Controller
         //     'comentaires'   =>  "1ere coms",
         // ]);
         // $coms->contenu_du_cours()->sync($contenu);
+        // $coms->use()->sync(Auth::user()->id);
         return view('professeur.affichageCours',[
             'matiere' => $matiere,
             'content' => $contenu
