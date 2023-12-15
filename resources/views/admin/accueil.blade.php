@@ -5,117 +5,40 @@
 @include('admin.navbarAdmin')
 
 @section('contenu')
+    <div class="partie2">
+        <div class="coursRecents1">
+            <p class="titrePart">Les cours récement crées</p>
+            <p class="PhraseAppel">Faîtes sortir leur potentiel</p>
+            <p></p>
+            <button class="Voir_plus"> Voir plus </button>
+        </div>
 
-    <h1> Vous êtes connecté </h1>
-
-    <a href="{{route('admin.professeur')}}"> <button type="button" class="btn btn-primary btn-lg"> Engager un professeur </button></a>
-    <h2 style="text-align:center"> Liste des utilisateurs  qui demandent à être approuvés</h2>
-
-    <table class="listUser">
-        <tr class="tete">
-            <th> Nom et prénoms </th>
-            <th> Email </th>
-            <th> Nom d'utilisateur </th>
-            <th> Type d'utilisateur </th>
-            <th> Action </th>
-        </tr>
-    <tbody class="list">
-    @foreach ($usersData as $user )
-    @php
-        $type_user = $user->type_user;
-    @endphp
-        <tr>
-            <td>  <p> {{ $user->type($type_user)?->nom }} {{ $user->type($type_user)?->prenom}}  </p> </td>
-            <td>  <p> {{ $user->email }} </p> </td>
-            <td>  <p> {{ $user->name }} </p> </td>
-            <td>  <p> {{ $type_user }} </p> </td>
-            <td style="display:block;">
-                <a href="{{ route('admin.approuver', ['user' => $user->id]) }}"><div style="background-color: #8effa6;">Approuver</div></a>
-                <a href=""><div class="background-color: #c16a6a;">Refuser</div></a>
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
-
-
-{{-- LISTE DES COURS CREER --}}
-
-{{-- STYLE --}}
-
-<style>
-    .matiere{
-        color:black;
-    }
-    <style>
-    .cours{
-        text-align: center;
-        background-color: white;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    .cours h2,h3{
-        color: #06b3e3;
-        text-align:center;
-    }
-    .lecon{
-    display: table;
-    }
-    .lecon > div{
-        width: 275px;
-        height: 143px;
-        margin: 23px;
-        box-shadow: inset 1px 3px 6px 5px rgb(225 222 222);
-        border-radius: 10px;
-        float: left;
-    }
-    .lecon > div >section{
-        width:100%;
-        color:white;
-        position:relative;
-        bottom:37px;
-        box-shadow: inset 1px 3px 6px 5px rgb(225 222 222);
-        display:none;
-        animation: apparition 0.5s;
-    }
-    @keyframes apparition {
-        from {transform: translateY(30px);opacity:0;}
-        to {transform: translateY(0);opacity:1;}
-    }
-    .lecon > div:hover section{
-        display:block;
-    }
-    .lecon > div >section >div {
-        float:left;
-        width:50%;
-        height:30px;
-    }
-    .lecon > div >section >a {
-        float:left;
-        width:50%;
-        height:30px;
-    }
-</style>
-
-<div class="cours">
-    <h3> Voici toutes les matières existantes </h3>
-    <div class="lecon">
-
-        @foreach ($matieres as $matiere )
-            <div>
-                <h2>{{ $matiere->matiere }}</h2>
-                <h3>Catégorie : {{ $matiere->categorie->categorie }} </h3>
-                <h4> Professeur titulaire : {{ $matiere->proffesseur->prenom}} </h4>
-                <section>
-                    <div style="background-color:green;border-bottom-left-radius: 10px;"> Voir </div>
-                    <div style="background-color:red;border-bottom-right-radius: 10px;"><a href="#" class="matiere"> Visibilité par département </a></div>
-                </section>
-            </div>
-        @endforeach
-        <div style="text-align: center;padding-top: -7%;">
-            <p style="margin-top: 17%;">ajouter <br> une matiere </p>
+        {{-- Affichage des cours récents --}}
+        <div class="coursRecents2">
+            <h3 class="titreCours">Français</h3>
+            <p class="descriptionCours">Description</p>
+            <p class="category">Category:Langue</p>
+            <p class="profTitulaire">Dafy</p>
         </div>
     </div>
-</div>
+    <div class="partie3">
+        <div class="cadreImg">
+            <div class="imagePart3"></div>
+        </div>
+        <div class="directivesAdmin">
+            <h3 class="titre"> Quels sont vos privilèges en tant qu'administrateur? </h3>
+            @for ($i=1 ; $i<=4 ; $i++)
+                    <div class="cadreFleche"></div>
+                    <div class="fleche"></div>
+            @endfor
+
+            <div class="directs">
+                <p class="direct" id="direct1"> Approuver ou refuser la demande d'adhésion d'un utilisateur à ce site. </p>
+                <p class="direct" id="direct2"> Créer, ajouter, consulter des cours ou des formations pour les utilisateurs. <br> Et aussi voir les résultats de tous les tests effectués.</p>
+                <p class="direct" id="direct3"> Gérer la visibilité de chaque matière selon le département auquel appartiennent les utilisateurs.</p>
+                <p class="direct" id="direct4"> Engager des professeurs ou des formateurs <br> pour créer le contenu des cours et les examens pour tester le niveau des étudiants. </p>
+            </div>
+        </div>
+    </div>
 
 @endsection

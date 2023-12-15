@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher');
 @import url('https://fonts.googleapis.com/css2?family=Nothing You Could Do');
 @import url('https://fonts.googleapis.com/css2?family=Jura');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans');
 /*********************************************************************************************/
 body{
     margin:0;
@@ -56,11 +57,15 @@ input::placeholder {
 /******************************ADMINISTRATEUR**************************************/
 
 /*Navbar interface administrateur */
+.active{
+    color: #ffbf00;
+    font-weight: 900;
+}
 .fondNavbar{
     border: 1px solid #02A0E6;
     background-color: #02A0E6;
     display: flex;
-    width: 88vw;
+    width: 90vw;
     height: 10vh;
     justify-content: center;
     margin: auto;
@@ -72,7 +77,7 @@ input::placeholder {
     padding: 5px;
     height: 12vh;
     position: absolute;
-    z-index: 3;
+    z-index: 14;
 }
 
 .linkAdmin{
@@ -99,7 +104,7 @@ input::placeholder {
     height: 36px;
 }
 .recherche_admin::placeholder{
-    color: #4e4e4e;
+    color: #000000;
     font-size: 10px;
     text-align: right;
 }
@@ -137,6 +142,7 @@ input::placeholder {
     top: 7px;
     right: -167px;
     transform: rotate(25deg);
+    z-index: 8;
 }
 .rect4{
     background-color: #00143d;
@@ -148,38 +154,50 @@ input::placeholder {
     right: 172px;
 }
 .rect5{
-    
+    background-color: #02a2e685;
+    width: 505px;
+    height: 1109px;
+    transform: rotate(55deg);
+    position: absolute;
+    top: -31px;
+    right: 221px;
+    z-index: 5;
 }
 div.partie2{
     background-color: #FFFFFF;
-    border:1px solid #3b3b3b;
     width: 100%;
     height: 500px;
-    z-index: 6;
+    z-index: 8;
     position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
 }
 div.partie1{
     z-index: 7;
 }
 h1.ODATA{
     position: absolute;
-    top: 196px;
-    right: 92px;
+    top: 259px;
+    right: 293px;
     color: #FFFFFF;
     letter-spacing: 5px;
     font-family: 'Philosopher';
     font-size: 43px;
+    transform: rotate(-25deg);
 }
 h2.Connaissance{
     position: absolute;
-    top: 309px;
-    right: 71px;
+    top: 332px;
+    right: 255px;
     word-spacing: 11px;
     line-height: 1.5;
     font-size: 24px;
     letter-spacing: 6px;
     color: #FFFFFF;
     font-family: 'Nothing You Could Do';
+    transform: rotate(-25deg);
 }
 span.Connaissance{
     color: #02a0e6;
@@ -191,7 +209,6 @@ p.titrePart{
     font-weight: 700;
     word-spacing: 2px;
     font-size: 19px;
-    font-style: italic;
 }
 p.PhraseAppel{
     color: #00143d;
@@ -210,8 +227,134 @@ button.Voir_plus{
     border-radius: 3px;
     position: relative;
     left: 222px;
-    top: 81px;
+    top: 10px;
     font-family: 'Jura';
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+button.Voir_plus:hover{
+    border: 1px solid #02a0e6;
+    color: #02a0e6;
+    cursor:pointer;
+    font-weight: bolder;
+}
+/* Affichage des cours récents */
+.coursRecents2{
+    position: relative;
+    left: 122px;
+    top: 49px;
+    line-height: 1.5;
+    width: 194px;
+    padding: 21px;
+    height: max-content;
+    text-align: center;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    box-shadow: 2px 3px 7px 1px #00000065, 2px 1px 5px 2px #00000018 inset;
+    transition: 0.6s;
+}
+.coursRecents2 p{
+    font-family: 'Fira Sans';
+    font-size: small;
+}
+.coursRecents2:hover{
+    background-color: #00143d;
+    cursor:pointer;
+    box-shadow: 2px 3px 7px 1px #02a2e6;
+}
+.coursRecents2:hover p{
+    color: #FFFFFF;
+}
+.coursRecents2:hover p.profTitulaire{
+    color: #929292;
+}
+h3.titreCours{
+    letter-spacing: 2px;
+    font-family: Philosopher ;
+}
+p.profTitulaire{
+    color: #929292;
+    font-weight: bolder;
+    position: relative;
+    bottom: -22px;
+}
+p.category{
+    position: relative;
+    top: 25px;
+    font-weight: bolder;
+    color: #000000;
+}
+div.partie3{
+    width: 100%;
+    height: 600px;
+    position: relative;
+    top: 502px;
+    background-color: #02a2e62a;
+    display: flex;
+}
+div.imagePart3{
+    background-image: url(../css/assets/vue-face-adolescente-smiley-ecouteurs-au-cours-ecole-ligne.jpg);
+    background-size: cover;
+    width: 375px;
+    height: 504px;
+    position: relative;
+    top:13px;
+    left:25px;
+}
+div.cadreImg{
+    border: 1px solid #9292929a;
+    width: 423px;
+    height: 536px;
+    position: relative;
+    left: 100px;
+    top: 25px;
+}
+div.directivesAdmin{
+    position: relative;
+    left: 145px;
+}
+div.directivesAdmin h3.titre{
+    color: #02a0e6;
+    font-family: 'Philosopher';
+    font-weight: 700;
+    word-spacing: 2px;
+    font-size: 19px;
+}
+div.fleche{
+    background-image: url('../css/assets/icons8-flèche-droite-50.png');
+    background-size: cover;
+    width: 39px;
+    height: 40px;
+    position: absolute;
+    margin-top: -42px;
+}
+div.cadreFleche{
+    background-color: #00143d;
+    width: 42px;
+    height: 43px;
+    margin-top: 69px;
+}
+div.directs{
+    position: relative;
+    top: -410px;
+    right: -62px;
+    line-height: 6.5;
+    font-family: 'Fira Sans';
+}
+
+p#direct1{
+    line-height: 4.5;
+}
+p#direct2{
+    line-height: 2;
+    margin-top: 48px;
+}
+p#direct3{
+    line-height: 7;
+}
+p#direct4{
+    line-height: 2;
+    margin-top: 31px;
 }
 /******************************************************************************************************/
 .navbar{
