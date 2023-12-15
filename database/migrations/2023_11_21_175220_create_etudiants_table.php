@@ -26,11 +26,6 @@ return new class extends Migration
             $table->string('email');
             $table->timestamps();
         });
-        Schema::create('commentaire_etudiant',function(Blueprint $table){
-            $table->foreignIdFor(Commentaire::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Etudiant::class)->constrained()->cascadeOnDelete();
-            $table->primary(['commentaire_id','etudiant_id']);
-        });
         Schema::create('contenu_du_cour_etudiant',function(Blueprint $table){
             $table->foreignIdFor(Contenu_du_cour::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Etudiant::class)->constrained()->cascadeOnDelete();
@@ -51,7 +46,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('contenu_du_cours_etudiant');
-        Schema::dropIfExists('commentaire_etudiant');
         Schema::dropIfExists('etudiant_matiere');
         Schema::dropIfExists('etudiants');
         Schema::table('etudiants',function(Blueprint $table){

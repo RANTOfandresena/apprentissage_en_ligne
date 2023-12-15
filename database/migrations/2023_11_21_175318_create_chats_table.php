@@ -3,6 +3,7 @@
 use App\Models\Chat;
 use App\Models\Etudiant;
 use App\Models\Matiere;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -31,6 +32,11 @@ return new class extends Migration
             $table->foreignIdFor(Matiere::class)->constrained()->cascadeOnDelete();
             $table->primary(['chat_id','matiere_id']);
         });
+        Schema::create('chat_user',function(Blueprint $table){
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Chat::class)->constrained()->cascadeOnDelete();
+            $table->primary(['user_id','chat_id']);
+        });
     }
 
     /**
@@ -41,7 +47,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('chat_matiere');
-        Schema::dropIfExists('chat_etudiant');
+        Schema::dropIfExists('chat_user');
         Schema::dropIfExists('chats');
     }
 };
