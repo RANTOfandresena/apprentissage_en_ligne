@@ -15,7 +15,7 @@ class AccueilController extends Controller
 {
     public function redirection()
     {
-        // Création compte admin par défaut
+        //Création compte admin par défaut
         // $post = Administrateur::create([
         //     'email' => 'angevoni@gmail.com',
         //     'post'=> 'stagiaire'
@@ -24,7 +24,7 @@ class AccueilController extends Controller
         //     'name' => 'Voni',
         //     'email' => $post->email,
         //     'type_user' => 'admin',
-        //     'password' => Hash::make('admin'),
+        //     'password' => Hash::make('a'),
         //     'administrateur_id'=> $post->id
         // ]);
         return view('accueil.home');
@@ -37,7 +37,7 @@ class AccueilController extends Controller
     public function createAccount()
     {
         // Departement::create([
-        //     'nom' => 'Service Client'
+        //     'nom' => ' 1 Service Client'
         // ]);
         return view('accueil.inscription');
     }

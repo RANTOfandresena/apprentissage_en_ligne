@@ -119,11 +119,15 @@ class ProfesseurController extends Controller
     //Affichage des contenus de cours par matière
     public function affichageCours(Matiere $matiere, String $contenu)
     {
-        // $coms = Commentaire::create([
-        //     'comentaires'   =>  "1ere coms",
-        // ]);
-        // $coms->contenu_du_cours()->sync($contenu);
-        // $coms->use()->sync(Auth::user()->id);
+        //  //ajout commentaire
+        // for($i=0;$i!=3;$i++){
+        //     $coms = Commentaire::create([
+        //         'comentaires'   =>  "$i eme coms",
+        //         'user_id'       =>  Auth::user()->id
+        //     ]);
+        //     $coms->contenu_du_cours()->sync($contenu);
+        // }
+
         return view('professeur.affichageCours',[
             'matiere' => $matiere,
             'content' => $contenu
@@ -178,5 +182,8 @@ class ProfesseurController extends Controller
     }
     public function getCours(Contenu_du_cour $contenue){
         return $contenue;
+    }
+    public function getCommentaire(Contenu_du_cour $contenu){
+        return $contenu->commentaire;
     }
 }

@@ -27,10 +27,13 @@ return new class extends Migration
             $table->foreignIdFor(Contenu_du_cour::class)->constrained()->cascadeOnDelete();
             $table->primary(['commentaire_id','contenu_du_cour_id']);
         });
-        Schema::create('commentaire_user',function(Blueprint $table){
-            $table->foreignIdFor(Commentaire::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->primary(['commentaire_id','user_id']);
+        // Schema::create('commentaire_user',function(Blueprint $table){
+        //     $table->foreignIdFor(Commentaire::class)->constrained()->cascadeOnDelete();
+        //     $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+        //     $table->primary(['commentaire_id','user_id']);
+        // });
+        Schema::table('commentaires', function(Blueprint $table){
+            $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
 
@@ -43,6 +46,9 @@ return new class extends Migration
     {
         Schema::dropIfExists('commentaire_contenu_du_cour');
         Schema::dropIfExists('commentaires');
-        Schema::dropIfExists('commentaire_user');
+        // Schema::dropIfExists('commentaire_user');
+        Schema::table('commentaires',function(Blueprint $table){
+            $table->dropForeignIdFor(User::class);
+        });
     }
 };

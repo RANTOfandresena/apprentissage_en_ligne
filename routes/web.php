@@ -83,9 +83,11 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
 
     //Affichage des cours par matière
     Route::get('{matiere}-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
+    Route::get('{contenu}/commentaire', 'getCommentaire');
 });
 
-//INTERFACE ETUDIANT
+
+// INTERFACE ETUDIANT
 
 Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantController::class)->group(function(){
     Route::get('/accueil', 'accueilRedirect')->name('accueil');

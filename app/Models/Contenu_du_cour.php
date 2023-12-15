@@ -14,8 +14,7 @@ class Contenu_du_cour extends Model
         'sujet_examen',
         'niveau'
     ];
-    public function commentaire()
-    {
+    public function commentaire(){
         return $this->belongsToMany(Commentaire::class);
     }
 }
