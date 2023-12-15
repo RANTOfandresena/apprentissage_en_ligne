@@ -15,6 +15,18 @@ class AccueilController extends Controller
 {
     public function redirection()
     {
+        // Création compte admin par défaut
+        // $post = Administrateur::create([
+        //     'email' => 'angevoni@gmail.com',
+        //     'post'=> 'stagiaire'
+        // ]);
+        // User::create([
+        //     'name' => 'Voni',
+        //     'email' => $post->email,
+        //     'type_user' => 'admin',
+        //     'password' => Hash::make('admin'),
+        //     'administrateur_id'=> $post->id
+        // ]);
         return view('accueil.home');
     }
     public function video()
@@ -34,6 +46,7 @@ class AccueilController extends Controller
         return Departement::all();
     }
 
+    // Création de compte
     public function storeAccount(Request $request)
     {
         $type_user = $request->input('type_user');
