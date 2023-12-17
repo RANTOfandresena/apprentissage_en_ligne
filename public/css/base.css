@@ -60,6 +60,8 @@ input::placeholder {
 .active{
     color: #ffbf00;
     font-weight: 900;
+    border-bottom: 2px solid #ffbf00;
+    padding: 5px;
 }
 .fondNavbar{
     border: 1px solid #02A0E6;
@@ -97,6 +99,14 @@ input::placeholder {
     border-radius: 6px;
     color: #FFFFFF;
     padding: 15px;
+    transition: 0.5s;
+}
+.btn_deconnexion_admin:hover{
+    background-color: #febd01;
+    color:#000000;
+    font-weight: 600;
+    transition: 0.5s;
+    cursor: pointer;
 }
 .recherche_admin{
     border-style: none;
@@ -231,12 +241,16 @@ button.Voir_plus{
     font-family: 'Jura';
     letter-spacing: 1px;
     font-size: 12px;
+    transition: 0.5s;
 }
 button.Voir_plus:hover{
     border: 1px solid #02a0e6;
     color: #02a0e6;
+    font-weight: 500;
     cursor:pointer;
     font-weight: bolder;
+    background-color: #FFF;
+    transition: 0.5s;
 }
 /* Affichage des cours récents */
 .coursRecents2{
@@ -250,8 +264,8 @@ button.Voir_plus:hover{
     text-align: center;
     border-radius: 2px;
     background-color: #FFFFFF;
-    box-shadow: 2px 3px 7px 1px #00000065, 2px 1px 5px 2px #00000018 inset;
-    transition: 0.6s;
+    box-shadow: 2px 3px 7px 1px #00000065, 5px -4px 20px 2px #33333314 inset;
+    transition: 0.5s;
 }
 .coursRecents2 p{
     font-family: 'Fira Sans';
@@ -286,7 +300,7 @@ p.category{
 }
 div.partie3{
     width: 100%;
-    height: 600px;
+    height: 564px;
     position: relative;
     top: 502px;
     background-color: #02a2e62a;
@@ -296,7 +310,7 @@ div.imagePart3{
     background-image: url(../css/assets/vue-face-adolescente-smiley-ecouteurs-au-cours-ecole-ligne.jpg);
     background-size: cover;
     width: 375px;
-    height: 504px;
+    height: 492px;
     position: relative;
     top:13px;
     left:25px;
@@ -304,7 +318,7 @@ div.imagePart3{
 div.cadreImg{
     border: 1px solid #9292929a;
     width: 423px;
-    height: 536px;
+    height: 521px;
     position: relative;
     left: 100px;
     top: 25px;
@@ -332,29 +346,79 @@ div.cadreFleche{
     background-color: #00143d;
     width: 42px;
     height: 43px;
-    margin-top: 69px;
+    margin-top: 36px;
+}
+div.allFleche{
+    margin-top: 64px;
 }
 div.directs{
     position: relative;
-    top: -410px;
+    top: -277px;
     right: -62px;
     line-height: 6.5;
     font-family: 'Fira Sans';
+    font-size: 14px;
 }
 
 p#direct1{
-    line-height: 4.5;
+    line-height: 0.5;
 }
 p#direct2{
     line-height: 2;
     margin-top: 48px;
 }
 p#direct3{
-    line-height: 7;
+    line-height: 6;
 }
 p#direct4{
     line-height: 2;
-    margin-top: 31px;
+    margin-top: -9px;
+}
+div.partie4{
+    border: 1px solid black;
+    width: 100%;
+    height: 521px;
+    position: relative;
+    top:500px;
+}
+div.partie4 h3{
+    letter-spacing: 2px;
+    font-family: Philosopher ;
+}
+p.presentation{
+    color: #00143d;
+    font-weight: 900;
+    font-size: 34px;
+    text-indent: 276px;
+}
+div.imgProf{
+    background-image: url(assets/souriante-jeune-enseignante-debout-devant-tableau-noir-tenant-echoue-pour-conseil-montrant-pouce-vers-haut-dans-salle-classe.jpg);
+    background-size: contain;
+    background-repeat: space;
+    width: 334px;
+    height: 322px;
+    border-radius: 11px;
+    margin-left: 100px;
+}
+div.imgProf:hover{
+    background-color: #0086bb;
+    cursor: pointer;
+}
+footer{
+    width: 100%;
+    height:50px;
+    background-color: #001a4b;
+    position: fixed;
+    bottom: 0px;
+}
+footer .footer{
+    color: #FFF;
+    font-family: 'Philosopher';
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    letter-spacing: 4px;
+    font-weight: lighter;
 }
 /******************************************************************************************************/
 .navbar{
