@@ -47,6 +47,7 @@ Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminCont
     Route::post('/Espace professeur', 'insertion');
 
     //APPROBATION D'UN COMPTE UTILISATEUR
+    Route::get('/Gestion de compte utilisateur', 'gestionCompteRedirect')->name('gestionCompte');
     Route::get('{user}/Gestion d\'utilisateur', 'rediRectApprouver')->name('approuver');
     Route::patch('{user}/Gestion d\'utilisateur', 'approuver');
 });

@@ -37,7 +37,7 @@ class AccueilController extends Controller
     public function createAccount()
     {
         // Departement::create([
-        //     'nom' => ' 1 Service Client'
+        //     'nom' => ' Service Client'
         // ]);
         return view('accueil.inscription');
     }

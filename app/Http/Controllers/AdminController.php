@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EngagerProf;
+use App\Models\Administrateur;
+use App\Models\Etudiant;
 use App\Models\Matiere;
 use App\Models\Proffesseur;
 use App\Models\User;
@@ -17,10 +19,32 @@ class AdminController extends Controller
         // dd($a->professeur->nom);
         // return User::where('approved', false)->get();
         return view('admin.accueil', [
-            'usersData'  => User::where('approved', false)->get(),
-            'matieres'    => Matiere::all(),
+            'matieres'    => Matiere::all()
         ]);
     }
+
+    public function gestionCompteRedirect(){
+        return view('admin.gestionCompteUtilisateur', [
+            // Renvoie le nombre d'utilisateurs non approuvés
+            'utilisateurs_non_approuve' => User::where('approved', false)->count(),
+
+             // Renvoie le nombre d'utilisateurs approuvés*
+            'utilisateurs_approuve' => User::where('approved', true)->count(),
+
+            //Renvoie le nombre d'étudiants inscrits
+            'etudiants_inscrits'  => Etudiant::all()->count(),
+
+            //Renvoie le nombre de professeurs inscrits
+            'professeurs_engager' => Proffesseur::all()->count(),
+
+            //Renvoie le nombre de administrateurs inscrits
+            'administrateurs'  => Administrateur::all()->count(),
+            
+            // Renvoie la liste des utilisateurs non approuvés
+            'usersData'  => User::where('approved', false)->get(),
+        ]);
+    }
+
     public function engager()
     {
         return view('admin.professeur');

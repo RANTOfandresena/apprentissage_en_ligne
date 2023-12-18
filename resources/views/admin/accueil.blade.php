@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Accueil')
+@section('titre', 'Accueil')
 
 @include('admin.navbarAdmin')
 
@@ -44,8 +44,11 @@
     <div class="partie4">
         <h3> Nos professeurs </h3>
         <p class="presentation"> Les professeurs ayant effectués le plus de contribution </p>
-        <div class="imgProf"></div>
+        <div class="imgProfS">
+            <div class="imgProf"></div>
+            <a href="#"><button> Contacter </button></a>
+        </div>
     </div>
-    {{-- <footer> <p class="footer"> ODATA-LEARNING </p> </footer> --}}
+    <footer> <p class="footer"> ODATA-LEARNING </p> </footer>
 
 @endsection

@@ -61,6 +61,8 @@ button:hover {
     width: 100%;
   }
 }
+<a href="{{route('admin.professeur')}}"> <button type="button" class="btn btn-primary btn-lg"> Engager un professeur </button></a>
+   
 </style>
     <form action="" method="post" style="border:1px solid #ccc">
         @csrf
@@ -88,11 +90,11 @@ button:hover {
             @error('email')
                 {{ $message }}
             @enderror
-            <div class="clearfix">  
+            <div class="clearfix">
                 <button class="signupbtn">Ajouter</button>
             </div>
         </div>
     </form>
-@endsection 
+@endsection
 
 

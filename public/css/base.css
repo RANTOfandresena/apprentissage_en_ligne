@@ -402,7 +402,7 @@ p#direct4{
     margin-top: -9px;
 }
 div.partie4{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 100%;
     height: 521px;
     position: relative;
@@ -427,9 +427,38 @@ div.imgProf{
     border-radius: 11px;
     margin-left: 100px;
 }
-div.imgProf:hover{
-    background-color: #0086bb;
+div.imgProfS > a{
+    display: none;
+    position: absolute;
+    top: 312px;
+    left: 133px;
+    color: #FFF;
+}
+
+div.imgProfS:hover a{
+    display: block;
     cursor: pointer;
+}
+
+div.imgProfS{
+    width: 334px;
+    height: 322px;
+    transition: 0.5s;
+}
+div.imgProfS > a > button{
+    background-color: #000000a1;
+    border: 1px solid #7e7e7e;
+    color: #7e7e7e;
+    width: 105px;
+    height: 32px;
+    border-radius: 14px;
+    color: #ffb300;
+    font-weight: bolder;
+}
+div.imgProfS > a > button:hover{
+    background-color: #FFF;
+    cursor: pointer;
+    color: #02a0e6;
 }
 footer{
     width: 100%;
@@ -446,6 +475,63 @@ footer .footer{
     font-size: 20px;
     letter-spacing: 4px;
     font-weight: lighter;
+}
+
+/**************************GESTION DE COMPTE UTILISATEUR - ADMINISTRATEUR***********************************/
+div.partie2_compteUt{
+    position: relative;
+    top: 100px;
+
+}
+
+div.partie2_compteUt > table{
+    width: 100%;
+    margin-top: 48px;
+}
+
+div.partie2_compteUt > h3{
+    font-family: 'Philosopher';
+    color: #00143d;
+}
+
+div.partie2_compteUt  th, div.partie2_compteUt td{
+    border-bottom: 1px solid #ddd;
+}
+
+div.statistiquesCompte{
+    /* border:1px solid #ddd; */
+    width:90%;
+    height:100px;
+    background-color: #FFF;
+    margin: auto;
+}
+div.NonApprouve, div.approuver, div.nbrEt, div.nbrProf, div.nbrAdmin{
+    border-right: 1px solid #ddd;
+    height: 100px;
+    width: 15%;
+    text-align: center;
+    flex: 1;
+}
+div.statistiquesCompte{
+     display: flex;
+     margin-bottom: 50px;
+     margin-top: 50px;
+     box-shadow: 1px 1px 13px 1px #ddd;
+}
+p.infosStat{
+    display: grid;
+    padding: 11px;
+    height: 60px;
+    color: #787878;
+    align-items: end;
+    font-family: 'Fira Sans';
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+p.infosStat span{
+    color: #02a0e6;
+    height: 58px;
+    font-size: 45px;
 }
 /******************************************************************************************************/
 .navbar{
@@ -536,7 +622,6 @@ label{
 }
 /* *********************list users*********************** */
 .listUser, .listUser td{
-    border: 2px solid #ddd;
     border-collapse: collapse;
 }
 .listUser{
@@ -551,10 +636,14 @@ label{
     margin-left: 0;
 }
 .listUser a>div{
-    background-color: #e77373;
-    padding: 10%;
+    background-color: #00143d;
+    padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    font-family: 'Jura';
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 500;
 }
 
 /* **********************Seection******************** */
