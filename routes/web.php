@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 //Accueil principal
 Route::get('/', [AccueilController::class, 'redirection'])->name('accueil');
+Route::get('/video', [AccueilController::class, 'video'])->name('video');
 
 //Création de compte
 Route::get('/account', [AccueilController::class, 'createAccount'])->name('create.account');
@@ -84,7 +85,7 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
     //Affichage des cours par matière
     Route::get('{matiere}-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
     Route::get('{contenu}-{stringId}/commentaire', 'getCommentaire');
-    Route::post('{contenu}/commentaire', 'envoyerCommentaire');
+    Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
 });
 
 
