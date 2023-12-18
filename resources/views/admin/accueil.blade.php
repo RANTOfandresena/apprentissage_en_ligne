@@ -46,6 +46,6 @@
         <p class="presentation"> Les professeurs ayant effectués le plus de contribution </p>
         <div class="imgProf"></div>
     </div>
-    <footer> <p class="footer"> ODATA-LEARNING </p> </footer>
+    {{-- <footer> <p class="footer"> ODATA-LEARNING </p> </footer> --}}
 
 @endsection

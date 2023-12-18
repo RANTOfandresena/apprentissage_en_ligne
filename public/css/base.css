@@ -124,6 +124,26 @@ input::placeholder {
     height: 98vh;
     transform: scaleX(-1);
 }
+div.points1{
+    width: 100px;
+    height: 100px;
+    background-image: url('assets/Points.png');
+    background-size: cover;
+    position: absolute;
+    top: 150px;
+    right: 388px;
+    z-index: 9;
+}
+div.points2{
+    width: 100px;
+    height: 100px;
+    background-image: url(assets/Points2.png);
+    background-size: cover;
+    position: absolute;
+    top: 447px;
+    right: 40px;
+    z-index: 9;
+}
 .rect1{
     background-color: #00143dbb;
     width: 44vw;
@@ -155,13 +175,14 @@ input::placeholder {
     z-index: 8;
 }
 .rect4{
-    background-color: #00143d;
+   background-color: #00143d;
     width: 326px;
     height: 342px;
     transform: rotate(25deg);
     position: absolute;
-    top: 379px;
+    top: 469px;
     right: 172px;
+    z-index: 8;
 }
 .rect5{
     background-color: #02a2e685;
@@ -186,6 +207,7 @@ div.partie2{
 }
 div.partie1{
     z-index: 7;
+    width: 100%;
 }
 h1.ODATA{
     position: absolute;
@@ -208,6 +230,8 @@ h2.Connaissance{
     color: #FFFFFF;
     font-family: 'Nothing You Could Do';
     transform: rotate(-25deg);
+    display: grid;
+
 }
 span.Connaissance{
     color: #02a0e6;
