@@ -9,6 +9,9 @@ body{
     margin:0;
     overflow-x: hidden;
 }
+html {
+    scroll-behavior: smooth;
+}
 /************************* HOME ***************************/
 .accueil2{
     z-index: -1;
@@ -767,6 +770,7 @@ label{
     margin-bottom: 0;
     padding: 10px;
     max-width: 86%;
+    min-width: 35px;
     background-color: #f1f1f1;;
     width: max-content;
     padding-left: 10px;

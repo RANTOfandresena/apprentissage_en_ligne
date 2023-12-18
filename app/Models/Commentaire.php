@@ -24,13 +24,13 @@ class Commentaire extends Model
     *
     * @var array
     */
-    protected $appends = ['user_name'];
+    protected $appends = ['nom_utilisateur'];
    /**
      * Obtenez l'attribut user_name.
      *
      * @return string
      */
-    public function getUserNameAttribute()
+    public function getNomUtilisateurAttribute()
     {
         return $this->user->name;
     }
@@ -41,7 +41,6 @@ class Commentaire extends Model
      */
     public function toArray()
     {
-        $array = parent::toArray();
-        return $array;
+        return parent::toArray();
     }
 }

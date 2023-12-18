@@ -183,7 +183,19 @@ class ProfesseurController extends Controller
     public function getCours(Contenu_du_cour $contenue){
         return $contenue;
     }
-    public function getCommentaire(Contenu_du_cour $contenu){
-        return $contenu->commentaire;
+    public function getCommentaire(Contenu_du_cour $contenu,string $stringId){
+        return ['coms'=>$contenu->commentaire()->where('comentaires','like',$stringId.'%')->get(),'id'=> Auth::user()->id];
+    }
+    public function envoyerCommentaire(Contenu_du_cour $contenu,Request $request){
+        $coms = Commentaire::create([
+            'comentaires'   =>  $request->input('coms'),
+            'user_id'       =>  Auth::user()->id
+        ]);
+        $coms->contenu_du_cours()->sync($contenu);
+        return [
+            'nom' => Auth::user()->name,
+            'comentaires' => $request->input('coms'),
+            'user' => true
+        ];
     }
 }
