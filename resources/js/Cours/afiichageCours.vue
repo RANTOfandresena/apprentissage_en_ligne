@@ -19,22 +19,34 @@
                 <div v-if="chapitre===chp " class="radius bas"><div></div></div>
             </div>
         </div>
-        <div class="contenue" style="width: 80%;">
+        <div class="contenue" style="width: 100%;">
             <div v-if="numchapitre!==null">
-                <div @dblclick="commentaires(i)" class="contenuee"  v-for="contenue,i in numchapitre.partie[numPartie].cours" :key="contenue">
-                    <i @click="commentaires(i)" class="fa fa-comment-o icon" style="font-size:24px"></i>
-                    <!-- si paragraphe -->
-                    <p v-if="contenue.type==='paragraphe'">{{ contenue.text }}</p>
-                    <!-- si titre -->
-                    <h1 v-if="contenue.type==='titre'">{{ contenue.text }}</h1>
-                    <!-- si question -->
-                    <p v-if="contenue.type==='input'">{{ contenue.text }}</p>
-                    <div v-if="contenue.type==='image'">
-                        <img :src="contenue.text" alt=":)">
-                    </div>
-                    <input v-if="contenue.type==='input'" type="text"><button v-if="contenue.type=='input'">Envoyer</button>
-                </div>
+                <table>
+
+                  <tr v-for="contenue,i in numchapitre.partie[numPartie].cours" :key="contenue" class="contenuee">
+                    <th style="width: 95%;">
+                        <div @dblclick="commentaires(i)">
+                            <!-- si paragraphe -->
+                            <p v-if="contenue.type==='paragraphe'">{{ contenue.text }}</p>
+                            <!-- si titre -->
+                            <h1 v-if="contenue.type==='titre'">{{ contenue.text }}</h1>
+                            <!-- si question -->
+                            <p v-if="contenue.type==='input'">{{ contenue.text }}</p>
+                            <div v-if="contenue.type==='image'">
+                                <img :src="contenue.text" alt=":)">
+                            </div>
+                            <input v-if="contenue.type==='input'" type="text"><button v-if="contenue.type=='input'">Envoyer</button>
+                        </div>
+                    </th>
+                    <th style="width: 50px;">
+                        <div class="notification">{{nbComs(i)}}</div>
+                        <i @click="commentaires(i)" class="fa fa-comment-o icon" style="font-size:24px"></i>
+                    </th>
+                  </tr>
+                  
+                </table>
             </div>
+            
             <div class="page" v-if="numchapitre!==null">
                 <div class="pagination">
                     <p >&laquo;</p>
@@ -85,18 +97,16 @@ export default{
             commentaire:[],
             active:false,
             chargement:false,
-            i1:0,
-            i2:0,
-            i3:0,
+            i1:0,i2:0,i3:0,
             coms:'',
             uuser:0
         }
     },
     mounted(){
         this.chargement=true
-        axios.get("/Interface professeur/"+this.idCours+"/Création contenu/")
+        axios.get("/Interface professeur/"+this.idCours+"/Création contenu")
         .then((response)=>{
-            // console.log(JSON.parse(response.data.contenue))
+            console.log(response.data.contenue)
             this.chapitres=JSON.parse(response.data.contenue)
             this.chargement=false
         })
@@ -132,11 +142,17 @@ export default{
                 })
             }
         },
-        // watch:{
-        //     commentaire:function(value){
-        //         this.$refs.coms.scrollIntoView()
-        //     }
-        // },
+        nbComs(i){
+            console.log(i)
+            axios.get(`/Interface professeur/${this.idCours}-${this.i1},${this.i2},${i}/nbcommentaire`)
+            .then((response)=>{
+                console.log(response.data)
+                return response.data
+            })
+            .catch((error)=>{
+                return 0
+            })
+        },
         commentaires(i3){
             this.active=!this.active
             if(this.active){
@@ -206,7 +222,7 @@ export default{
         width: 60%;
         overflow-y: scroll;
         padding-right: 10px;
-        padding-right: 53px;
+        padding-right: 0;
         background-color: rgb(222, 222, 248);
     }
     .jaune{
@@ -226,17 +242,19 @@ export default{
         bottom: 0px;
     }
     .icon{
-        display: none;
-        position: absolute;
-        right: 1%;
-        color:rgb(0, 0, 71);
-        width: 100px;
+        visibility: hidden;
+        color: rgb(0, 0, 71);
+        width: 30px;
+        float: right;
     }
     .iconn{
         left: 10px !important;
     }
+    .contenuee{
+        width: 100%;
+    }
     .contenuee:hover .icon{
-        display: block;
+        visibility: visible;
     }
     .chapitree:hover .icon{
         display: block;

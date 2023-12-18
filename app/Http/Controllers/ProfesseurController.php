@@ -186,6 +186,9 @@ class ProfesseurController extends Controller
     public function getCommentaire(Contenu_du_cour $contenu,string $stringId){
         return ['coms'=>$contenu->commentaire()->where('comentaires','like',$stringId.'%')->get(),'id'=> Auth::user()->id];
     }
+    public function getNbCommentaire(Contenu_du_cour $contenu,string $stringId){
+        return $contenu->commentaire()->where('comentaires','like',$stringId.'%')->count();
+    }
     public function envoyerCommentaire(Contenu_du_cour $contenu,Request $request){
         $coms = Commentaire::create([
             'comentaires'   =>  $request->input('coms'),
