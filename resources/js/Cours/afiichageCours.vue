@@ -8,21 +8,21 @@
     <section style="height: 100vh;text-align: center;">
         <div style="width: 20vw;">
             <p style="color: white;">chapitre</p><br>
-            <div class="chapitree" v-for="chp in chapitres" :key="chp"
+            <div class="chapitree" v-for="chp,i in chapitres" :key="chp"
                 :class="chapitre===chp ? 'chp':''"
                 >
                 <div v-if="chapitre===chp " class="radius haut"><div></div></div>
                 <h3
                     :style="chapitre===chp? 'color:#000047':'color: white;'"
-                    @click="chapitre=chp;partie=0;"
+                    @click="chapitre=chp;partie=0;i1=i"
                 >{{chp.nom}}</h3>
                 <div v-if="chapitre===chp " class="radius bas"><div></div></div>
             </div>
         </div>
         <div class="contenue" style="width: 80%;">
             <div v-if="numchapitre!==null">
-                <div @dblclick="commentaires" class="contenuee"  v-for="contenue in numchapitre.partie[numPartie].cours" :key="contenue">
-                    <i @click="commentaires" class="fa fa-comment-o icon" style="font-size:24px"></i>
+                <div @dblclick="commentaires(i)" class="contenuee"  v-for="contenue,i in numchapitre.partie[numPartie].cours" :key="contenue">
+                    <i @click="commentaires(i)" class="fa fa-comment-o icon" style="font-size:24px"></i>
                     <!-- si paragraphe -->
                     <p v-if="contenue.type==='paragraphe'">{{ contenue.text }}</p>
                     <!-- si titre -->
@@ -40,7 +40,7 @@
                     <p >&laquo;</p>
                     <a
                         :class="partie==i-1?'active':''"
-                        @click="partie=i-1"
+                        @click="partie=i-1;i2=i-1"
                         v-for="i in numchapitre.partie.length" :key="i"
                     >{{i}}</a>
                     <a >&raquo;</a>
@@ -51,19 +51,21 @@
     <transition name="affiche">
         <div class="sidenav1" v-if="active" key="active"> <!-- v-if -->
         <div v-if="chargement" class="loader centre"></div>
-            <div class="sidenav"  ><p style="font-size: 25px;" @click="commentaires">&times;</p>
-                <div style="overflow-y: scroll;height: 80vh;">
+            <div class="sidenav"><p style="font-size: 25px;" @click="commentaires">&times;</p>
+                <div style="overflow-y: scroll;height: 80vh;" >
                     <div><!-- v-if axios -->
-                        <div v-for="coms in commentaire">
-                            <div :class="coms.user ? 'float':''">
-                                <h4>{{ coms.nom }}</h4>
-                                <p :class="coms.user ? 'border':''">{{ coms.message }}</p>
+                        <div v-for="coms,i in commentaire">
+                            <div :class="coms.user.id==uuser ? 'float':''">
+                                <h4>{{ coms.nom_utilisateur }}</h4>
+                                <p :class="coms.user.id==uuser ? 'border':''">{{ commmentairePhrase(coms.comentaires) }}</p>
                             </div>
                         </div>
+                    <div id="coms" ref="coms" style="height: 70px;"></div>
                     </div>
                 </div>
                 <div class="send">
-                    <textarea name="" id="" cols="50" rows="3"></textarea><div>icon</div>
+                    <textarea name="" id="" cols="50" rows="3" v-model="coms"></textarea>
+                    <a href="#coms"><div @click="envoyer">icon</div></a>
                 </div>
             </div>
         </div>
@@ -82,14 +84,19 @@ export default{
             partie:0,
             commentaire:[],
             active:false,
-            chargement:false
+            chargement:false,
+            i1:0,
+            i2:0,
+            i3:0,
+            coms:'',
+            uuser:0
         }
     },
     mounted(){
         this.chargement=true
         axios.get("/Interface professeur/"+this.idCours+"/Création contenu/")
         .then((response)=>{
-            console.log(JSON.parse(response.data.contenue))
+            // console.log(JSON.parse(response.data.contenue))
             this.chapitres=JSON.parse(response.data.contenue)
             this.chargement=false
         })
@@ -107,8 +114,56 @@ export default{
         }
     },
     methods:{
-        commentaires(){
+        envoyer(){
+            if(this.coms.length>0){
+                const id=`${this.i1},${this.i2},${this.i3},`
+                let message=id+this.coms
+                this.coms=''
+                let data=new FormData()
+                data.append('coms',message)
+                axios.post(`/Interface professeur/${this.idCours}/commentaire`,data)
+                .then((response)=>{
+                    const data=response.data
+                    this.commentaire.push({'user':{'id':this.uuser},'nom_utilisateur':data.nom,'comentaires':data.comentaires})
+                    // this.$refs.coms.scrollIntoView()
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+            }
+        },
+        // watch:{
+        //     commentaire:function(value){
+        //         this.$refs.coms.scrollIntoView()
+        //     }
+        // },
+        commentaires(i3){
             this.active=!this.active
+            if(this.active){
+                this.i3=i3
+                const id=`${this.i1},${this.i2},${i3},`
+                this.chargement=true
+                axios.get(`/Interface professeur/${this.idCours}-${id}/commentaire`)
+                .then((response)=>{
+                    this.chargement=false
+                    // console.log(response.data.coms)
+                    this.commentaire=response.data.coms
+                    this.uuser=response.data.id
+                    // this.$refs.coms.scrollIntoView()
+                })
+                .catch((error)=>{
+                    this.chargement=false
+                    console.log(error)
+                })
+                
+            }else{
+                this.commentaire=[]
+            }
+            
+        },
+        commmentairePhrase(text){
+            const tableau=text.split(",")
+            return tableau.slice(3, tableau.length).toString();
         }
     }
 }

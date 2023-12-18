@@ -64,7 +64,6 @@
                     <a >&raquo;</a>
                 </div>
             </div>
-
         </div>
         <div class="parametre" v-if="numchapitre!==null" >
             <button class="btn" @click="ajout('titre')">+ titre</button>
@@ -74,8 +73,6 @@
                 <input @change="fichierSelectionne"  type="file" name="file">
                 <span @click="importationFile">&raquo;</span>
             </div>
-
-
             <button class="btn" @click="ajout('image')"></button>
             <button class="btn">+ video</button>
             <button class="btn">+ fichier</button>
