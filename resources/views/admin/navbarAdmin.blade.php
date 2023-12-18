@@ -2,7 +2,6 @@
 
 @php
      $routeName = request()->route()->getName();
-
 @endphp
 <div class="partie1">
     <div class="navbarAdmin">
@@ -54,11 +53,12 @@
     <div class="rect3">
             {{-- Phrases --}}
         <h1 class="ODATA"> ODATA-LEARNING </h1>
-        <h2 class="Connaissance"> <span class="Connaissance">CONNAISSANCE</span> <br> A PORTER DE MAIN</h2>
+        <h2 class="Connaissance"> <span class="Connaissance">CONNAISSANCE</span> A PORTER DE MAIN</h2>
     </div>
     <div class="rect4"></div>
     <div class="rect5"></div>
-
+    <div class="points1"></div>
+    <div class="points2"></div>
 
 </div>
 

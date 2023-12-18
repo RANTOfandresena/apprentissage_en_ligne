@@ -27,11 +27,12 @@
         </div>
         <div class="directivesAdmin">
             <h3 class="titre"> Quels sont vos privilèges en tant qu'administrateur? </h3>
-            @for ($i=1 ; $i<=4 ; $i++)
+            <div class="allFleche">
+                @for ($i=1 ; $i<=4 ; $i++)
                     <div class="cadreFleche"></div>
                     <div class="fleche"></div>
-            @endfor
-
+                @endfor
+            </div>
             <div class="directs">
                 <p class="direct" id="direct1"> Approuver ou refuser la demande d'adhésion d'un utilisateur à ce site. </p>
                 <p class="direct" id="direct2"> Créer, ajouter, consulter des cours ou des formations pour les utilisateurs. <br> Et aussi voir les résultats de tous les tests effectués.</p>
@@ -40,5 +41,11 @@
             </div>
         </div>
     </div>
+    <div class="partie4">
+        <h3> Nos professeurs </h3>
+        <p class="presentation"> Les professeurs ayant effectués le plus de contribution </p>
+        <div class="imgProf"></div>
+    </div>
+    {{-- <footer> <p class="footer"> ODATA-LEARNING </p> </footer> --}}
 
 @endsection
