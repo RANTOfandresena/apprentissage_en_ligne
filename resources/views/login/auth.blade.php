@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Authentification')
+@section('titre', 'Authentification')
 
 @section('home')
 <div class="login">

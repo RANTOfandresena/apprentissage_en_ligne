@@ -13,7 +13,13 @@
         @csrf
         <div>
             <label for="matiere"> Entrer le nom de votre module : </label>
-            <input type="text" name="matiere" id="matiere" value="{{old('matiere', 'Nom de la matière')}}">
+            <input type="text" name="matiere" id="matiere"
+                    @if( old('matiere') !== null )
+                        value="{{old('matiere')}}
+                    @else
+                        placeholder="Nom de la matière"
+                    @endif
+            >
         </div>
         @error('matiere')
                 {{ $message }}
@@ -29,7 +35,7 @@
             <a href="{{ route('professeur.ajoutCategorie') }}">Ajouter une nouvelle catégorie</a>
         </div>
             @error('categorie_id')
-
+                    {{ $message }}
             @enderror
             <p></p>
         <div class="description">
@@ -38,13 +44,13 @@
                 <textarea name="description" id="description" cols="30" rows="10" value="{{ old('description', 'Nom_matiere a pour finalité d\'enseigner les bases du.... et de maîtriser le... ') }}"></textarea>
             </div>
                 @error('description')
-
+                        {{ $message }}
                 @enderror
             <p></p>
         </div>
         <button> VALIDER </button>
     </form>
-    
+
 
 
 

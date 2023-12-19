@@ -83,6 +83,7 @@ input::placeholder {
     height: 12vh;
     position: absolute;
     z-index: 14;
+    position: relative;
 }
 
 .linkAdmin{
@@ -95,6 +96,12 @@ input::placeholder {
 .linkAdmin a, .linkAdmin input, .linkAdmin button{
     margin-left: 44px;
     font-family: 'Jura';
+}
+.linkAdmin input{
+ width: 163px;
+}
+.linkAdmin button{
+    width: 120px;
 }
 .btn_deconnexion_admin{
     border: #00143d;
@@ -115,6 +122,8 @@ input::placeholder {
     border-style: none;
     border-radius: 6px;
     height: 36px;
+    padding: 3px;
+    margin: auto;
 }
 .recherche_admin::placeholder{
     color: #000000;
@@ -282,22 +291,69 @@ button.Voir_plus:hover{
 /* Affichage des cours récents */
 .coursRecents2{
     position: relative;
-    left: 122px;
+    left: 17px;
     top: 49px;
     line-height: 1.5;
     width: 194px;
     padding: 21px;
-    height: max-content;
+    height: 100%;
     text-align: center;
     border-radius: 2px;
     background-color: #FFFFFF;
     box-shadow: 2px 3px 7px 1px #00000065, 5px -4px 20px 2px #33333314 inset;
     transition: 0.5s;
 }
+div.contenairCoursRecents{
+    display: flex;
+    align-items: stretch;
+    height: 219px;
+}
+div.coursRecents2{
+    flex:1;
+    margin: 20px;
+}
 .coursRecents2 p{
     font-family: 'Fira Sans';
     font-size: small;
+    /* overflow-wrap: break-word; */
+    height: 34px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: justify;
 }
+div.descriptionCours2{
+    right: 0px;
+    position: absolute;
+    top: 94px;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    width: 194px;
+    padding: 21px;
+    /* height: 100%; */
+    height: max-content;
+    text-align: center;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    box-shadow: 2px 3px 7px 1px #00000065, 5px -4px 20px 2px #33333314 inset;
+    transition: 0.5s;
+    z-index: 3;
+    display: none;
+    /* background-color: #eeeeee; */
+    font-family: 'Fira Sans';
+    font-size: small;
+}
+
+div.footerCoursRecents{
+    position: absolute;
+    bottom: 0px;
+    text-align: start;
+}
+
+div.descriptionsAll:hover div.descriptionCours2{
+    display: block;
+    transition: 0.5s;
+}
+
 .coursRecents2:hover{
     background-color: #00143d;
     cursor:pointer;
@@ -312,6 +368,7 @@ button.Voir_plus:hover{
 h3.titreCours{
     letter-spacing: 2px;
     font-family: Philosopher ;
+    overflow-wrap: break-word;
 }
 p.profTitulaire{
     color: #929292;
@@ -480,8 +537,7 @@ footer .footer{
 /**************************GESTION DE COMPTE UTILISATEUR - ADMINISTRATEUR***********************************/
 div.partie2_compteUt{
     position: relative;
-    top: 100px;
-
+    top: 10px;
 }
 
 div.partie2_compteUt > table{
@@ -710,6 +766,9 @@ label{
     width: 250px;
     border: 1px solid #ccc;
     border-radius: 3px;
+}
+.creationM input::placeholder{
+    color: #b6b6b6;
 }
 .creationM select{
     margin-bottom: 20px;

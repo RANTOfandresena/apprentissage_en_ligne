@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Gestion des compte utilisateurs')
+@section('titre', 'Gestion des compte utilisateurs')
 
 @include('admin.navbarAdmin')
 
@@ -38,8 +38,15 @@
                 <td>  <p> {{ $user->name }} </p> </td>
                 <td>  <p> {{ $type_user }} </p> </td>
                 <td style="display:block;">
-                    <a href="{{ route('admin.approuver', ['user' => $user->id]) }}"><div style="background-color: #00a723;">Approuver</div></a>
-                    <a href=""><div class="background-color: #c16a6a;">Refuser</div></a>
+                    <form action="{{ route('admin.approuver', ['user' => $user->id]) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+
+                        <a href=""><div style="background-color: #00a723;">Approuver</div></a>
+                        <a href=""><div class="background-color: #c16a6a;">Refuser</div></a>
+                        {{-- <button><div style="background-color: #00a723;">Approuver</div></button>
+                        <button><div class="background-color: #c16a6a;">Refuser</div></button> --}}
+                    </form>
                 </td>
             </tr>
         @endforeach

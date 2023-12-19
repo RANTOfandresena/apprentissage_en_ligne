@@ -49,6 +49,7 @@ Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminCont
 
     //APPROBATION D'UN COMPTE UTILISATEUR
     Route::get('/Gestion de compte utilisateur', 'gestionCompteRedirect')->name('gestionCompte');
+    // Route::patch('/Gestion de compte utilisateur', 'approuver');
     Route::get('{user}/Gestion d\'utilisateur', 'rediRectApprouver')->name('approuver');
     Route::patch('{user}/Gestion d\'utilisateur', 'approuver');
 });

@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Accueil')
+@section('titre', 'Accueil')
 
 @section('home')
     <div id="pageAccueil"></div>

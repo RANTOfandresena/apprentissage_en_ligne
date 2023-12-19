@@ -12,13 +12,33 @@
             <p></p>
             <button class="Voir_plus"> Voir plus </button>
         </div>
-
-        {{-- Affichage des cours récents --}}
-        <div class="coursRecents2">
-            <h3 class="titreCours">Français</h3>
-            <p class="descriptionCours">Description</p>
-            <p class="category">Category:Langue</p>
-            <p class="profTitulaire">Dafy</p>
+        <div class="contenairCoursRecents">
+            @foreach ($trois_derniers_cours as $matiere)
+                {{-- Affichage des cours récents --}}
+                <div class="coursRecents2">
+                    <h3 class="titreCours"> {{  $matiere->matiere   }} </h3>
+                    <div class="descriptionsAll">
+                        <p class="descriptionCours">
+                            @if ($matiere->description !== null)
+                                {{  $matiere->description   }}
+                            @else
+                                Acune description
+                            @endif
+                        </p>
+                        <div class="descriptionCours2">
+                            @if ($matiere->description !== null)
+                                {{  $matiere->description   }}
+                            @else
+                                Acune description
+                            @endif
+                        </div>
+                    </div>
+                    <div class="footerCoursRecents">
+                        <p class="category">Category: {{  $matiere->categorie->categorie   }}</p>
+                        <p class="profTitulaire"> {{  $matiere->proffesseur->prenom   }} </p>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
     <div class="partie3">
