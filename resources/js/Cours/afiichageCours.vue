@@ -14,7 +14,7 @@
                 <div v-if="chapitre===chp " class="radius haut"><div></div></div>
                 <h3
                     :style="chapitre===chp? 'color:#000047':'color: white;'"
-                    @click="chapitre=chp;partie=0;i1=i"
+                    @click="selectionChapitre(chp,i);"
                 >{{chp.nom}}</h3>
                 <div v-if="chapitre===chp " class="radius bas"><div></div></div>
             </div>
@@ -39,7 +39,7 @@
                         </div>
                     </th>
                     <th style="width: 50px;">
-                        <div class="notification">{{nbComs(i)}}</div>
+                        <div class="notification">{{ contenue.nb }}</div>
                         <i @click="commentaires(i)" class="fa fa-comment-o icon" style="font-size:24px"></i>
                     </th>
                   </tr>
@@ -52,7 +52,7 @@
                     <p >&laquo;</p>
                     <a
                         :class="partie==i-1?'active':''"
-                        @click="partie=i-1;i2=i-1"
+                        @click="selectionPartie(i)"
                         v-for="i in numchapitre.partie.length" :key="i"
                     >{{i}}</a>
                     <a >&raquo;</a>
@@ -72,7 +72,7 @@
                                 <p :class="coms.user.id==uuser ? 'border':''">{{ commmentairePhrase(coms.comentaires) }}</p>
                             </div>
                         </div>
-                    <div id="coms" ref="coms" style="height: 70px;"></div>
+                        <div id="coms" ref="coms" style="height: 70px;"></div>
                     </div>
                 </div>
                 <div class="send">
@@ -142,16 +142,12 @@ export default{
                 })
             }
         },
-        nbComs(i){
-            console.log(i)
-            axios.get(`/Interface professeur/${this.idCours}-${this.i1},${this.i2},${i}/nbcommentaire`)
-            .then((response)=>{
-                console.log(response.data)
-                return response.data
-            })
-            .catch((error)=>{
-                return 0
-            })
+        async nbComs(){
+            // console.log(i)
+            for(let i=0;this.chapitres[this.i1].partie[this.i2].cours.length!=i;i++){
+                const reponse=await axios.get(`/Interface professeur/${this.idCours}-${this.i1},${this.i2},${i}/nbcommentaire`)
+                this.chapitres[this.i1].partie[this.i2].cours[i].nb=reponse.data
+            }
         },
         commentaires(i3){
             this.active=!this.active
@@ -180,6 +176,18 @@ export default{
         commmentairePhrase(text){
             const tableau=text.split(",")
             return tableau.slice(3, tableau.length).toString();
+        },
+        selectionChapitre(chp,i){
+            this.chapitre=chp;
+            this.partie=0;
+            this.i1=i;
+            this.i2=0;
+            this.nbComs()
+        },
+        selectionPartie(i){
+            this.partie=i-1
+            this.i2=i-1
+            this.nbComs()
         }
     }
 }
@@ -322,7 +330,4 @@ export default{
         from{opacity: 1;}
         to{opacity: 0;}
     }
-
-
-
 </style>
