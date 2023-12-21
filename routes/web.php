@@ -64,11 +64,13 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
 
     //Création de contenu de cours
     Route::get('{matiere}-{contenu}/Création contenu de cours', 'createRedirect')->name('creationCours');
-    Route::get('{matiere}-{contenu}/Création contenu de cours/examen', 'createRedirect')->name('creationExamen');
+    Route::get('{matiere}-{contenu}/Création contenu de cours/examen', 'createExamenRedirect')->name('creationExamen');
     //mise a jour de contenue du cours creationExamen
     //Interface%20professeur/Cr%C3%A9ation%20contenu/13
     Route::get('{contenue}/Création contenu', 'getCours');
     Route::post('{contenue}/Création contenu', 'updateCours');
+    Route::get('{contenue}/Création exam', 'getExam');
+    Route::post('{contenue}/Création exam', 'updateExam');
 
     // Route::post('/Création contenu', 'cours');
 
