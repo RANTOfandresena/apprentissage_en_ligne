@@ -116,6 +116,13 @@ class ProfesseurController extends Controller
             // 'matiere' => Matiere::with('contenu_du_cours')
         ]);
     }
+    public function createExamenRedirect(Matiere $matiere, String $contenu){
+        return view('professeur.creationCours',[
+            'matiere' => $matiere,
+            'content' => $contenu
+            // 'matiere' => Matiere::with('contenu_du_cours')
+        ]);
+    }
 
     //Affichage des contenus de cours par matière
     public function affichageCours(Matiere $matiere, String $contenu)
@@ -183,6 +190,16 @@ class ProfesseurController extends Controller
     }
     public function getCours(Contenu_du_cour $contenue){
         return $contenue;
+    }
+    public function updateExam(Request $request,Contenu_du_cour $contenue)
+    {
+        $cour=Contenu_du_cour::find($contenue->id);
+        $cour->sujet_examen = $request->input('cours');
+        $cour->save();
+        return "Cours enregistré avec succèes";
+    }
+    public function getExam(Contenu_du_cour $contenue){
+        return $contenue->sujet_examen;
     }
     public function getCommentaire(Contenu_du_cour $contenu,string $stringId){
         return ['coms'=>$contenu->commentaire()->where('comentaires','like',$stringId.'%')->get(),'id'=> Auth::user()->id];

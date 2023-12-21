@@ -1,5 +1,4 @@
 <template>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci repellendus in itaque vero nesciunt. Eos, ratione! Ipsum porro laudantium maiores, commodi corrupti obcaecati minus consequuntur officia alias fugiat? Alias, sapiente.
     <section style="height: 100vh;text-align: center;">
         <div class="chapitre">
             <div>

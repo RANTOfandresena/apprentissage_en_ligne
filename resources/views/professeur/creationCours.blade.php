@@ -15,12 +15,13 @@
             @if( $contenu->id == $content)
                 class='active'
             @endif
-            ><a href="{{ route('professeur.creationCours' , ['matiere' => $matiere->id, 'contenu' =>  $contenu->id ]) }}"> Niveau {{ $contenu->niveau }} </a></div>
+            >
+            <a href="{{ route('professeur.creationExamen' , ['matiere' => $matiere->id, 'contenu' =>  $contenu->id ]) }}"> Examen </a></div>
+
+            <a style="text-decoration: underline" href="{{ route('professeur.creationCours' , ['matiere' => $matiere->id, 'contenu' =>  $contenu->id ]) }}"> Niveau {{ $contenu->niveau }} </a></div>
         @endforeach
         <div style="width: 181px;"><a href="{{route('professeur.ajoutNiveau', ['matiere' => $matiere->id] )}}"> Ajouter un autre niveau  </a></div>
     </div>
     <div id="cours" data-id="{{$content}}"></div>
-    {{-- @vite('resources/js/Cours/CreationCours.js') --}}
-    
-    @vite('resources/js/Cours/appProf.js')
+    @vite('resources/js/Cours/CreationCours.js')
 @endsection

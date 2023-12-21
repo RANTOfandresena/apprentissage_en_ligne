@@ -61,7 +61,6 @@
         </div>
     </section>
 </template>
-
 <script>
 import modifiertxt from '../directives/modifierDirect.js'
 export default{
@@ -77,6 +76,16 @@ export default{
             reponseValue:false,
             afficheReponse:false
         }
+    },
+    mounted(){
+        axios.get("/Interface professeur/"+this.idCours+"/Création exam/")
+        .then((response)=>{
+            console.log(JSON.parse(response.data.contenue))
+            this.chapitres=JSON.parse(response.data.contenue)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
     },
     methods:{
         ajout(type){
