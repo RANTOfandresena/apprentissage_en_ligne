@@ -23,7 +23,7 @@
                     @endif
                 >Gestion compte utilisateur</a>
                 <a href="{{route('admin.professeur')}}"
-                    @if($routeName == 'c')
+                    @if($routeName == 'admin.professeur')
                         class="active"
                     @endif
                 >Informations professeurs</a>

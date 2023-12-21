@@ -15,12 +15,20 @@ class AdminController extends Controller
 {
     public function accueil()
     {
+
+        // Matiere::create([
+        //     'matiere' => 'francais',
+        //     'description' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        // ]);
+
         // $a=User::find(1);
         // dd($a->professeur->nom);
         // return User::where('approved', false)->get();
         return view('admin.accueil', [
+            'trois_derniers_cours'  => Matiere::latest()->take(3)->get(),
             'matieres'    => Matiere::all()
         ]);
+        // return Matiere::latest()->take(3)->get();
     }
 
     public function gestionCompteRedirect(){
@@ -39,7 +47,7 @@ class AdminController extends Controller
 
             //Renvoie le nombre de administrateurs inscrits
             'administrateurs'  => Administrateur::all()->count(),
-            
+
             // Renvoie la liste des utilisateurs non approuvés
             'usersData'  => User::where('approved', false)->get(),
         ]);
@@ -78,6 +86,6 @@ class AdminController extends Controller
     {
         // return 'ok';
         $user->update(['approved' => true]);
-        return redirect()->route('admin.accueil')->with("success", "L' utilisateur a bien été approuvé");
+        return redirect()->route('admin.gestionCompteUtilisateur')->with("success", "L' utilisateur a bien été approuvé");
     }
 }

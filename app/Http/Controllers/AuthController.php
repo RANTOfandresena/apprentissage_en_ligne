@@ -51,7 +51,7 @@ class AuthController extends Controller
                 {
                     $request->session()->regenerate();
                     $type_user = Auth::user()->type_user;
-                    
+
                     // GESTION D'UTILISATEUR
                     if($type_user === 'admin')
                     {
@@ -79,10 +79,6 @@ class AuthController extends Controller
                         'password' => 'Email ou password invalide'
                     ])->onlyInput('password');
  }
-
-
-
-
 
     public function logout()
     {
