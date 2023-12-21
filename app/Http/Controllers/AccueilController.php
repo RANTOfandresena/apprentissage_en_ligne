@@ -9,6 +9,7 @@ use App\Models\Departement;
 use App\Models\User;
 use App\Models\Administrateur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AccueilController extends Controller
@@ -27,6 +28,20 @@ class AccueilController extends Controller
         //     'password' => Hash::make('a'),
         //     'administrateur_id'=> $post->id
         // ]);
+
+
+        // si l'utilisateur est deja connecter 😅😅 
+        if(auth()->check()){
+            $type_user=Auth::user()->type_user;
+            if($type_user=="professeur"){
+                return redirect()->intended(route('professeur.accueil'));
+            }else if($type_user=="admin"){
+                return redirect()->intended(route('admin.accueil'));
+            }else if($type_user=="etudiants"){
+                return redirect()->intended(route('etudiant.accueil'));
+            }
+        }
+        // si l'utilisateur n'est pas connecter 😅😅 
         return view('accueil.home');
     }
     public function video()

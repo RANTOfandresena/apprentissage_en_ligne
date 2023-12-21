@@ -1,21 +1,25 @@
 <template>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci repellendus in itaque vero nesciunt. Eos, ratione! Ipsum porro laudantium maiores, commodi corrupti obcaecati minus consequuntur officia alias fugiat? Alias, sapiente.
     <section style="height: 100vh;text-align: center;">
-        <div style="width: 20vw;">
-            <p style="color: white;" >chapitre</p><br>
-            <div class="chapitree" v-for="chp in chapitres" :key="chp"
-                :class="chapitre===chp ? 'chp':''"
-                >
-                <i @click="suppressinChapitre(chp)"  class="fa fa-close iconn icon " ></i>
-                <div v-if="chapitre===chp " class="radius haut"><div></div></div>
-                <h3
-                    :style="chapitre===chp? 'color:#000047':'color: white;'"
-                    @click="chapitre=chp;partie=0;"
-                >{{chp.nom}}</h3>
-                <div v-if="chapitre===chp " class="radius bas"><div></div></div>
-            </div>
+        <div class="chapitre">
+            <div>
+                <p style="color: white;" >chapitre</p><br>
+                <div class="chapitree" v-for="chp in chapitres" :key="chp"
+                    :class="chapitre===chp ? 'chp':''"
+                    >
+                    <i @click="suppressinChapitre(chp)"  class="fa fa-close iconn icon " ></i>
+                    <div v-if="chapitre===chp " class="radius haut"><div></div></div>
+                    <h3
+                        :style="chapitre===chp? 'color:#000047':'color: white;'"
+                        @click="chapitre=chp;partie=0;"
+                    >{{chp.nom}}</h3>
+                    <div v-if="chapitre===chp " class="radius bas"><div></div></div>
+                </div>
 
-            <input v-if="chpActive" v-model="chapitreValeur" @keyup.enter="ajoutChapitre" type="text">
-            <button class="btn" @click="chpActive=true">+ chapitre</button>
+                <input v-if="chpActive" v-model="chapitreValeur" @keyup.enter="ajoutChapitre" type="text">
+                <button class="btn" @click="chpActive=true">+ chapitre</button>
+            </div>
+            <button class="btn" style="width: 100%;margin: 0;border-radius: 14px;">Examen</button>
         </div>
         <div class="contenue">
             <div v-if="numchapitre!==null">
@@ -295,5 +299,11 @@ export default{
     }
     .haut div{
         border-bottom-right-radius: 100%;
+    }
+    div.chapitre{
+        width: 20vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 </style>

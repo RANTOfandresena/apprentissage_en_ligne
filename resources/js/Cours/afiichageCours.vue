@@ -39,11 +39,10 @@
                         </div>
                     </th>
                     <th style="width: 50px;">
-                        <div class="notification">{{ contenue.nb }}</div>
+                        <div v-if="contenue.nb>0" class="notification">{{ contenue.nb }}</div>
                         <i @click="commentaires(i)" class="fa fa-comment-o icon" style="font-size:24px"></i>
                     </th>
                   </tr>
-                  
                 </table>
             </div>
             
@@ -72,7 +71,7 @@
                                 <p :class="coms.user.id==uuser ? 'border':''">{{ commmentairePhrase(coms.comentaires) }}</p>
                             </div>
                         </div>
-                        <div id="coms" ref="coms" style="height: 70px;"></div>
+                    <div id="coms" ref="coms" style="height: 70px;"></div>
                     </div>
                 </div>
                 <div class="send">
@@ -330,4 +329,7 @@ export default{
         from{opacity: 1;}
         to{opacity: 0;}
     }
+
+
+
 </style>

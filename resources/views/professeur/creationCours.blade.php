@@ -6,14 +6,7 @@
 @include('professeur.navbarProf')
 
 @section('contenu')
-    <h1> PERSONNALISEZ VOS COURS </h1>
-
-    {{ Auth::user()->id }}
     <h3> Module : {{$matiere->matiere}} </h3>
-
-    <p> Contenu du cours id : </p>
-
-
 
     <div class="niveau">
         @foreach ($matiere->contenu_du_cours as $contenu)
@@ -27,5 +20,7 @@
         <div style="width: 181px;"><a href="{{route('professeur.ajoutNiveau', ['matiere' => $matiere->id] )}}"> Ajouter un autre niveau  </a></div>
     </div>
     <div id="cours" data-id="{{$content}}"></div>
-    @vite('resources/js/Cours/CreationCours.js')
+    {{-- @vite('resources/js/Cours/CreationCours.js') --}}
+    
+    @vite('resources/js/Cours/appProf.js')
 @endsection

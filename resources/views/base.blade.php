@@ -15,7 +15,7 @@
     @php
         $routeName = request()->route()->getName();
 
-        // echo($routeName);
+        //echo($routeName);
     @endphp
     {{-- Utilisateurs connectés --}}
     @auth
@@ -39,7 +39,6 @@
                         return to_route($type_user.'.accueil');
                     @endphp
                 @endif
-
                 {{-- Affichage des messages --}}
                 @if(session('success'))
                     <div class="message"> {{session("success")}} </div>
