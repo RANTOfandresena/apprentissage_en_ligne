@@ -89,13 +89,20 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
 });
 
-
 // INTERFACE ETUDIANT
 
 Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantController::class)->group(function(){
     Route::get('/accueil', 'accueilRedirect')->name('accueil');
 });
 
+
+/***************************** */
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+/***************************** */
 //Test envoie d'email
 // Route::get('/send-test-email', function () {
 //     Mail::raw('Test email content', function ($message) {

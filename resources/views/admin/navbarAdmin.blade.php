@@ -33,6 +33,15 @@
                     @endif
                 >Résultat des tests</a>
                 <input type="search" name="" id="" placeholder="RECHERCHE" class="recherche_admin">
+
+                {{-- Test d'envoie d'email --}}
+                <a href="{{route('verification.notice')}}"
+                    @if($routeName == 'verification.notice')
+                        class="active"
+                    @endif
+                >Email</a>
+                {{-- $******************************************$ --}}
+
                 <form action="{{route('auth.logout')}}" method="post">
                     @csrf
                     @method("delete")

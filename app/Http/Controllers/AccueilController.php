@@ -98,7 +98,7 @@ class AccueilController extends Controller
                 'administrateur_id'=> $post->id
             ]);
         }
-
+        // return view('auth.verify-email')->with('success', "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin");
         return "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin";// return redirect()->route('accueil')->with("success", "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin");
 
     }
