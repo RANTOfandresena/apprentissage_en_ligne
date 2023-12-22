@@ -32,7 +32,7 @@ Route::get('/departement', [AccueilController::class, 'getDepartement']);
 //AUTHENTIFICATION
 Route::prefix('authentification')->name('auth.')->controller(AuthController::class)->group(function(){
     Route::get('/', 'login')->name('login');
-    Route::post('/', 'doLogin');
+     Route::post('/', 'doLogin');
 });
 
 //TEST
