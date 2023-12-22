@@ -117,7 +117,7 @@ class ProfesseurController extends Controller
         ]);
     }
     public function createExamenRedirect(Matiere $matiere, String $contenu){
-        return view('professeur.creationCours',[
+        return view('professeur.creationExamen',[
             'matiere' => $matiere,
             'content' => $contenu
             // 'matiere' => Matiere::with('contenu_du_cours')

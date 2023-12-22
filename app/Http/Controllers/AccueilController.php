@@ -30,7 +30,7 @@ class AccueilController extends Controller
         // ]);
 
 
-        // si l'utilisateur est deja connecter 😅😅 
+        // si l'utilisateur est deja connecter
         if(auth()->check()){
             $type_user=Auth::user()->type_user;
             if($type_user=="professeur"){
@@ -41,7 +41,7 @@ class AccueilController extends Controller
                 return redirect()->intended(route('etudiant.accueil'));
             }
         }
-        // si l'utilisateur n'est pas connecter 😅😅 
+        // si l'utilisateur n'est pas connecter 
         return view('accueil.home');
     }
     public function video()

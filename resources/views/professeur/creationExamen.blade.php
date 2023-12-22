@@ -16,7 +16,7 @@
                 class='active'
             @endif
             >
-            <a href="#" style="text-decoration: underline">Examen</a>
+            <a href="{{ route('professeur.creationExamen' , ['matiere' => $matiere->id, 'contenu' =>  $contenu->id ]) }}" style="text-decoration: underline">Examen</a>
             <a href="{{ route('professeur.creationCours' , ['matiere' => $matiere->id, 'contenu' =>  $contenu->id ]) }}"> Niveau {{ $contenu->niveau }} </a></div>
         @endforeach
     </div>

@@ -10,7 +10,7 @@
                     <div @click="reponse('fichier')">ficher</div>
                 </div>
             </div>
-            <button class="btn jaune" >Valider</button>
+            <button class="btn jaune" @click="insertion">Valider</button>
         </div> 
         <div class="contenue">
             <div>
@@ -65,6 +65,7 @@
 import modifiertxt from '../directives/modifierDirect.js'
 export default{
     directives:{modifiertxt},
+    props: ['idCours'],
     data() {
         return {
             indexEdit:null,
@@ -78,10 +79,10 @@ export default{
         }
     },
     mounted(){
-        axios.get("/Interface professeur/"+this.idCours+"/Création exam/")
+        axios.get("/Interface professeur/"+this.idCours+"/Création exam")
         .then((response)=>{
-            console.log(JSON.parse(response.data.contenue))
-            this.chapitres=JSON.parse(response.data.contenue)
+            // console.log((response.data))
+            this.exam=response.data
         })
         .catch((error)=>{
             console.log(error)
@@ -120,6 +121,18 @@ export default{
         },
         handleMouseOut(){
             this.afficheReponse=false
+        },
+        insertion(){
+            var data=new FormData()
+            data.append('cours',JSON.stringify(this.exam))
+            axios
+                .post("/Interface professeur/"+this.idCours+"/Création exam/",data)
+                .then((response)=>{
+                    console.log(response)
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
         }
 
     }

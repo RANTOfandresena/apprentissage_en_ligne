@@ -983,3 +983,57 @@ label{
     float: right;
     font-size: 10px;
 }
+/* """""""""""""matiere""""""""""""" */
+.courrss  .matiere{
+    color:black;
+}
+.cours{
+    text-align: center;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.cours h2,h3{
+    color: #06b3e3;
+    text-align:center;
+}
+.courrss .lecon{
+display: table;
+}
+.courrss .lecon > div{
+    width: 275px;
+    height: 143px;
+    margin: 10px;
+    box-shadow: inset 1px 3px 6px 5px rgb(225 222 222);
+    border-radius: 10px;
+    float: left;
+}
+.courrss .lecon > div >section{
+    width:100%;
+    color:white;
+    position:relative;
+    bottom:-5px;
+    box-shadow: inset 1px 3px 6px 5px rgb(225 222 222);
+    display:none;
+    animation: apparition 0.5s;
+}
+@keyframes apparition {
+    from {transform: translateY(30px);opacity:0;}
+    to {transform: translateY(0);opacity:1;}
+}
+.courrss .lecon > div:hover section{
+    display:block;
+}
+.courrss .lecon > div >section >div {
+    float:left;
+    width:50%;
+    height:30px;
+}
+.courrss .lecon > div >section >a {
+    float:left;
+    width:50%;
+    height:30px;
+}
+.courrss a.AjoutMatiere{
+    color: #000000;
+}
