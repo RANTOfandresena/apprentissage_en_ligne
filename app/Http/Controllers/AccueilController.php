@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EngagerProf;
+use App\Mail\VerificationEmail;
 use App\Models\Etudiant;
 use App\Models\Proffesseur;
 use App\Models\Departement;
 use App\Models\User;
 use App\Models\Administrateur;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AccueilController extends Controller
 {
@@ -75,7 +78,7 @@ class AccueilController extends Controller
                 'telephone' => $request->input('telephone'),
                 'email' => $request->input('email'),
             ]);
-            User::create([
+            $user = User::create([
                 'name' => $request->input('nom'),
                 'email' => $request->input('email'),
                 'type_user' => 'professeur',
@@ -83,6 +86,12 @@ class AccueilController extends Controller
                 'proffesseur_id'=> $post->id,
                 'email_verification_token' =>bin2hex(openssl_random_pseudo_bytes(20)), //Génère le token
             ]);
+            event(new Registered($user));
+
+            //Envoie du lien de vérification d'email avec le token générer
+            $verificationLink = route('verify.email', ['token' => $user->email_verification_token]);
+            Mail::to($user->email)->send(new VerificationEmail($verificationLink));
+
         }
         else if($type_user == 'etudiants')
         {
@@ -94,7 +103,7 @@ class AccueilController extends Controller
                 'departement_id'=> $request->input('departement'),
 
             ]);
-            User::create([
+            $user = User::create([
                 'name' => $request->input('nom'),
                 'email' => $request->input('email'),
                 'type_user' => 'etudiants',
@@ -102,13 +111,20 @@ class AccueilController extends Controller
                 'etudiant_id'=> $post->id,
                 'email_verification_token' =>bin2hex(openssl_random_pseudo_bytes(20)), //Génère le token
             ]);
+
+            event(new Registered($user));
+
+            //Envoie du lien de vérification d'email avec le token générer
+            $verificationLink = route('verify.email', ['token' => $user->email_verification_token]);
+            Mail::to($user->email)->send(new VerificationEmail($verificationLink));
+
         }
         else if($type_user == 'admin'){
             $post = Administrateur::create([
                 'email' => $request->input('email'),
                 'post'=> $request->input('post')
             ]);
-            User::create([
+            $user = User::create([
                 'name' => $request->input('nom'),
                 'email' => $request->input('email'),
                 'type_user' => 'admin',
@@ -116,6 +132,13 @@ class AccueilController extends Controller
                 'administrateur_id'=> $post->id,
                 'email_verification_token' =>bin2hex(openssl_random_pseudo_bytes(20)), //Génère le token
             ]);
+
+            event(new Registered($user));
+
+            //Envoie du lien de vérification d'email avec le token générer
+            $verificationLink = route('verify.email', ['token' => $user->email_verification_token]);
+            Mail::to($user->email)->send(new VerificationEmail($verificationLink));
+
         }
 
         return "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin";// return redirect()->route('accueil')->with("success", "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin");
