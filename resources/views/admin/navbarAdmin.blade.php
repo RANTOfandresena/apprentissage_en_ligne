@@ -38,6 +38,10 @@
                     @method("delete")
                     <button class="btn_deconnexion_admin"> Déconnexion </button>
                 </form>
+                <form action="{{route('verify.passwordReset')}}" method="get">
+                    @csrf
+                    <button class="btn_deconnexion_admin"> Reset password </button>
+                </form>
             </div>
         </div>
     </div>

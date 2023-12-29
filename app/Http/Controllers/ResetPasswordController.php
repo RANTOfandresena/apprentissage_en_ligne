@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -13,9 +14,15 @@ class ResetPasswordController extends Controller
     // Affiche le formulaire de réinitialisation de mot de passe
     public function showResetForm(Request $request, $token = null)
     {
-        return view('auth.resetPassword')->with(
-            ['token' => $token, 'email' => $request->email]
-        );
+        // Trouver l'utilisateur correspondant au token dans la base de données
+        $user = User::where('email_verification_token', $token)->first();
+        if($user)
+        {
+            return view('auth.resetPassword')->with(
+                ['token' => $token, 'email' => $request->email,]
+            );
+        }
+        return 'Utilisateur non reconnu';
     }
 
     // Réinitialise le mot de passe

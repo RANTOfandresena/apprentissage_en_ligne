@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ResetPasswordEmail;
+use App\Mail\VerificationEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class VerificationController extends Controller
 {
@@ -29,5 +33,18 @@ class VerificationController extends Controller
 
         // Redirection vers une page d'échec ou un message d'échec
         return redirect()->route('verification.error');
+    }
+
+    public function verifyEmailBeforeChangePassword()
+    {
+        $user = User::find(Auth::user()->id);
+        $user -> email_verification_token = bin2hex(openssl_random_pseudo_bytes(20));//Génère le token
+
+        //Le lien envoyé dans l'email de l'utilisateur qui le redirigera vers le formulaire de changement de mot de passe
+        $resetPasswordLink = route('password.request', ['token' => $user->email_verification_token]);
+
+        Mail::to($user->email)->send(new ResetPasswordEmail($resetPasswordLink));
+
+        return 'An email has been sent ';
     }
 }
