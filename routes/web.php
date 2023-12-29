@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\ProfesseurController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Contracts\Mail\Mailer;
@@ -107,15 +108,20 @@ Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantCon
 
 //ENVOIE D'EMAIL DE VERIFICATION D'EMAIL D'UTILISATEURS
 
-//Route qui appelle le controller qui marque la vérification de l'email dans la base de données avec en paramètre le token de l'email pour vérifier l'utilisateur
+    //Route qui appelle le controller qui marque la vérification de l'email dans la base de données avec en paramètre le token de l'email pour vérifier l'utilisateur
 Route::get('/verify-email/{token}',[VerificationController::class, 'verify'])->name('verify.email');
 
-//Route qui renvoie un message de succès lorsque l'email est vérifié
+    //Route qui renvoie un message de succès lorsque l'email est vérifié
 Route::get('/verify/email/result-success', function(){
     return 'Email verified';
 })->name('verification.success');
 
-//Route qui renvoie un message de succès lorsque l'email est vérifié
+    //Route qui renvoie un message de succès lorsque l'email est vérifié
 Route::get('/verify/email/result-error', function(){
     return 'Email not verified';
 })->name('verification.error');
+
+//RESET PASSWORD
+
+Route::get('/reset-password',[ResetPasswordController::class, 'showResetForm'])->name('password.request');
+Route::post('/reset-password',[ResetPasswordController::class, 'reset'])->name('password.update');
