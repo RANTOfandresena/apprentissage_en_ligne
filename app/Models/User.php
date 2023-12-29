@@ -25,7 +25,8 @@ class User extends Authenticatable
         'etudiant_id',
         'proffesseur_id',
         'administrateur_id',
-        'approved'
+        'approved',
+        'email_verification_token'
     ];
 
     /**
@@ -59,7 +60,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Administrateur::class, 'administrateur_id');
     }
-    
+
     public function type(String $type)
     {
         if($type=='admin')

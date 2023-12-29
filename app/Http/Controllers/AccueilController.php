@@ -138,7 +138,6 @@ class AccueilController extends Controller
             //Envoie du lien de vérification d'email avec le token générer
             $verificationLink = route('verify.email', ['token' => $user->email_verification_token]);
             Mail::to($user->email)->send(new VerificationEmail($verificationLink));
-
         }
 
         return "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin";// return redirect()->route('accueil')->with("success", "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin");
