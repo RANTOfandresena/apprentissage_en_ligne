@@ -104,12 +104,17 @@ Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantCon
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
 });
 
-//Test envoie d'email
-// Route::get('/send-test-email', function () {
-//     Mail::raw('Test email content', function ($message) {
-//         $message->to('angevoni@gamil.com');
-//         $message->subject('Test email');
-//     });
+//ENVOIE D'EMAIL DE VERIFICATION D'EMAIL D'UTILISATEURS
 
-//     return 'Test email sent!';
-// });
+//Route qui appelle le controller qui marque la vérification de l'email dans la base de données avec en paramètre le token de l'email pour vérifier l'utilisateur
+Route::get('/verify-email/{token}',[VerificationController::class, 'verify'])->name('verify.email');
+
+//Route qui renvoie un message de succès lorsque l'email est vérifié
+Route::get('/verify/email/result-success', function(){
+    return 'Email verified';
+})->name('verification.success');
+
+//Route qui renvoie un message de succès lorsque l'email est vérifié
+Route::get('/verify/email/result-success', function(){
+    return 'Email not verified';
+})->name('verification.error');
