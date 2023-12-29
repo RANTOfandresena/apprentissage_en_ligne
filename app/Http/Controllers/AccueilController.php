@@ -41,7 +41,7 @@ class AccueilController extends Controller
                 return redirect()->intended(route('etudiant.accueil'));
             }
         }
-        // si l'utilisateur n'est pas connecter 
+        // si l'utilisateur n'est pas connecter
         return view('accueil.home');
     }
     public function video()
@@ -80,7 +80,8 @@ class AccueilController extends Controller
                 'email' => $request->input('email'),
                 'type_user' => 'professeur',
                 'password' => Hash::make($request->input('email')),
-                'proffesseur_id'=> $post->id
+                'proffesseur_id'=> $post->id,
+                'email_verification_token' =>bin2hex(openssl_random_pseudo_bytes(20)), //Génère le token
             ]);
         }
         else if($type_user == 'etudiants')
@@ -90,14 +91,16 @@ class AccueilController extends Controller
                 'prenom' => $request->input('prenom'),
                 'telephone' => $request->input('telephone'),
                 'email' => $request->input('email'),
-                'departement_id'=> $request->input('departement')
+                'departement_id'=> $request->input('departement'),
+
             ]);
             User::create([
                 'name' => $request->input('nom'),
                 'email' => $request->input('email'),
                 'type_user' => 'etudiants',
                 'password' => Hash::make($request->input('email')),
-                'etudiant_id'=> $post->id
+                'etudiant_id'=> $post->id,
+                'email_verification_token' =>bin2hex(openssl_random_pseudo_bytes(20)), //Génère le token
             ]);
         }
         else if($type_user == 'admin'){
@@ -110,7 +113,8 @@ class AccueilController extends Controller
                 'email' => $request->input('email'),
                 'type_user' => 'admin',
                 'password' => Hash::make($request->input('email')),
-                'administrateur_id'=> $post->id
+                'administrateur_id'=> $post->id,
+                'email_verification_token' =>bin2hex(openssl_random_pseudo_bytes(20)), //Génère le token
             ]);
         }
 

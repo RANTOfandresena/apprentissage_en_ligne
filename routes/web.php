@@ -29,6 +29,7 @@ Route::get('/', [AccueilController::class, 'redirection'])->name('accueil');
 Route::get('/account', [AccueilController::class, 'createAccount'])->name('create.account');
 Route::post('/account', [AccueilController::class, 'storeAccount']);
 Route::get('/departement', [AccueilController::class, 'getDepartement']);
+
 //AUTHENTIFICATION
 Route::prefix('authentification')->name('auth.')->controller(AuthController::class)->group(function(){
     Route::get('/', 'login')->name('login');
@@ -97,7 +98,7 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
 Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantController::class)->group(function(){
     Route::get('/accueil', 'accueilRedirect')->name('accueil');
 
-    
+
     Route::get('{matiere}-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
     Route::get('{contenu}-{stringId}/commentaire', 'getCommentaire');
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
