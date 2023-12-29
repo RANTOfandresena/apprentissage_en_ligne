@@ -140,7 +140,7 @@ class AccueilController extends Controller
             Mail::to($user->email)->send(new VerificationEmail($verificationLink));
         }
 
-        return "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin";// return redirect()->route('accueil')->with("success", "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin");
+        return "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin, un email de vérification vous a été envoyé";// return redirect()->route('accueil')->with("success", "Votre compte a bien été crée, vous devriez attendre l'approbation de l'admin");
 
     }
 }

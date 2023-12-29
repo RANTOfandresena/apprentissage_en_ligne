@@ -116,6 +116,6 @@ Route::get('/verify/email/result-success', function(){
 })->name('verification.success');
 
 //Route qui renvoie un message de succès lorsque l'email est vérifié
-Route::get('/verify/email/result-success', function(){
+Route::get('/verify/email/result-error', function(){
     return 'Email not verified';
 })->name('verification.error');
