@@ -13,7 +13,7 @@ class ResetPasswordController extends Controller
     // Affiche le formulaire de réinitialisation de mot de passe
     public function showResetForm(Request $request, $token = null)
     {
-        return view('auth.passwords.reset')->with(
+        return view('auth.resetPassword')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

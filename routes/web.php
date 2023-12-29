@@ -121,6 +121,7 @@ Route::get('/verify/email/result-error', function(){
     return 'Email not verified';
 })->name('verification.error');
 
+
 //RESET PASSWORD
 
 Route::get('/reset-password',[ResetPasswordController::class, 'showResetForm'])->name('password.request');
