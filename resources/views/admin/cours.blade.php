@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'A propos de tous les cours')
+@section('titre', 'A propos de tous les cours')
 
 @include('admin.navbarAdmin')
 
@@ -75,13 +75,13 @@
                 <h4> Professeur titulaire : {{ $matiere->proffesseur->prenom}} </h4>
                 <section>
                     <div style="background-color:green;border-bottom-left-radius: 10px;"> Voir </div>
-                    <div style="background-color:red;border-bottom-right-radius: 10px;"><a href="#" class="matiere"> Visibilité par département </a></div>
+                    <div style="background-color:red;border-bottom-right-radius: 10px;"><a href="{{ route('admin.visibiliteCours', ['cours'  => $matiere->id ]) }}" class="matiere"> Visibilité par département </a></div>
                 </section>
             </div>
         @endforeach
-        <div style="text-align: center;padding-top: -7%;">
+        {{-- <div style="text-align: center;padding-top: -7%;">
             <p style="margin-top: 17%;">ajouter <br> une matiere </p>
-        </div>
+        </div> --}}
     </div>
 </div>
 

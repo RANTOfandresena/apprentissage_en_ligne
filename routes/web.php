@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\VerificationController;
+use App\Models\Departement;
+use App\Models\Matiere;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +57,18 @@ Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminCont
     // Route::patch('/Gestion de compte utilisateur', 'approuver');
     Route::get('{user}/Gestion d\'utilisateur', 'rediRectApprouver')->name('approuver');
     Route::patch('{user}/Gestion d\'utilisateur', 'approuver');
+
+    //AFFICHAGE ET GESTION DE LA VISIBILITE DES COURS
+                //Affiche toutes les matières existantes
+    Route::get('/Cours/Listes', function(){
+        return view('admin.cours', [
+            'matieres' => Matiere::all(),
+        ]);
+    })->name('cours');
+
+                //Retourne la vue pour le choix des département à bénéficier des cours
+    Route::get('Cours/{cours}/Visibilité par département', 'ViewVisibiliteCours')->name('visibiliteCours');
+    Route::post('Cours/{cours}/Visibilité par département', 'storeDepartementMatiere');
 });
 
 //INTERFACE PROFESSEUR

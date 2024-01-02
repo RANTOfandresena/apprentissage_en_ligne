@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DepartementMatiereRequest;
 use App\Http\Requests\EngagerProf;
 use App\Models\Administrateur;
+use App\Models\Departement;
 use App\Models\Etudiant;
 use App\Models\Matiere;
 use App\Models\Proffesseur;
@@ -87,5 +89,25 @@ class AdminController extends Controller
         // return 'ok';
         $user->update(['approved' => true]);
         return redirect()->route('admin.gestionCompteUtilisateur')->with("success", "L' utilisateur a bien été approuvé");
+    }
+
+    //Retourne la vue pour le choix de la visibilité de chaque cours par département
+    public function ViewVisibiliteCours(Matiere $cours){
+        // Departement::create([
+        //     'nom'  => 'Marketing',
+        // ]);
+
+        return view('admin.visibiliteCours', [
+            'cours'         => $cours,
+            'departements'  => Departement::select('id', 'nom')->get(), //Séléctionne l'id et le nom de chaque département
+        ]);
+    }
+
+    //Stocke les matières et les départements associés
+    public function storeDepartementMatiere(Matiere $cours, DepartementMatiereRequest $request)
+    {
+        dd($request->validated('departement'));
+        $cours->departement()->sync($request->validated('departement'));
+        return 'Modification effectuée!';
     }
 }

@@ -61,9 +61,11 @@ input::placeholder {
 
 /*Navbar interface administrateur */
 .active{
-    color: #ffbf00;
-    font-weight: 900;
-    border-bottom: 2px solid #ffbf00;
+    text-shadow: 1px 2px 3px #2f00ffd2;
+    color:#ffffff;
+    /* color: #ffbf00; */
+    /* font-weight: 900; */
+    border-bottom: 2px solid #00143dab;
     padding: 5px;
 }
 .fondNavbar{

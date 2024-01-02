@@ -30,4 +30,8 @@ class Matiere extends Model
     {
         return $this->belongsToMany(Contenu_du_cour::class);
     }
+    public function departement()
+    {
+        return $this->belongsToMany(Departement::class);
+    }
 }

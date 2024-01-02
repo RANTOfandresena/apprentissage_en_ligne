@@ -12,8 +12,8 @@
                         class="active"
                     @endif>
                 Accueil</a>
-                <a href="#"
-                    @if($routeName == 'b')
+                <a href="{{ route('admin.cours') }}"
+                    @if($routeName == 'admin.cours')
                         class="active"
                     @endif
                 >Cours</a>
