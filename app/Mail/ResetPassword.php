@@ -9,20 +9,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ResetPasswordEmail extends Mailable
+class ResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $resetPasswordLink;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( $resetPasswordLink)
+    public $resetPasswordLink;
+
+    public function __construct($resetPasswordLink)
     {
-        $this-> $resetPasswordLink =  $resetPasswordLink;
+        $this -> resetPasswordLink = $resetPasswordLink;
     }
 
     /**
@@ -33,7 +33,7 @@ class ResetPasswordEmail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Reset Password Email',
+            subject: 'Reset Password',
         );
     }
 
@@ -65,5 +65,4 @@ class ResetPasswordEmail extends Mailable
             'resetPasswordLink' => $this->resetPasswordLink,
         ]);
     }
-
 }
