@@ -15,13 +15,25 @@
     <h4> Choisissez les département qui auront accès à ce cours </h4>
     <form method="post">
         @csrf
+        
         <div class="form-group">
-            <select name="departement" id="departement" class="form-control" multiple>
-                {{-- <option value=""> Séléctionner un ou plusieurs département </option> --}}
+            {{-- <select name="departement[]" id="departement" class="form-control" multiple>
+                <option value=""> Séléctionner un ou plusieurs département </option>
                 @foreach ($departements as $departement)
                     <option value="{{ $departement -> id }}">{{ $departement -> nom }}</option>
                 @endforeach
-            </select>
+            </select> --}}
+            {{-- <option value=""> Séléctionner un ou plusieurs département </option> --}}
+            <label for="departement"> Séléctionner un ou plusieurs département </label> <p></p>
+            @foreach ($departements as $departement)
+                {{-- Index: {{ $loop->index }} : Index de la boucle Foreach --}}
+                <label for="departement{{$loop->index}}">
+                    <input type="checkbox" name="departement[]" id="departement{{$loop->index}}" value="{{ $departement -> id }}">
+                    {{ $departement -> nom }}
+                </label> <br>
+
+            @endforeach
+
             <button class="btn btn-warning"> VALIDER </button>
         </div>
     </form>

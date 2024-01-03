@@ -106,7 +106,7 @@ class AdminController extends Controller
     //Stocke les matières et les départements associés
     public function storeDepartementMatiere(Matiere $cours, DepartementMatiereRequest $request)
     {
-        dd($request->validated('departement'));
+        // dd( $request->input('departement'));
         $cours->departement()->sync($request->validated('departement'));
         return 'Modification effectuée!';
     }
