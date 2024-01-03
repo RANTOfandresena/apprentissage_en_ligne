@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commentaire;
 use App\Models\Contenu_du_cour;
+use App\Models\Departement;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,8 +13,10 @@ class EtudiantController extends Controller
 {
     public function accueilRedirect()
     {
+        $departement =  Auth::user()->type(Auth::user()->type_user)->departement;
         return view('etudiants.accueil', [
-            'matieres' => Matiere::all()
+            'matieres' => $departement->matieres,
+            'departement' => $departement->nom,
         ]);
     }
     public function affichageCours(Matiere $matiere, String $contenu)

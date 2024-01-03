@@ -1,12 +1,13 @@
 @extends('base')
 
-@section('title', 'Accueil')
+@section('titre', 'Accueil')
 
 @include('etudiants.navbarEtudiants')
 
 @section('contenu')
 <div class="cours courrss">
-    <h3> Toutes les matières </h3>
+    <h3> Voici les modules que vous devriez suivre </h3>
+    <h2> Département : {{ $departement }}</h2>
     <div class="lecon">
 
         @foreach ($matieres as $matiere )
