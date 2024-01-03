@@ -20,8 +20,11 @@ class Etudiant extends Model
     //Un étudiant appartient à un département
     public function departement()
     {
-        return $this -> belongsTo(Departement::class);
+        return $this->belongsTo(Departement::class);
     }
-
+    public function contenu_du_cours()
+    {
+        return $this->belongsToMany(Contenu_du_cour::class);
+    }
 }
 

@@ -189,7 +189,17 @@ class ProfesseurController extends Controller
         return "Cours enregistré avec succèes";
     }
     public function getCours(Contenu_du_cour $contenue){
-        return $contenue;
+        $cours=json_decode($contenue->contenue);
+        $i=0;
+        for($c=0;$c!=count($cours);$c++){
+            for($p=0;$p!=count($cours[$c]->partie);$p++){
+                if($i >= 2){
+                    $cours[$c]->partie[$p]='';
+                }
+                $i++;
+            }
+        }
+        return $cours;
     }
     public function updateExam(Request $request,Contenu_du_cour $contenue)
     {
