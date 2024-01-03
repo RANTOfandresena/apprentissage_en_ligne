@@ -68,6 +68,14 @@ input::placeholder {
     border-bottom: 2px solid #00143dab;
     padding: 5px;
 }
+.inactive{
+    color: #00143d;
+}
+.inactive:hover{
+    color:#ffffff;
+    transition: 0.2s;
+}
+
 .fondNavbar{
     border: 1px solid #02A0E6;
     background-color: #02A0E6;
@@ -96,8 +104,9 @@ input::placeholder {
     /* float: right; */
 }
 .linkAdmin a, .linkAdmin input, .linkAdmin button{
-    margin-left: 44px;
-    font-family: 'Jura';
+    margin-left: 28px;
+    font-family: 'Fira Sans';
+    font-size: 15px;
 }
 .linkAdmin input{
  width: 163px;
@@ -591,6 +600,28 @@ p.infosStat span{
     height: 58px;
     font-size: 45px;
 }
+
+/********** COURS - INTERFACE ADMINISTRATEUR*************/
+p.profTitulaireCours{
+    color: #727171;
+    text-align: center;
+    font-family: 'Philosopher';
+    position: relative;
+    bottom: -22px;
+}
+p.categoryCours {
+    font-family: 'Philosopher';
+    font-weight: 600;
+    font-size: 15px;
+    text-align: center;
+    position: relative;
+    bottom: -18px;
+}
+h2.titreCours{
+    font-size: 20px;
+    overflow-wrap: break-word;
+}
+
 /******************************************************************************************************/
 .navbar{
     display: flex;
