@@ -107,8 +107,8 @@ export default{
     mounted(){
         axios.get("/Interface professeur/"+this.idCours+"/Création contenu/")
         .then((response)=>{
-            console.log(JSON.parse(response.data.contenue))
-            this.chapitres=JSON.parse(response.data.contenue)
+            // console.log(JSON.parse(response.data))
+            this.chapitres=response.data
         })
         .catch((error)=>{
             console.log(error)

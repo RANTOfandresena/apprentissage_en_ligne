@@ -21,11 +21,12 @@ class EtudiantController extends Controller
     }
     public function affichageCours(Matiere $matiere, String $contenu)
     {
-        // return "gg";
-        return view('etudiants.affichageCours',[
-            'matiere' => $matiere,
-            'content' => $contenu
-        ]);
+        return Auth::user()->type('etudiants')->contenu_du_cours->find($contenu);
+        // Auth::user()->type('etudiants')->contenu_du_cours();
+        // return view('etudiants.affichageCours',[
+        //     'matiere' => $matiere,
+        //     'content' => $contenu
+        // ]);
     }
     public function getCommentaire(Contenu_du_cour $contenu,string $stringId){
         return ['coms'=>$contenu->commentaire()->where('comentaires','like',$stringId.'%')->get(),'id'=> Auth::user()->id];

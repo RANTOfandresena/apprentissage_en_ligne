@@ -4,23 +4,24 @@
      $routeName = request()->route()->getName();
 @endphp
 <div class="partie1">
-    <div class="navbarAdmin">
-        <div class="fondNavbar">
-            <div class="linkAdmin">
-                <a href="#">
-                Accueil</a>
-                <a href="#">Cours</a>
+            <div class="navbar">
+            <h1>logo</h1>
+            <div class="link">
+                <a href="#">Accueil</a>
+
+                {{-- Redirige vers la route du profil avec comme paramètre l'id de l'utilisateur --}}
                 <a href="#">Profil</a>
-                <a href="#">Profil</a>
-                <input type="search" name="" id="" placeholder="RECHERCHE" class="recherche_admin">
+
+                <a href="#">Examens</a>
+                <a href="#"> matière </a>
                 <form action="{{route('auth.logout')}}" method="post">
                     @csrf
                     @method("delete")
-                    <button class="btn_deconnexion_admin"> Déconnexion </button>
+                    <button> Déconnexion </button>
                 </form>
-            </div>
         </div>
-    </div>
+
+
 
     {{-- Ces images et formes ne sont à afficher que dans la page d'accueil --}}
     @if($routeName == 'admin.accueil')

@@ -26,11 +26,8 @@
                   <tr v-for="contenue,i in numchapitre.partie[numPartie].cours" :key="contenue" class="contenuee">
                     <th style="width: 95%;">
                         <div @dblclick="commentaires(i)">
-                            <!-- si paragraphe -->
                             <p v-if="contenue.type==='paragraphe'">{{ contenue.text }}</p>
-                            <!-- si titre -->
                             <h1 v-if="contenue.type==='titre'">{{ contenue.text }}</h1>
-                            <!-- si question -->
                             <p v-if="contenue.type==='input'">{{ contenue.text }}</p>
                             <div v-if="contenue.type==='image'">
                                 <img :src="contenue.text" alt=":)">
@@ -105,8 +102,8 @@ export default{
         this.chargement=true
         axios.get("/Interface professeur/"+this.idCours+"/Création contenu")
         .then((response)=>{
-            console.log(response.data.contenue)
-            this.chapitres=JSON.parse(response.data.contenue)
+            console.log(response.data)
+            this.chapitres=response.data
             this.chargement=false
         })
         .catch((error)=>{
@@ -142,11 +139,13 @@ export default{
             }
         },
         async nbComs(){
-            // console.log(i)
-            for(let i=0;this.chapitres[this.i1].partie[this.i2].cours.length!=i;i++){
-                const reponse=await axios.get(`/Interface professeur/${this.idCours}-${this.i1},${this.i2},${i}/nbcommentaire`)
-                this.chapitres[this.i1].partie[this.i2].cours[i].nb=reponse.data
+            if(this.chapitres[this.i1].partie[this.i2].cours!=undefined){
+                for(let i=0;this.chapitres[this.i1].partie[this.i2].cours.length!=i;i++){
+                    const reponse=await axios.get(`/Interface professeur/${this.idCours}-${this.i1},${this.i2},${i}/nbcommentaire`)
+                    this.chapitres[this.i1].partie[this.i2].cours[i].nb=reponse.data
+                }                
             }
+
         },
         commentaires(i3){
             this.active=!this.active
@@ -329,7 +328,4 @@ export default{
         from{opacity: 1;}
         to{opacity: 0;}
     }
-
-
-
 </style>
