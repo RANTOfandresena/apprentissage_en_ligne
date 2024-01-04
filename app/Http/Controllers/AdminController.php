@@ -57,10 +57,12 @@ class AdminController extends Controller
 
     public function consulter()
     {
+        // $a= Etudiant::all()[0];
+        // return $a->departement->matieres;
         return view('admin.utilisateurs', [
             'info_etudiants' => Etudiant::all(),
             'info_professeurs' => Proffesseur::all(),
-            'etat' => 'Tous', //L'état de retour des informations 
+            'etat' => 'Tous', //L'état de retour des informations
         ]);
     }
 
