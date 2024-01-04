@@ -45,13 +45,13 @@
             
             <div class="page" v-if="numchapitre!==null">
                 <div class="pagination">
-                    <a>&laquo;</a>
+                    <a @click="clickPrecedent">&laquo;</a>
                     <a
                         :class="partie==i-1?'active':''"
                         @click="selectionPartie(i)"
                         v-for="i in numchapitre.partie.length" :key="i"
                     >{{i}}</a>
-                    <a >&raquo;</a>
+                    <a @click="clickSuivant">&raquo;</a>
                 </div>
             </div>
         </div>
@@ -102,7 +102,6 @@ export default{
         this.chargement=true
         axios.get("/Interface professeur/"+this.idCours+"/Création contenu")
         .then((response)=>{
-            console.log(response.data)
             this.chapitres=response.data
             this.chargement=false
         })
@@ -113,7 +112,6 @@ export default{
     },
     computed:{
         numPartie(){
-            console.log(this.numchapitre.partie[this.partie].cours)
             return this.partie
         },
         numchapitre(){
@@ -140,13 +138,14 @@ export default{
             }
         },
         async nbComs(){
-            if(this.chapitres[this.i1].partie[this.i2].cours!=undefined){
+            if(this.chapitres[this.i1].partie[this.i2].cours!==undefined){
+                console.log('asyncss')
                 for(let i=0;this.chapitres[this.i1].partie[this.i2].cours.length!=i;i++){
                     const reponse=await axios.get(`/Interface professeur/${this.idCours}-${this.i1},${this.i2},${i}/nbcommentaire`)
+                    // console.log(this.chapitres[this.i1].partie[this.i2].cours[i])
                     this.chapitres[this.i1].partie[this.i2].cours[i].nb=reponse.data
-                }                
+                }
             }
-
         },
         commentaires(i3){
             this.active=!this.active
@@ -157,10 +156,8 @@ export default{
                 axios.get(`/Interface professeur/${this.idCours}-${id}/commentaire`)
                 .then((response)=>{
                     this.chargement=false
-                    // console.log(response.data.coms)
                     this.commentaire=response.data.coms
                     this.uuser=response.data.id
-                    // this.$refs.coms.scrollIntoView()
                 })
                 .catch((error)=>{
                     this.chargement=false
@@ -187,6 +184,14 @@ export default{
             this.partie=i-1
             this.i2=i-1
             this.nbComs()
+        },
+        clickSuivant(){
+            console.log(this.partie,"  ",this.i2)
+            this.partie++
+            this.i2++
+            if(this.chapitre.partie[this.partie].cours!==undefined){
+                console.log('axios')
+            }
         }
     }
 }
