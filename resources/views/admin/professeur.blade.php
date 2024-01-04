@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Engager un professeur')
+@section('titre', 'Engager un professeur')
 
 @include('admin.navbarAdmin')
 
@@ -61,8 +61,10 @@ button:hover {
     width: 100%;
   }
 }
-<a href="{{route('admin.professeur')}}"> <button type="button" class="btn btn-primary btn-lg"> Engager un professeur </button></a>
-   
+
+{{-- <a href="{{route('admin.professeur')}}"> <button type="button" class="btn btn-primary btn-lg"> Engager un professeur </button></a>
+ --}}
+
 </style>
     <form action="" method="post" style="border:1px solid #ccc">
         @csrf

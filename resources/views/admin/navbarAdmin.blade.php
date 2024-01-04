@@ -28,13 +28,13 @@
                         class="inactive"
                     @endif
                 >Gestion compte utilisateur</a>
-                <a href="{{route('admin.professeur')}}"
+                <a href="{{route('admin.utilisateurs')}}"
                     @if($routeName == 'admin.professeur')
                         class="active"
                     @else
                         class="inactive"
                     @endif
-                >Informations professeurs</a>
+                >Informations utilisateurs</a>
                 <a href="#"
                     @if($routeName == 'd')
                         class="active"
