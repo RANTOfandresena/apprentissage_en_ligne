@@ -55,9 +55,13 @@ class AdminController extends Controller
         ]);
     }
 
-    public function engager()
+    public function consulter()
     {
-        return view('admin.professeur');
+        return view('admin.utilisateurs', [
+            'info_etudiants' => Etudiant::all(),
+            'info_professeurs' => Proffesseur::all(),
+            'etat' => 'Tous', //L'état de retour des informations 
+        ]);
     }
 
     public function insertion(EngagerProf $request)

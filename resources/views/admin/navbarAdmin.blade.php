@@ -10,26 +10,36 @@
                 <a href="{{route('admin.accueil')}}"
                     @if($routeName == 'admin.accueil')
                         class="active"
+                    @else
+                        class="inactive"
                     @endif>
                 Accueil</a>
                 <a href="{{ route('admin.cours') }}"
                     @if($routeName == 'admin.cours')
                         class="active"
+                    @else
+                        class="inactive"
                     @endif
                 >Cours</a>
                 <a href="{{route('admin.gestionCompte')}}"
                     @if($routeName == 'admin.gestionCompte')
                         class="active"
+                    @else
+                        class="inactive"
                     @endif
                 >Gestion compte utilisateur</a>
-                <a href="{{route('admin.professeur')}}"
+                <a href="{{route('admin.utilisateurs')}}"
                     @if($routeName == 'admin.professeur')
                         class="active"
+                    @else
+                        class="inactive"
                     @endif
-                >Informations professeurs</a>
+                >Informations utilisateurs</a>
                 <a href="#"
                     @if($routeName == 'd')
                         class="active"
+                    @else
+                        class="inactive"
                     @endif
                 >Résultat des tests</a>
                 <input type="search" name="" id="" placeholder="RECHERCHE" class="recherche_admin">

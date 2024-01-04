@@ -65,14 +65,19 @@
 </style>
 
 <div class="cours">
-    <h3> Voici toutes les matières existantes </h3>
+    <h3
+        style="font-family: 'Philosopher';
+        color: #00143d;"
+    >
+        Voici toutes les matières existantes
+    </h3>
     <div class="lecon">
 
         @foreach ($matieres as $matiere )
             <div>
-                <h2>{{ $matiere->matiere }}</h2>
-                <h3>Catégorie : {{ $matiere->categorie->categorie }} </h3>
-                <h4> Professeur titulaire : {{ $matiere->proffesseur->prenom}} </h4>
+                <h2 class="titreCours">{{ $matiere->matiere }}</h2>
+                <p class="categoryCours">Catégorie : {{ $matiere->categorie->categorie }} </p>
+                <p class="profTitulaireCours"> {{ $matiere->proffesseur->prenom}} </p>
                 <section>
                     <div style="background-color:green;border-bottom-left-radius: 10px;"> Voir </div>
                     <div style="background-color:red;border-bottom-right-radius: 10px;"><a href="{{ route('admin.visibiliteCours', ['cours'  => $matiere->id ]) }}" class="matiere"> Visibilité par département </a></div>
