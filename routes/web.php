@@ -112,8 +112,8 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
 
 // INTERFACE ETUDIANT
 Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantController::class)->group(function(){
-
     Route::get('/accueil', 'accueilRedirect')->name('accueil');
+
     Route::get('{matiere}-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
     Route::get('{contenu}-{stringId}/commentaire', 'getCommentaire');
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
@@ -140,5 +140,5 @@ Route::get('/verify/email/result-error', function(){
 Route::get('/reset-password',[ResetPasswordController::class, 'showResetForm'])->name('password.request');
 Route::post('/reset-password',[ResetPasswordController::class, 'reset'])->name('password.update');
 
-    //Route d'envoie d'email de confirmation de changement de mot de passe
+//Route d'envoie d'email de confirmation de changement de mot de passe
 Route::get('/verify/email/reset-password-confirmation', [VerificationController::class, 'verifyEmailBeforeChangePassword'])->name('verify.passwordReset');
