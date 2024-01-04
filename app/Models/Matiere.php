@@ -43,8 +43,8 @@ class Matiere extends Model
         foreach($this->contenu_du_cours as $cour){
             $cours=json_decode($cour->contenue);
             $i=0;
-            for($c=0;$c!=count($cours);$c++){
-                for($p=0;$p!=count($cours[$c]->partie);$p++){
+            for($chapitre=0;$chapitre!=count($cours);$chapitre++){
+                for($partie=0;$partie!=count($cours[$chapitre]->partie);$partie++){
                     $i++;
                 }
             }
