@@ -35,16 +35,27 @@ class Matiere extends Model
     {
         return $this->belongsToMany(Departement::class);
     }
-    public function progressionContenu_du_cour(Etudiant $etudiant){
-        $info1= Contenu_du_cour_etudiant::where('etudiant_id','=',$etudiant->id)->get()[0];
-        return $info1->progression;
+
+    //Méthode qui retourne la progression d'un étudiant sur un contenu
+    public function progressionContenu_du_cour(Etudiant $etudiant)
+    {
+        $info1= Contenu_du_cour_etudiant::where('etudiant_id','=',$etudiant->id)->get();
+        if(count($info1)==0){
+            return 0;
+        }
+        return $info1[0]->progression;
     }
+
+    //Retourne la totalité des nombres des contenus
     public function progression(){
-        foreach($this->contenu_du_cours as $cour){
+        foreach($this->contenu_du_cours as $cour)
+        {
             $cours=json_decode($cour->contenue);
             $i=0;
-            for($c=0;$c!=count($cours);$c++){
-                for($p=0;$p!=count($cours[$c]->partie);$p++){
+            for($c=0;$c!=count($cours);$c++)
+            {
+                for($p=0;$p!=count($cours[$c]->partie);$p++)
+                {
                     $i++;
                 }
             }
