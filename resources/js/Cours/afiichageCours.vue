@@ -21,8 +21,7 @@
         </div>
         <div class="contenue" style="width: 100%;">
             <div v-if="numchapitre!==null">
-                <table>
-
+                <table v-if="numchapitre.partie[numPartie].cours!==undefined">
                   <tr v-for="contenue,i in numchapitre.partie[numPartie].cours" :key="contenue" class="contenuee">
                     <th style="width: 95%;">
                         <div @dblclick="commentaires(i)">
@@ -41,11 +40,12 @@
                     </th>
                   </tr>
                 </table>
+                <div v-else>blocker</div>
             </div>
             
             <div class="page" v-if="numchapitre!==null">
                 <div class="pagination">
-                    <p >&laquo;</p>
+                    <a>&laquo;</a>
                     <a
                         :class="partie==i-1?'active':''"
                         @click="selectionPartie(i)"
@@ -57,7 +57,7 @@
         </div>
     </section>
     <transition name="affiche">
-        <div class="sidenav1" v-if="active" key="active"> <!-- v-if -->
+        <div class="sidenav1" v-if="active" key="active">
         <div v-if="chargement" class="loader centre"></div>
             <div class="sidenav"><p style="font-size: 25px;" @click="commentaires">&times;</p>
                 <div style="overflow-y: scroll;height: 80vh;" >
@@ -113,6 +113,7 @@ export default{
     },
     computed:{
         numPartie(){
+            console.log(this.numchapitre.partie[this.partie].cours)
             return this.partie
         },
         numchapitre(){
@@ -229,7 +230,11 @@ export default{
         overflow-y: scroll;
         padding-right: 10px;
         padding-right: 0;
+        display: flex;
         background-color: rgb(222, 222, 248);
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
     }
     .jaune{
         background-color: #fdbe00;
@@ -237,15 +242,14 @@ export default{
         bottom: 10px;
         margin-left: 7%;
     }
-    .pagination a {color: black;float: left;padding: 8px 16px;text-decoration: none; transition: background-color .3s;}
+    .pagination {display: flex;}
+    .pagination a {background-color: white;color: black;float: left;padding: 8px 16px;text-decoration: none; transition: background-color .3s;}
 
     .pagination a.active {background-color: dodgerblue;color: white;}
 
     .pagination a:hover:not(.active) {background-color: #ddd;}
     .page{
-        background-color:#ffff;
-        position: absolute;
-        bottom: 0px;
+        background-color:#ffff; 
     }
     .icon{
         visibility: hidden;

@@ -32,6 +32,8 @@ return new class extends Migration
             $table->primary(['contenu_du_cour_id','etudiant_id']);
             $table->json('reponse_examen');
             $table->integer('note');
+            $table->timestamps('created_at');
+            $table->timestamps('updated_at');
         });
         Schema::table('users', function(Blueprint $table){
             $table->foreignIdFor(Etudiant::class)->nullable()->constrained()->cascadeOnDelete();

@@ -7,6 +7,7 @@ use App\Models\Categorie;
 use App\Models\Chat;
 use App\Models\Commentaire;
 use App\Models\Contenu_du_cour;
+use App\Models\Contenu_du_cour_etudiant;
 use App\Models\Matiere;
 use App\Models\Proffesseur;
 use App\Models\User;
@@ -190,13 +191,16 @@ class ProfesseurController extends Controller
     }
     public function getCours(Contenu_du_cour $contenue){
         $cours=json_decode($contenue->contenue);
-        $i=0;
-        for($c=0;$c!=count($cours);$c++){
-            for($p=0;$p!=count($cours[$c]->partie);$p++){
-                if($i >= 2){
-                    $cours[$c]->partie[$p]='';
+        if(Auth::user()->type_user=='etudiants'){
+            $info1= Contenu_du_cour_etudiant::where('etudiant_id','=',Auth::user()->type('etudiants')->id)->get()[0]->progression;
+            $i=0;
+            for($c=0;$c!=count($cours);$c++){
+                for($p=0;$p!=count($cours[$c]->partie);$p++){
+                    if($i >= intval($info1)){
+                        $cours[$c]->partie[$p]='';
+                    }
+                    $i++;
                 }
-                $i++;
             }
         }
         return $cours;
