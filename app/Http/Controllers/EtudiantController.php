@@ -29,24 +29,24 @@ class EtudiantController extends Controller
         // test1
         // return $matiere->progression(Auth::user()->type('etudiants'));
         // test2
-        return $matiere->progression();
+        // return $matiere->progression();
 
         
         
-        // $info1= Contenu_du_cour_etudiant::where('etudiant_id','=',Auth::user()->type('etudiants')->id)->get();
-        // if(count($info1)==0){
-        //     Contenu_du_cour_etudiant::create([
-        //         'contenu_du_cour_id'=>$contenu,
-        //         'etudiant_id'=>Auth::user()->type('etudiants')->id,
-        //         'reponse_examen'=>'[]',
-        //         'note'=>-1,
-        //         'progression'=>1
-        //     ]);
-        // }
-        // return view('etudiants.affichageCours',[
-        //     'matiere' => $matiere,
-        //     'content' => $contenu
-        // ]);
+        $info1= Contenu_du_cour_etudiant::where('etudiant_id','=',Auth::user()->type('etudiants')->id)->get();
+        if(count($info1)==0){
+            Contenu_du_cour_etudiant::create([
+                'contenu_du_cour_id'=>$contenu,
+                'etudiant_id'=>Auth::user()->type('etudiants')->id,
+                'reponse_examen'=>'[]',
+                'note'=>-1,
+                'progression'=>1
+            ]);
+        }
+        return view('etudiants.affichageCours',[
+            'matiere' => $matiere,
+            'content' => $contenu
+        ]);
     }
     public function getCommentaire(Contenu_du_cour $contenu,string $stringId){
         return ['coms'=>$contenu->commentaire()->where('comentaires','like',$stringId.'%')->get(),'id'=> Auth::user()->id];
