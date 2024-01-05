@@ -23,4 +23,9 @@ class Proffesseur extends Model implements Authenticatable
     {
         return $this->hasOne(User::class);
     }
+    public function matieres()
+    {
+        return $this->hasMany(Matiere::class);
+    }
+
 }

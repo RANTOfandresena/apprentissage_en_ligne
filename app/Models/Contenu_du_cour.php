@@ -17,4 +17,8 @@ class Contenu_du_cour extends Model
     public function commentaire(){
         return $this->belongsToMany(Commentaire::class);
     }
+    public function etudiant()
+    {
+        return $this->belongsToMany(Etudiant::class);
+    }
 }

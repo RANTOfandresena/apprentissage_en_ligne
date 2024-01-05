@@ -17,6 +17,7 @@
     <div class="infoEtudiants">
         @foreach ($info_etudiants as $etudiants )
             <div class="infoEtudiantsContenus">
+                <span class="infoUserSpan"> Etudiant </span>
                 <div class="profilePicture"></div>
                 <p> Nom : {{ $etudiants -> nom }}</p>
                 <p> Prénom : {{ $etudiants -> prenom }}</p>
@@ -44,6 +45,9 @@
                                 }
                                 $progression_pourcentage = ($progression_etudiant / $total ) * 100;
                             @endphp
+                            <div class="progress">
+                                <div class="progress-bar" data-pourcentage="{{ $progression_pourcentage }}" id="" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                             {{ $progression_pourcentage }}%
                             <br>
                         @endforeach
@@ -55,8 +59,54 @@
     </div>
     <p class="infoEtudiantsIntro"> Information sur tous les professeurs </p>
     <div class="infoProfeseurs">
+        @foreach ($info_professeurs as $professeur)
+            <div class="infoEtudiantsContenus">
+                <span class="infoUserSpan"> Professeur </span>
+                <div class="profilePicture"></div>
+                <p> Nom : {{ $professeur->nom }} </p>
+                <p> Prénoms : {{ $professeur->prenom }}</p>
+                <p> Téléphone : {{ $professeur->telephone }}</p>
+                <p> Email : {{ $professeur->email }}</p>
+                <p> COURS CREER </p>
+                <p>
+                    @php
+                         $matieres =  $professeur->matieres
+                    @endphp
+                    @if ($matieres->isEmpty())
+                        <p> Aucune contribution </p>
+                    @else
+                        @foreach ($matieres as $matiere)
+                            <p>
+                                {{ $matiere->matiere }}
+                                @php
+                                    $contenus = $matiere->contenu_du_cours
+                                @endphp
+                                @foreach ( $contenus as  $contenu )
+                                <span> {{  $contenu->etudiant->count()  }} apprenants </span>
+                                @endforeach
+                            </p>
+                        @endforeach
+                    @endif
+                </p>
+            </div>
+        @endforeach
 
     </div>
     @endif
 </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var progressBars = document.querySelectorAll('.progress-bar');
+        console.log(progressBars.length);
+        for(var i = 0; i != progressBars.length; i++)
+        {
+            var balise = progressBars[i];
+            console.log(balise.dataset);
+            var percentage = balise.dataset.pourcentage;
+            balise.style.width = percentage + '%';
+            balise.setAttribute('aria-valuenow', percentage);
+        }
+    });
+
+</script>
