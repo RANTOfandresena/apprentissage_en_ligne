@@ -29,7 +29,7 @@
                     @endif
                 >Gestion compte utilisateur</a>
                 <a href="{{route('admin.utilisateurs')}}"
-                    @if($routeName == 'admin.professeur')
+                    @if($routeName == 'admin.utilisateurs')
                         class="active"
                     @else
                         class="inactive"

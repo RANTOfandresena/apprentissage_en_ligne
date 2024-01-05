@@ -621,7 +621,74 @@ h2.titreCours{
     font-size: 20px;
     overflow-wrap: break-word;
 }
+/*********************INFORMATION UTILISATEUR - INTERFACE ADMINISTRATEUR******************************/
+div.navigation{
+    position: relative;
+    top: 10px;
+    text-align: center;
+    margin: auto;
+    border: 1px solid #ddd;
+    width: 700px;
+    height: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+div.navigation > a {
+    color: #000000;
+}
 
+p.infoEtudiantsIntro{
+    font-family: 'Philosopher';
+    /* color: #00143d; */
+    color: #FFFFFF;
+    text-indent: 100px;
+    font-weight: 600;
+    text-shadow: -1px 0 #02a0e6, 0 1px #02a0e6, 1px 0 #02a0e6, 0 -1px #02a0e6;
+    letter-spacing: 3px;
+    font-size: medium;
+}
+div.infoEtudiants{
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    height: 400px;
+    width: 100%;
+    /* flex-wrap: wrap; */
+}
+div.infoEtudiantsContenus{
+    flex: 1;
+    text-align: start;
+    padding: 13px;
+    margin: 10px;
+    overflow-x: auto;
+    overflow-y: auto;
+    box-shadow: #ddd 5px 5px 10px;
+    border: 1px solid #ddd;
+    float: left;
+}
+div.infoEtudiantsContenus > p{
+    text-overflow: ellipsis;
+}
+/* Pour les navigateurs basés sur WebKit (comme Chrome, Safari, etc.) */
+/* Personnalisation de la barre de défilement verticale */
+::-webkit-scrollbar {
+    padding: 7px;
+    width: 6px; /* Largeur de la barre de défilement */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #02a0e6; /* Couleur de la poignée (thumb) */
+    border-radius: 10px; /* Bord arrondi de la poignée */
+}
+div.profilePicture{
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    box-shadow: #ddd -5px 2px 2px;
+}
 /******************************************************************************************************/
 .navbar{
     display: flex;

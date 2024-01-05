@@ -49,8 +49,8 @@ Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout')
 //INTERFACE ADMINISTRATEUR
 Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminController::class)->group(function(){
     Route::get('/', 'accueil')->name('accueil');
-    Route::get('/Espace professeur/', 'consulter')->name('utilisateurs');
-    Route::post('/Espace professeur', 'insertion');
+    Route::get('/Informations utilisateurs/', 'consulter')->name('utilisateurs');
+    // Route::post('/Espace professeur', 'insertion');
 
     //APPROBATION D'UN COMPTE UTILISATEUR
     Route::get('/Gestion de compte utilisateur', 'gestionCompteRedirect')->name('gestionCompte');

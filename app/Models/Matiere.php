@@ -52,15 +52,10 @@ class Matiere extends Model
         {
             $cours=json_decode($cour->contenue);
             $i=0;
-<<<<<<< HEAD
-            for($chapitre=0;$chapitre!=count($cours);$chapitre++){
-                for($partie=0;$partie!=count($cours[$chapitre]->partie);$partie++){
-=======
             for($c=0;$c!=count($cours);$c++)
             {
                 for($p=0;$p!=count($cours[$c]->partie);$p++)
                 {
->>>>>>> 6b75c1b1027bd11d751443157d7d4fd5e577df5f
                     $i++;
                 }
             }
