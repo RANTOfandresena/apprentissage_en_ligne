@@ -47,6 +47,9 @@
     @endauth
     {{-- Utilisateurs non connectés --}}
     @guest
+                @if(session('success'))
+                    <div class="message"> {{session("success")}} </div>
+                @endif
             {{-- Page d'accueil ou page d'authentification --}}
             <div style="overflow-y: hidden;">
 

@@ -39,10 +39,10 @@ class VerificationController extends Controller
     public function verifyEmailBeforeChangePassword()
     {
         $user = User::find(Auth::user()->id);
-        $user->email_verification_token = bin2hex(openssl_random_pseudo_bytes(20));//Génère le token
-
+        $user->reset_password_token = bin2hex(openssl_random_pseudo_bytes(20));//Génère le token
+        $user->save();
         //Le lien envoyé dans l'email de l'utilisateur qui le redirigera vers le formulaire de changement de mot de passe
-        $resetPasswordLink = route('password.request', ['token' => $user->email_verification_token]);
+        $resetPasswordLink = route('password.request', ['token' => $user->reset_password_token]);
 
         Mail::to($user->email)->send(new ResetPassword($resetPasswordLink));
 

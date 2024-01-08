@@ -9,5 +9,4 @@
 
     Merci,<br>
     {{ config('app.name') }}
-    <h3> {{  $resetPasswordLink }}</h3>
 @endcomponent
