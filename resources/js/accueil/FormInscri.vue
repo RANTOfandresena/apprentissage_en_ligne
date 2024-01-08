@@ -33,8 +33,9 @@
         <br>
         <div class="clearfix">
             <button type="submit" class="signupbtn" >
-              <div v-if="chargement">chargement...</div>
-              <div v-else>Ajouter</div>
+              <div v-if="chargement" class="loaderr"></div>
+              <div v-else >Ajouter</div>
+              
             </button>
         </div>
     </form>
@@ -83,14 +84,14 @@
         methods:{
             envoyer(){
                 const data=this.convertion()
-                this.chargement=true
+                this.chargement=true;
                 axios.post("/account",data)
-                .then((response)=>{
-                  this.chargement=false
-                  this.alert=true
-                  this.message=response.data
-                  this.form=this.formInitial
-                })
+                  .then((response)=>{
+                      this.chargement=false
+                      this.alert=true
+                      this.message=response.data
+                      this.form=this.formInitial
+                  })
                 .catch((error)=>{
                   console.log(error)
                   this.alert=true
@@ -114,6 +115,9 @@
     }
 </script>
 <style>
+
+
+/* -------------------- */
 .alert{
   border-radius: 15px;
   background-color: rgb(123 180 123);

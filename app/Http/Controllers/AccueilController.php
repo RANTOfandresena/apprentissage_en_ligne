@@ -9,6 +9,8 @@ use App\Models\Proffesseur;
 use App\Models\Departement;
 use App\Models\User;
 use App\Models\Administrateur;
+use App\Models\Contenu_du_cour;
+use App\Models\Contenu_du_cour_etudiant;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +51,8 @@ class AccueilController extends Controller
     }
     public function video()
     {
-        return view('video');
+        $contenu=Contenu_du_cour::find(1);
+        return $contenu->modelExam();
     }
 
     public function createAccount()

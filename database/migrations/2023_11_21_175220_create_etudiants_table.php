@@ -27,11 +27,13 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::create('contenu_du_cour_etudiant',function(Blueprint $table){
+            $table->id();
             $table->foreignIdFor(Contenu_du_cour::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Etudiant::class)->constrained()->cascadeOnDelete();
             $table->primary(['contenu_du_cour_id','etudiant_id']);
             $table->json('reponse_examen');
             $table->integer('note');
+            $table->integer('progression');
             $table->timestamps('created_at');
             $table->timestamps('updated_at');
         });

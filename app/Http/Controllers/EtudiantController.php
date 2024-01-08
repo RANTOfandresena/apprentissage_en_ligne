@@ -38,7 +38,7 @@ class EtudiantController extends Controller
             Contenu_du_cour_etudiant::create([
                 'contenu_du_cour_id'=>$contenu,
                 'etudiant_id'=>Auth::user()->type('etudiants')->id,
-                'reponse_examen'=>'[]',
+                'reponse_examen'=>json_encode(Contenu_du_cour::find($contenu)->sujetEtudient()),
                 'note'=>-1,
                 'progression'=>1
             ]);
@@ -47,6 +47,11 @@ class EtudiantController extends Controller
             'matiere' => $matiere,
             'content' => $contenu
         ]);
+        
+    }
+    public function getExam(Contenu_du_cour $contenu){
+        
+        return $contenu->sujetEtudient();
     }
     public function getCommentaire(Contenu_du_cour $contenu,string $stringId){
         return ['coms'=>$contenu->commentaire()->where('comentaires','like',$stringId.'%')->get(),'id'=> Auth::user()->id];
@@ -65,5 +70,18 @@ class EtudiantController extends Controller
             'comentaires' => $request->input('coms'),
             'user' => true
         ];
+    }
+    public function affichageExamen(Matiere $matiere,String $contenu){
+        $contenue_cours=Contenu_du_cour::find($contenu);
+        $progre=Contenu_du_cour_etudiant::where('etudiant_id','=',Auth::user()->type('etudiants')->id)->get()[0]->progression;
+        if($contenue_cours->nbProgression()<=$progre){
+            return view('etudiants.examen',['content' => $contenu]);
+        }else{
+            return redirect()->intended(route('etudiant.affichageCours',[
+                'matiere' => $matiere,
+                'contenu' => $contenu
+            ]));
+        }
+        
     }
 }
