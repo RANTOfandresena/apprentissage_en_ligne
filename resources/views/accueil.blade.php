@@ -126,7 +126,6 @@
 
     </div>
 
-
 {{-- fa fa-file-o --}}
 {{-- fa fa-font (titre) --}}
 </body>
