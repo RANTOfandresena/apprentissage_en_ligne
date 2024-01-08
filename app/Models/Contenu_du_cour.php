@@ -17,6 +17,10 @@ class Contenu_du_cour extends Model
     public function commentaire(){
         return $this->belongsToMany(Commentaire::class);
     }
+    public function etudiant()
+    {
+        return $this->belongsToMany(Etudiant::class);
+    }
     public function nbProgression(){
         $cours=json_decode($this->contenue);
         $nb=0;
@@ -50,4 +54,5 @@ class Contenu_du_cour extends Model
         }
         return $reponse;
     }
+
 }

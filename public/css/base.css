@@ -644,17 +644,23 @@ p.infoEtudiantsIntro{
     color: #FFFFFF;
     text-indent: 100px;
     font-weight: 600;
-    text-shadow: -1px 0 #02a0e6, 0 1px #02a0e6, 1px 0 #02a0e6, 0 -1px #02a0e6;
+    text-shadow: -1px 0 #00143d, 0 1px #00143d, 1px 0 #00143d, 0 -1px #00143d;
     letter-spacing: 3px;
     font-size: medium;
 }
 div.infoEtudiants{
-    display: flex;
+    /* display: flex;
     justify-content: space-around;
     align-items: stretch;
     height: 400px;
-    width: 100%;
+    width: 100%; */
     /* flex-wrap: wrap; */
+    margin-left: 100px ;
+    margin-right:100px ;
+    height: 700px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 éléments par ligne */
+    grid-gap: 20px; /* Espacement entre les éléments */
 }
 div.infoEtudiantsContenus{
     flex: 1;
@@ -666,6 +672,7 @@ div.infoEtudiantsContenus{
     box-shadow: #ddd 5px 5px 10px;
     border: 1px solid #ddd;
     float: left;
+    box-sizing: border-box;
 }
 div.infoEtudiantsContenus > p{
     text-overflow: ellipsis;
@@ -681,6 +688,11 @@ div.infoEtudiantsContenus > p{
     background-color: #02a0e6; /* Couleur de la poignée (thumb) */
     border-radius: 10px; /* Bord arrondi de la poignée */
 }
+
+/*Scrollbar horizental*/
+::-webkit-scrollbar-horizontal {
+    height: 12px; /* Hauteur de la barre */
+  }
 div.profilePicture{
     margin: auto;
     border: 1px solid #ddd;
@@ -689,6 +701,41 @@ div.profilePicture{
     height: 100px;
     box-shadow: #ddd -5px 2px 2px;
 }
+span.infoUserSpan{
+    color: #ddd;
+    font-family: 'Fira Sans';
+    font-family: 'Fira Sans';
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+div.infoProfeseurs{
+    /* display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    height: 400px;
+    width: 905px;
+    float: left; */
+    margin-left: 100px ;
+    margin-right:100px ;
+    height: 430px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 éléments par ligne */
+    grid-gap: 20px; /* Espacement entre les éléments */
+}
+.progress {
+    width: 100%;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    width: 0;
+    height: 20px;
+    background-color: #3498db;
+    transition: width 0.5s ease-in-out; /* Transition pour l'animation */
+  }
+
 /******************************************************************************************************/
 .navbar{
     display: flex;
