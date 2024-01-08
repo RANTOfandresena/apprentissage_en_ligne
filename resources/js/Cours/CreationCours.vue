@@ -105,9 +105,8 @@ export default{
         }
     },
     mounted(){
-        axios.get("/Interface professeur/"+this.idCours+"/Création contenu/")
+        axios.get("/Interface professeur/"+this.idCours+"-0/Création contenu/")
         .then((response)=>{
-            // console.log(JSON.parse(response.data))
             this.chapitres=response.data
         })
         .catch((error)=>{

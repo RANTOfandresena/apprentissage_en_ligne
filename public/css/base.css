@@ -1137,3 +1137,12 @@ display: table;
 .courrss a.AjoutMatiere{
     color: #000000;
 }
+.cadenas{
+    position: absolute;
+    top: 33%;
+    left: 39%;
+    opacity: 0.3;
+}
+.cadenas img{
+    width: 50%;
+}

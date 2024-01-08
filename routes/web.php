@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 //Accueil principal
 Route::get('/', [AccueilController::class, 'redirection'])->name('accueil');
-// Route::get('/video', [AccueilController::class, 'video'])->name('video');
+Route::get('/video', [AccueilController::class, 'video'])->name('video');
 
 //Création de compte
 Route::get('/account', [AccueilController::class, 'createAccount'])->name('create.account');
@@ -84,7 +84,8 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
     Route::get('{matiere}-{contenu}/Création contenu de cours/examen', 'createExamenRedirect')->name('creationExamen');
     //mise a jour de contenue du cours creationExamen
     //Interface%20professeur/Cr%C3%A9ation%20contenu/13
-    Route::get('{contenue}/Création contenu', 'getCours');
+    Route::get('{contenue}-{a}/pogression', 'getCours');
+    Route::get('{contenue}-{a}/Création contenu', 'getCours');
     Route::post('{contenue}/Création contenu', 'updateCours');
     Route::get('{contenue}/Création exam', 'getExam');
     Route::post('{contenue}/Création exam', 'updateExam');
@@ -108,6 +109,8 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
     Route::get('{contenu}-{stringId}/commentaire', 'getCommentaire');
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
     Route::post('{contenu}/commentaire', 'envoyerCommentaire');
+
+    
 });
 
 // INTERFACE ETUDIANT
@@ -117,6 +120,11 @@ Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantCon
     Route::get('{matiere}-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
     Route::get('{contenu}-{stringId}/commentaire', 'getCommentaire');
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
+
+    Route::get('{matiere}-{contenu}/Consulter les cours/examen', 'affichageExamen')->name('affichageExamen');
+    
+    Route::get('{contenu}/exam', 'getExam')->name('examen');;
+
 });
 
 //ENVOIE D'EMAIL DE VERIFICATION D'EMAIL D'UTILISATEURS

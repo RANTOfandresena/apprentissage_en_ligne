@@ -6,18 +6,22 @@
     </transition>
 
     <section style="height: 100vh;text-align: center;">
-        <div style="width: 20vw;">
-            <p style="color: white;">chapitre</p><br>
+        <div style="width: 20vw;width: 20vw;display: flex;flex-direction: column;justify-content: space-between;">
+            <div>
+            <p style="color: white;" @click="examen">chapitre</p><br>
+            
             <div class="chapitree" v-for="chp,i in chapitres" :key="chp"
                 :class="chapitre===chp ? 'chp':''"
                 >
-                <div v-if="chapitre===chp " class="radius haut"><div></div></div>
+                <div v-if="chapitre===chp" class="radius haut"><div></div></div>
                 <h3
                     :style="chapitre===chp? 'color:#000047':'color: white;'"
                     @click="selectionChapitre(chp,i);"
                 >{{chp.nom}}</h3>
                 <div v-if="chapitre===chp " class="radius bas"><div></div></div>
             </div>
+            </div>
+            <div v-if="exam" @click="examen" class="ff">Examen</div>
         </div>
         <div class="contenue" style="width: 100%;">
             <div v-if="numchapitre!==null">
@@ -40,18 +44,20 @@
                     </th>
                   </tr>
                 </table>
-                <div v-else>blocker</div>
+                <div v-else class="cadenas">
+                    <img src="/css/assets/cadenas.png" alt="gg">
+                </div>
             </div>
             
             <div class="page" v-if="numchapitre!==null">
                 <div class="pagination">
-                    <a @click="clickPrecedent">&laquo;</a>
+                    <a @click="partie--;this.i2--;" v-show="partie>0">&laquo;</a>
                     <a
                         :class="partie==i-1?'active':''"
                         @click="selectionPartie(i)"
                         v-for="i in numchapitre.partie.length" :key="i"
                     >{{i}}</a>
-                    <a @click="clickSuivant">&raquo;</a>
+                    <a @click="clickSuivant" v-if="numchapitre.partie.length>partie+1">&raquo;</a>
                 </div>
             </div>
         </div>
@@ -61,7 +67,7 @@
         <div v-if="chargement" class="loader centre"></div>
             <div class="sidenav"><p style="font-size: 25px;" @click="commentaires">&times;</p>
                 <div style="overflow-y: scroll;height: 80vh;" >
-                    <div><!-- v-if axios -->
+                    <div>
                         <div v-for="coms,i in commentaire">
                             <div :class="coms.user.id==uuser ? 'float':''">
                                 <h4>{{ coms.nom_utilisateur }}</h4>
@@ -95,20 +101,26 @@ export default{
             chargement:false,
             i1:0,i2:0,i3:0,
             coms:'',
-            uuser:0
+            uuser:0,
+            exam:false
         }
     },
     mounted(){
         this.chargement=true
-        axios.get("/Interface professeur/"+this.idCours+"/Création contenu")
+        axios.get("/Interface professeur/"+this.idCours+"-0/Création contenu")
         .then((response)=>{
             this.chapitres=response.data
             this.chargement=false
+            let a=this.chapitres[this.chapitres.length-1]
+            if(a.partie[a.partie.length-1].cours!==undefined){
+                this.exam=true
+            }
         })
         .catch((error)=>{
             this.chargement=false
             console.log(error)
         })
+
     },
     computed:{
         numPartie(){
@@ -142,7 +154,6 @@ export default{
                 console.log('asyncss')
                 for(let i=0;this.chapitres[this.i1].partie[this.i2].cours.length!=i;i++){
                     const reponse=await axios.get(`/Interface professeur/${this.idCours}-${this.i1},${this.i2},${i}/nbcommentaire`)
-                    // console.log(this.chapitres[this.i1].partie[this.i2].cours[i])
                     this.chapitres[this.i1].partie[this.i2].cours[i].nb=reponse.data
                 }
             }
@@ -186,11 +197,47 @@ export default{
             this.nbComs()
         },
         clickSuivant(){
-            console.log(this.partie,"  ",this.i2)
-            this.partie++
-            this.i2++
-            if(this.chapitre.partie[this.partie].cours!==undefined){
-                console.log('axios')
+            if(this.chapitre.partie[this.partie+1].cours!==undefined && this.chapitre.partie.length>this.partie+1){
+                this.partie++
+                this.i2++
+            }else{
+                if(this.chapitre.partie[this.partie].cours!==undefined){
+                    this.chargement=true
+                    axios.get("/Interface professeur/"+this.idCours+"-1/Création contenu")
+                    .then((response)=>{
+                        this.chapitres=response.data
+                        this.chapitre=this.chapitres[this.i1]
+                        this.partie++
+                        this.i2++
+                        this.chargement=false
+                    })
+                    .catch((error)=>{
+                        this.chargement=false
+                        console.log(error)
+                    })
+                    if(this.numchapitre.partie.length>this.partie+1){
+                        axios.get("/Interface professeur/"+this.idCours+"-1/Création contenu")
+                        .then((response)=>{
+                            this.chapitres=response.data
+                            let a=this.chapitres[this.chapitres.length-1]
+                            if(a.partie[a.partie.length-1].cours!==undefined){
+                                this.exam=true
+                            }
+                        })
+                        .catch((error)=>{
+                            console.log(error)
+                        })
+                    }
+                }else{
+                    this.partie++
+                    this.i2++
+                }
+            }
+        },
+        examen(){
+            let a=this.chapitres[this.chapitres.length-1]
+            if(a.partie[a.partie.length-1].cours!==undefined){
+                window.location.href=window.location.href+"/examen"
             }
         }
     }
@@ -336,5 +383,12 @@ export default{
     @keyframes disparition1 {
         from{opacity: 1;}
         to{opacity: 0;}
+    }
+    .ff{
+        margin: 10px;
+        background: repeating-radial-gradient(#1900e6, rgb(0 0 71) 100px);
+        color: white;
+        /* height: 35px; */
+        padding: 20px;
     }
 </style>

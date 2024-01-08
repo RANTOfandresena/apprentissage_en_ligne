@@ -127,15 +127,6 @@ class ProfesseurController extends Controller
     //Affichage des contenus de cours par matière
     public function affichageCours(Matiere $matiere, String $contenu)
     {
-        //  //ajout commentaire
-        // for($i=0;$i!=3;$i++){
-        //     $coms = Commentaire::create([
-        //         'comentaires'   =>  "$i eme coms",
-        //         'user_id'       =>  Auth::user()->id
-        //     ]);
-        //     $coms->contenu_du_cours()->sync($contenu);
-        // }
-
         return view('professeur.affichageCours',[
             'matiere' => $matiere,
             'content' => $contenu
@@ -188,14 +179,18 @@ class ProfesseurController extends Controller
         $cour->save();
         return "Cours enregistré avec succèes";
     }
-    public function getCours(Contenu_du_cour $contenue){
+    public function getCours(Contenu_du_cour $contenue ,int $a){
         $cours=json_decode($contenue->contenue);
         if(Auth::user()->type_user=='etudiants'){
-            $info1= Contenu_du_cour_etudiant::where('etudiant_id','=',Auth::user()->type('etudiants')->id)->get()[0]->progression;
+            $info1= Contenu_du_cour_etudiant::where('etudiant_id','=',Auth::user()->type('etudiants')->id)->get()[0];
+            if($a==1){
+                $info1->progression++;
+                $info1->save();
+            }
             $i=0;
             for($c=0;$c!=count($cours);$c++){
                 for($p=0;$p!=count($cours[$c]->partie);$p++){
-                    if($i >= intval($info1)){
+                    if($i >= intval($info1->progression)){
                         $cours[$c]->partie[$p]='';
                     }
                     $i++;

@@ -83,14 +83,14 @@
         methods:{
             envoyer(){
                 const data=this.convertion()
-                this.chargement=true
+                this.chargement=true;
                 axios.post("/account",data)
-                .then((response)=>{
-                  this.chargement=false
-                  this.alert=true
-                  this.message=response.data
-                  this.form=this.formInitial
-                })
+                  .then((response)=>{
+                      this.chargement=false
+                      this.alert=true
+                      this.message=response.data
+                      this.form=this.formInitial
+                  })
                 .catch((error)=>{
                   console.log(error)
                   this.alert=true
