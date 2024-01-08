@@ -386,9 +386,9 @@ export default{
     }
     .ff{
         margin: 10px;
-        background: repeating-radial-gradient(#1900e6, rgb(0 0 71) 100px);
+        background-color: #2525d4;
         color: white;
-        /* height: 35px; */
+        border-radius: 10px;
         padding: 20px;
     }
 </style>

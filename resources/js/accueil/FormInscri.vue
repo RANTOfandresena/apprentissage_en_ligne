@@ -33,8 +33,9 @@
         <br>
         <div class="clearfix">
             <button type="submit" class="signupbtn" >
-              <div v-if="chargement">chargement...</div>
-              <div v-else>Ajouter</div>
+              <div v-if="chargement" class="loaderr"></div>
+              <div v-else >Ajouter</div>
+              
             </button>
         </div>
     </form>
@@ -114,6 +115,9 @@
     }
 </script>
 <style>
+
+
+/* -------------------- */
 .alert{
   border-radius: 15px;
   background-color: rgb(123 180 123);

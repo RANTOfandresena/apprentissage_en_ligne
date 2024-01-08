@@ -58,7 +58,7 @@
                     <div class="accueil">
                         <h1 style="color: white; margin-top: 0px;">logo</h1>
                         <a href="{{ route('accueil') }}">Home</a>
-                        <a href=" {{route('auth.login')}}">Se connecter</a>
+                        <a href=" {{route('auth.login')}}">Connecter</a>
                         <a href="#">contact</a>
                         <a href="#">Lecon</a>
                         <input class="recherche" type="text" placeholder="recherche">
