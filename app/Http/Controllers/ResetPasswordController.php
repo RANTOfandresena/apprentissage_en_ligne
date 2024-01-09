@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
 class ResetPasswordController extends Controller
@@ -38,14 +40,27 @@ class ResetPasswordController extends Controller
             'password' => 'required|confirmed|min:5',
         ]);
 
-        $response = Password::broker()->reset(
-     $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password)
-            {
-                $this->resetPassword($user, $password);
-            }
-        );
-        return Password::PASSWORD_RESET;
+//         $response = Password::broker()->reset(
+// $request->only('email', 'password', 'password_confirmation', 'token'),
+//             function ($user, $password)
+//             {
+//                 dd($user);
+//                 $this->resetPassword($user, $password);
+//             }
+//         );
+$status = Password::reset(
+    $request->only('email', 'password', 'password_confirmation', 'token'),
+    function (User $user, string $password) {
+        $user->forceFill([
+            'password' => Hash::make($password)
+        ])->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        event(new PasswordReset($user));
+    }
+);
+        dd($status);
         // if ($response == Password::PASSWORD_RESET) {
         //     if(Auth::check())
         //     {
@@ -57,5 +72,18 @@ class ResetPasswordController extends Controller
         // {
         //     return back()->withErrors(['email' => trans($response)]);
         // }
+    }
+    public function resetPassword(User $user, string $password)
+    {
+        // Logique de réinitialisation du mot de passe
+
+        // Exemple d'appel à la méthode resetPassword
+        // $user = $request->user();
+        $this->actualiserMotDePasse($user, $password);
+    }
+    private function actualiserMotDePasse($user, $password)
+    {
+        // Logique de réinitialisation de mot de passe
+        $user->password = Hash::make($password);
     }
 }

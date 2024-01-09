@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
 
 class VerificationController extends Controller
 {
@@ -39,10 +40,13 @@ class VerificationController extends Controller
     public function verifyEmailBeforeChangePassword()
     {
         $user = User::find(Auth::user()->id);
-        $user->reset_password_token = bin2hex(openssl_random_pseudo_bytes(20));//Génère le token
+        // $user->reset_password_token = bin2hex(openssl_random_pseudo_bytes(20));//Génère le token
+        $token = Password::createToken($user);
+        $user->reset_password_token = $token;
         $user->save();
         //Le lien envoyé dans l'email de l'utilisateur qui le redirigera vers le formulaire de changement de mot de passe
-        $resetPasswordLink = route('password.request', ['token' => $user->reset_password_token]);
+        // $resetPasswordLink = route('password.request', ['token' => $user->reset_password_token]);
+        $resetPasswordLink = route('password.request', ['token' =>  $token]);
 
         Mail::to($user->email)->send(new ResetPassword($resetPasswordLink));
 
