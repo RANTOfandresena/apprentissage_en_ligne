@@ -1,7 +1,7 @@
 @extends('base')
 @section('title', 'Réinitialisation de mot de passe')
 
-@section('contenu')
+@section('contenuOffline')
 
 {{-- lien bootstrap en ligne --}}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,10 +13,11 @@
                     <div class="card-header">{{ __('Réinitialisation du mot de passe') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('password.update') }}">
+                        <form method="POST"  action="{{ route('password.update') }}">
                             @csrf
 
-                            <input  name="token" value="{{ $token }}">
+                            
+                            <input type="hidden" name="token" value="{{ $token }}">
                             @error('token')
                                 {{ $message }}
                             @enderror

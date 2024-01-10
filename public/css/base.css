@@ -770,6 +770,16 @@ h3{
     color: #00a3e6;
     text-align: center;
 }
+div.boutton{
+    margin-top: -43px !important;
+}
+div.forgotPassword{
+    margin-top: 3px !important;
+}
+div.container{
+    position: absolute;
+    z-index: 10;
+}
 .login{
     display: flex;
     position: relative;

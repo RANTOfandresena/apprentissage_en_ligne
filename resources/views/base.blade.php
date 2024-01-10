@@ -50,6 +50,9 @@
                 @if(session('success'))
                     <div class="message"> {{session("success")}} </div>
                 @endif
+                @if (session('status'))
+                    <div class="message"> {{session("status")}} </div>
+                @endif
             {{-- Page d'accueil ou page d'authentification --}}
             <div style="overflow-y: hidden;">
 
