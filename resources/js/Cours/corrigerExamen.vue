@@ -37,7 +37,6 @@
                     </div>
                 </tr>
             </table>
-            <button @click="terminer" class="terminer">Terminer</button>
         </div>
     </section>
 </template>
@@ -47,20 +46,10 @@ export default{
     data() {
         return {
             exam:[],
-            tentative:0
+            reponse:[]
         }
     },
     mounted(){
-        const self=this
-        window.addEventListener("blur", function() {
-            // La fenêtre du navigateur a perdu le focus
-            self.tentative++
-        });
-        window.addEventListener("focus", function() {
-            // La fenêtre du navigateur a regagné le focus
-            console.log("fenetre alerte")
-            console.log(self.tentative);
-        });
         axios.get("/Interface étudiant/"+this.idCours+"/exam")
         .then((response)=>{
             this.exam=response.data
