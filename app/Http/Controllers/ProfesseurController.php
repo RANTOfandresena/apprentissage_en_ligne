@@ -12,6 +12,7 @@ use App\Models\Matiere;
 use App\Models\Proffesseur;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailables\Content;
 use Illuminate\Support\Facades\Auth;
 
 class ProfesseurController extends Controller
@@ -226,5 +227,9 @@ class ProfesseurController extends Controller
             'comentaires' => $request->input('coms'),
             'user' => true
         ];
+    }
+    public function etudiantCours(Contenu_du_cour $contenu)
+    {
+        return $contenu->etudiant;
     }
 }
