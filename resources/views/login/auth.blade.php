@@ -30,8 +30,13 @@
             @enderror
         </div>
 
-        <button class="btn" type="submit">Se connecter</button>
-        <a href="{{route('create.account')}}"> Créer un compte </a>
+        <div class="boutton">
+            <button class="btn" type="submit">Se connecter</button>
+            <a href="{{route('create.account')}}"> Créer un compte </a>
+        </div>
+        <div class="forgotPassword">
+            <a href="{{ route('password.request')}}"> Mot de passe oublié </a>
+        </div>
     </form>
 </div>
 
