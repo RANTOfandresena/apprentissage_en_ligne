@@ -123,8 +123,8 @@ Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantCon
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
 
     Route::get('{matiere}-{contenu}/Consulter les cours/examen', 'affichageExamen')->name('affichageExamen');
-
-    Route::get('{contenu}/exam', 'getExam')->name('examen');;
+    
+    Route::get('{contenu}/exam', 'getExam')->name('examen');
 
 });
 
@@ -146,7 +146,7 @@ Route::get('/verify/email/result-error', function(){
 
 //RESET PASSWORD
 
-Route::get('/reset-password/',[ResetPasswordController::class, 'showResetForm'])->middleware('guest')->name('password.request');
+Route::get('/reset-password/',[ResetPasswordController::class, 'showResetForm'])->name('password.request');
 Route::post('/reset-password/',[ResetPasswordController::class, 'reset'])->name('password.update');
 
 //Route d'envoie d'email de confirmation de changement de mot de passe
