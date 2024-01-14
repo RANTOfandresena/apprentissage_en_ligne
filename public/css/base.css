@@ -94,6 +94,7 @@ input::placeholder {
     position: absolute;
     z-index: 14;
     position: relative;
+    box-shadow: 11px 8px 9px #dddddd;
 }
 
 .linkAdmin{
@@ -638,16 +639,35 @@ div.navigation > a {
     color: #000000;
 }
 
-p.infoEtudiantsIntro{
-    font-family: 'Philosopher';
-    /* color: #00143d; */
-    color: #FFFFFF;
-    text-indent: 100px;
-    font-weight: 600;
-    text-shadow: -1px 0 #00143d, 0 1px #00143d, 1px 0 #00143d, 0 -1px #00143d;
-    letter-spacing: 3px;
-    font-size: medium;
+/***************Animation de texte en vague*/
+
+div.titre{
+    position: relative;
 }
+div.titre h2{
+    position: absolute;
+    transform: translate(29%,-51%);
+}
+div.titre h2:nth-child(1){
+    color: transparent;
+    -webkit-text-stroke: 1px #03a9f4;
+    font-size: 3em;
+}
+div.titre h2:nth-child(2){
+    color:#03a9f4;
+    -webkit-text-stroke: 1px #03a9f4;
+    font-size: 3em;
+    animation: animate 2s ease-in-out infinite;
+}
+@keyframes animate{
+    0%,100%{
+        clip-path: polygon(0% 45%, 15% 44%,32% 50%,54% 60%,70% 61%,84% 59%,100% 52%,100% 100%,0% 100%);
+    }
+    50%{
+        clip-path: polygon(0% 60%,16% 65%,34% 66%, 51% 62%,67% 50%,84% 45%, 100% 46%,100% 100%,0% 100% );
+    }
+}
+/*************************************************************************/
 div.infoEtudiants{
     /* display: flex;
     justify-content: space-around;
@@ -655,6 +675,10 @@ div.infoEtudiants{
     height: 400px;
     width: 100%; */
     /* flex-wrap: wrap; */
+    position: relative;
+    top: 100px;
+    bottom: 100px;
+    margin-bottom: 100px;
     margin-left: 100px ;
     margin-right:100px ;
     height: 700px;
@@ -715,6 +739,9 @@ div.infoProfeseurs{
     height: 400px;
     width: 905px;
     float: left; */
+    position: relative;
+    top: 100px;
+    bottom: 100px;
     margin-left: 100px ;
     margin-right:100px ;
     height: 430px;

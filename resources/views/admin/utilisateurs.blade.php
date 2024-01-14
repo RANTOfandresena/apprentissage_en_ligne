@@ -13,7 +13,12 @@
 </div>
 <div class="infoUsers">
     @if ($etat = 'Tous')
-    <p class="infoEtudiantsIntro"> Informations sur tous les étudiants </p>
+
+    <div class="titre">
+        <h2> Informations sur tous les étudiants </h2>
+        <h2> Informations sur tous les étudiants </h2>
+    </div>
+
     <div class="infoEtudiants">
         @foreach ($info_etudiants as $etudiants )
             <div class="infoEtudiantsContenus">
@@ -57,7 +62,10 @@
         @endforeach
     </div>
     </div>
-    <p class="infoEtudiantsIntro"> Information sur tous les professeurs </p>
+    <div class="titre">
+        <h2> Informations sur tous les professeurs </h2>
+        <h2> Informations sur tous les professeurs </h2>
+    </div>
     <div class="infoProfeseurs">
         @foreach ($info_professeurs as $professeur)
             <div class="infoEtudiantsContenus">
