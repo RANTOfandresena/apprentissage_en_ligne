@@ -42,10 +42,10 @@
                         @csrf
                         @method('PATCH')
 
-                        <a href=""><div style="background-color: #00a723;">Approuver</div></a>
-                        <a href=""><div class="background-color: #c16a6a;">Refuser</div></a>
-                        {{-- <button><div style="background-color: #00a723;">Approuver</div></button>
-                        <button><div class="background-color: #c16a6a;">Refuser</div></button> --}}
+                        {{-- <a href=""><div style="background-color: #00a723;">Approuver</div></a>
+                        <a href=""><div class="background-color: #c16a6a;">Refuser</div></a> --}}
+                        <button> <div style="background-color: #00a723;"> Approuver </div> </button>
+                        {{-- <button><div class="background-color: #c16a6a;">Refuser</div></button> --}}
                     </form>
                 </td>
             </tr>
