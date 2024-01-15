@@ -11,9 +11,24 @@
                             <div class="question">
                                 <th style="width: 97%;">
                                     <input :type="contenue.type1=='text'?'text':'file'" placeholder="ecrire la reponse ici" v-model="contenue.reponse" style="width: 45%;border-radius: 5px;">
+                                    <p v-if="contenue.type1=='text'">{{ contenue.reponse }}</p>
+                                    <a :href="contenue.reponse">Telecharger</a>
                                 </th>
+
                                 <!-- <div style="text-align: right;position: absolute;right: 5%;"> -->
+                                <th style="display: flex;">
+                                    <label class="container">
+                                        <p style="margin-top: 1px; font-size: 14px;" >Vrai</p>
+                                        <input type="checkbox">
+                                        <span style="border-radius: 50%;" class="checkmark"></span>
+                                    </label>
+                                    <label class="container">
+                                        <p style="margin-top: 1px; font-size: 14px;" >Faux</p>
+                                        <input type="checkbox">
+                                        <span style="border-radius: 50%;" class="checkmark"></span>
+                                    </label>
                                 
+                                </th>
                                 <th><i style="float: right;">{{ contenue.point }}pts</i></th>
                                 <!-- </div> -->
                             </div>                   
@@ -53,6 +68,15 @@ export default{
         axios.get("/Interface étudiant/"+this.idCours+"/exam")
         .then((response)=>{
             this.exam=response.data
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+
+        axios.get("/Interface professeur/"+this.idCours+"/Création exam")
+        .then((response)=>{
+            this.reponse=response.data
+            console.log(this.reponse)
         })
         .catch((error)=>{
             console.log(error)
