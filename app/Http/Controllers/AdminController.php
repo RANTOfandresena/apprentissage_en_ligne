@@ -94,7 +94,7 @@ class AdminController extends Controller
     {
         // return 'ok';
         $user->update(['approved' => true]);
-        return redirect()->route('admin.gestionCompteUtilisateur')->with("success", "L' utilisateur a bien été approuvé");
+        return redirect()->route('admin.gestionCompte')->with("success", "L' utilisateur a bien été approuvé");
     }
 
     //Retourne la vue pour le choix de la visibilité de chaque cours par département
