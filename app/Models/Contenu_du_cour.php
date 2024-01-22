@@ -35,7 +35,9 @@ class Contenu_du_cour extends Model
     }
     public function sujetEtudient(){
         $reponse=[];
-        foreach (json_decode($this->sujet_examen) as $exam){
+        $examenn=json_decode(json_decode($this->sujet_examen)->examen);
+        $temps=json_decode($this->sujet_examen)->temps;
+        foreach ($examenn as $exam){
             if($exam->type=='sujet'){
                 array_push($reponse,$exam);
             }else if($exam->type=='question'){
@@ -52,7 +54,10 @@ class Contenu_du_cour extends Model
                 }
             }
         }
-        return $reponse;
+        return [
+            'examen'=>$reponse,
+            'temps'=>$temps
+        ];
     }
 
 }

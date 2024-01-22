@@ -1,35 +1,40 @@
 <template>
     <section style="height: 87vh;text-align: center;">
+        <div class="parametre" >
+            <button class="btn" style="border-radius: 10px" 
+                v-for="etudiant,i in etudiants" 
+                :key="etudiant"
+                @click="reponse=etudiant.reponse"
+            >{{ etudiant.nom }}</button>
+        </div>
         <div class="contenue">
             <table style="width: 100%;">
-                <tr class="component" v-for="contenue,index in exam" :key="contenue">
+                <tr class="component" v-for="contenue,index in reponse" :key="contenue">
                     <th v-if="contenue.type==='sujet'">
                         <p>{{ contenue.text }}</p>
                     </th>
                     <div v-if="contenue.type==='question'">
                         <div v-if="contenue.type1!='quiz'">
                             <div class="question">
+                                <th style="color: green;text-decoration: underline;">Reponse</th>
                                 <th style="width: 97%;">
-                                    <input :type="contenue.type1=='text'?'text':'file'" placeholder="ecrire la reponse ici" v-model="contenue.reponse" style="width: 45%;border-radius: 5px;">
                                     <p v-if="contenue.type1=='text'">{{ contenue.reponse }}</p>
-                                    <a :href="contenue.reponse">Telecharger</a>
+                                    <a v-else :href="contenue.reponse">Telecharger</a>
                                 </th>
 
                                 <!-- <div style="text-align: right;position: absolute;right: 5%;"> -->
-                                <th style="display: flex;">
-                                    <label class="container">
-                                        <p style="margin-top: 1px; font-size: 14px;" >Vrai</p>
-                                        <input type="checkbox">
-                                        <span style="border-radius: 50%;" class="checkmark"></span>
-                                    </label>
-                                    <label class="container">
-                                        <p style="margin-top: 1px; font-size: 14px;" >Faux</p>
-                                        <input type="checkbox">
-                                        <span style="border-radius: 50%;" class="checkmark"></span>
-                                    </label>
-                                
+                                <th style="display: flex;flex-direction: column;">
+                                    <i style="float: right;">{{ contenue.point }}pts</i>
+                                    <div style="display: flex;">
+                                        <p class="p">F<br>a<br>u<br>x</p>
+                                        <label class="switch">
+                                            <input type="checkbox" v-model="contenue.vrai">
+                                            <span class="slider"></span>
+                                        </label>
+                                        <p class="p">V<br>r<br>a<br>i</p>
+                                    </div>
                                 </th>
-                                <th><i style="float: right;">{{ contenue.point }}pts</i></th>
+                                
                                 <!-- </div> -->
                             </div>                   
                         </div>
@@ -39,13 +44,23 @@
                                     <div v-for="choix,i in contenue.choix" :key="choix">
                                         <label class="container">
                                             <p style="margin-top: 1px;" >{{ choix.text }}</p>
-                                            <input type="checkbox" v-model="choix.reponse">
+                                            <input type="checkbox" v-model="a">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                 </th>
                                 <!-- <div style="position: relative; right: 3%;"> -->
-                                <th><i style="float: right;">{{ contenue.point }}pts</i></th>
+                                <th style="display: flex;flex-direction: column;">
+                                    <i style="float: right;">{{ contenue.point }}pts</i>
+                                    <div style="display: flex;">
+                                        <p class="p">F<br>a<br>u<br>x</p>
+                                        <label class="switch">
+                                            <input type="checkbox" v-model="contenue.vrai">
+                                            <span class="slider"></span>
+                                        </label>
+                                        <p class="p">V<br>r<br>a<br>i</p>
+                                    </div>
+                                </th>
                                 <!-- </div> -->
                             </div>
                         </div>
@@ -56,18 +71,22 @@
     </section>
 </template>
 <script>
+
 export default{
     props: ['idCours'],
     data() {
         return {
             exam:[],
-            reponse:[]
+            reponse:null,
+            etudiants:[],
+            a:false
         }
     },
     mounted(){
-        axios.get("/Interface étudiant/"+this.idCours+"/exam")
+        axios.get("/Interface professeur/"+this.idCours+"/etudiants")
         .then((response)=>{
-            this.exam=response.data
+            this.etudiants=response.data.reponse
+            console.log(this.etudiants)
         })
         .catch((error)=>{
             console.log(error)
@@ -76,7 +95,6 @@ export default{
         axios.get("/Interface professeur/"+this.idCours+"/Création exam")
         .then((response)=>{
             this.reponse=response.data
-            console.log(this.reponse)
         })
         .catch((error)=>{
             console.log(error)
@@ -85,14 +103,19 @@ export default{
     methods:{
         terminer(){
             console.log(this.exam)
-        }
+        },
     }
-    
 }
 </script>
 <style>
     body{
         user-select: none;
+    }
+    .p{
+        position: relative;
+        top: -21px;
+        margin: 10px;
+        font-size: 11px;
     }
     .terminer {
         position: fixed;
@@ -138,7 +161,6 @@ export default{
         display: flex;
         background-color: rgb(0, 0, 71);
         height: 80vh;
-        
     }
     .contenue{
         width: 100%;

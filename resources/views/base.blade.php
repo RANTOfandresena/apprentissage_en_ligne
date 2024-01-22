@@ -47,7 +47,7 @@
     @endauth
     {{-- Utilisateurs non connectés --}}
     @guest
-                @if(session('success'))
+@if(session('success'))
                     <div class="message"> {{session("success")}} </div>
                 @endif
                 @if (session('status'))

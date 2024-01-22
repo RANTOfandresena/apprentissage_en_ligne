@@ -8,6 +8,7 @@ use App\Models\Chat;
 use App\Models\Commentaire;
 use App\Models\Contenu_du_cour;
 use App\Models\Contenu_du_cour_etudiant;
+use App\Models\Etudiant;
 use App\Models\Matiere;
 use App\Models\Proffesseur;
 use App\Models\User;
@@ -37,7 +38,10 @@ class ProfesseurController extends Controller
         //Créer par défaut le contenu du cours de la matière
         $contenu_du_cour = Contenu_du_cour::create([
             'contenue'      => '[]',
-            'sujet_examen'  => '[]',
+            'sujet_examen'  => json_encode([
+                'examen'=>[],
+                'temps'=>'3600'
+            ]),
             'niveau'        => 1
         ]);
 
@@ -86,7 +90,10 @@ class ProfesseurController extends Controller
         $id=$prof->professeur->id;
         Contenu_du_cour::create([
             'contenue' => '[]',
-            'sujet_examen' => '[]',
+            'sujet_examen' => json_encode([
+                'examen'=>[],
+                'temps'=>'3600'
+            ]),
             'niveau' => 1
         ]);
 
@@ -148,7 +155,10 @@ class ProfesseurController extends Controller
         {
             $contenu_du_cour = Contenu_du_cour::create([
                 'contenue' => '[]',
-                'sujet_examen'  => '[]',
+                'sujet_examen'  => json_encode([
+                    'examen'=>[],
+                    'temps'=>'3600'
+                ]),
                 'niveau'  => $niv
             ]);
             $matiere->contenu_du_cours()->attach($contenu_du_cour->id);
@@ -203,7 +213,10 @@ class ProfesseurController extends Controller
     public function updateExam(Request $request,Contenu_du_cour $contenue)
     {
         $cour=Contenu_du_cour::find($contenue->id);
-        $cour->sujet_examen = $request->input('cours');
+        $cour->sujet_examen = json_encode([
+            'examen'=>$request->input('cours'),
+            'temps'=>$request->input('temps')
+        ]);
         $cour->save();
         return "Cours enregistré avec succèes";
     }
@@ -228,8 +241,18 @@ class ProfesseurController extends Controller
             'user' => true
         ];
     }
-    public function etudiantCours(Contenu_du_cour $contenu)
+    public function etudiantCours(String $contenu)
     {
-        return $contenu->etudiant;
+        $data=[];
+        $etudiants= Contenu_du_cour_etudiant::where('contenu_du_cour_id','=',$contenu)->get(['etudiant_id','reponse_examen','note']);
+        foreach($etudiants as $etudiant){
+            array_push($data,[
+                'id'=>$etudiant->etudiant_id,
+                'nom'=>Etudiant::find($etudiant->etudiant_id)->nom,
+                'reponse'=>json_decode($etudiant->reponse_examen),
+                'note'=>$etudiant->note
+            ]);
+        }
+        return $data;
     }
 }
