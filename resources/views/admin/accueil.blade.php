@@ -10,7 +10,7 @@
             <p class="titrePart">Les cours récement crées</p>
             <p class="PhraseAppel">Faîtes sortir leur potentiel</p>
             <p></p>
-            <button class="Voir_plus"> Voir plus </button>
+            <button class="Voir_plus"><a href="{{ route('admin.cours') }}">Voir plus</a>  </button>
         </div>
         <div class="contenairCoursRecents">
             @foreach ($trois_derniers_cours as $matiere)

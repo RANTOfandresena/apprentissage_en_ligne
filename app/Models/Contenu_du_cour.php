@@ -21,6 +21,10 @@ class Contenu_du_cour extends Model
     {
         return $this->belongsToMany(Etudiant::class);
     }
+    public function matiere()
+    {
+        return $this->belongsToMany(Matiere::class);
+    }
     public function nbProgression(){
         $cours=json_decode($this->contenue);
         $nb=0;

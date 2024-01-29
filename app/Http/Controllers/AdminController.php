@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DepartementMatiereRequest;
 use App\Http\Requests\EngagerProf;
 use App\Models\Administrateur;
+use App\Models\Contenu_du_cour_etudiant;
 use App\Models\Departement;
 use App\Models\Etudiant;
 use App\Models\Matiere;
@@ -115,5 +116,24 @@ class AdminController extends Controller
         // dd( $request->input('departement'));
         $cours->departement()->sync($request->validated('departement'));
         return 'Modification effectuée!';
+    }
+
+    //Afficher les notes par ordre croissant
+    public function showResultats()
+    {
+        //Récupérer les notes par ordre croissant
+        $notes = Contenu_du_cour_etudiant::orderBy('note')->get();
+        $etudiants=[];
+        foreach($notes as $note)
+        {
+            if($note->note > -1){
+                array_push($etudiants,[
+                    'etudiant'=>Etudiant::find($note->etudiant_id),
+                    'note'=> $note->note
+                ]);
+            }
+        }
+        // return $etudiants[0]['etudiant']->contenu_du_cours ;
+        return view('admin.resultats', ['etudiants' => $etudiants]);
     }
 }

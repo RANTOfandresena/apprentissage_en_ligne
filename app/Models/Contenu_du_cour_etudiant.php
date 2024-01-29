@@ -16,4 +16,10 @@ class Contenu_du_cour_etudiant extends Model
         'note',
         'progression'
     ];
+
+    // Relation avec le modèle Etudiant
+    public function etudiants()
+    {
+        return $this->belongsToMany(Etudiant::class, 'contenu_du_cours_etudiants', 'contenu_du_cours_id', 'etudiants_id');
+    }
 }

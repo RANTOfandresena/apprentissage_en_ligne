@@ -299,6 +299,8 @@ button.Voir_plus:hover{
     font-weight: bolder;
     background-color: #FFF;
     transition: 0.5s;
+}button.Voir_plus a:hover{
+    color: #02a0e6;
 }
 /* Affichage des cours récents */
 .coursRecents2{

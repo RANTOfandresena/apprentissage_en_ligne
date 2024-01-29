@@ -35,8 +35,8 @@
                         class="inactive"
                     @endif
                 >Informations utilisateurs</a>
-                <a href="#"
-                    @if($routeName == 'd')
+                <a href="{{route('admin.resultats')}}"
+                    @if($routeName == 'admin.resultats')
                         class="active"
                     @else
                         class="inactive"
