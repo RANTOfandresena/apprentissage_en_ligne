@@ -50,8 +50,16 @@ class EtudiantController extends Controller
         
     }
     public function getExam(Contenu_du_cour $contenu){
-        
         return $contenu->sujetEtudient();
+    }
+    public function setExam(Request $request,String $contenu){
+        $resultat=Contenu_du_cour_etudiant::where('etudiant_id','=',Auth::user()->type('etudiants')->id)->where('contenu_du_cour_id','=',$contenu)->get()[0];
+        $resultat->reponse_examen=json_encode([
+            'reponse'=>$request->input('reponse'),
+            'fenetre'=>$request->input('fenetre')
+        ]);
+        $resultat->save();
+        return 'gg';
     }
     public function getCommentaire(Contenu_du_cour $contenu,string $stringId){
         return ['coms'=>$contenu->commentaire()->where('comentaires','like',$stringId.'%')->get(),'id'=> Auth::user()->id];

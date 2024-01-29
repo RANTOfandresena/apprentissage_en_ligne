@@ -133,6 +133,7 @@ Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantCon
     Route::get('{matiere}-{contenu}/Consulter les cours/examen', 'affichageExamen')->name('affichageExamen');
 
     Route::get('{contenu}/exam', 'getExam')->name('examen');
+    Route::post('{contenu}/exam', 'setExam');
 
 });
 

@@ -2,7 +2,7 @@
     <transition name="chargement">
         <div v-if="chargement" class="sidenav1" key="active"> <!-- v-if -->
             <div class="loader centre"></div>
-        </div>    
+        </div>
     </transition>
 
     <section style="height: 100vh;text-align: center;">
@@ -151,7 +151,6 @@ export default{
         },
         async nbComs(){
             if(this.chapitres[this.i1].partie[this.i2].cours!==undefined){
-                console.log('asyncss')
                 for(let i=0;this.chapitres[this.i1].partie[this.i2].cours.length!=i;i++){
                     const reponse=await axios.get(`/Interface professeur/${this.idCours}-${this.i1},${this.i2},${i}/nbcommentaire`)
                     this.chapitres[this.i1].partie[this.i2].cours[i].nb=reponse.data

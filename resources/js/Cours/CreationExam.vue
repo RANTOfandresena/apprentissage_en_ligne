@@ -1,4 +1,5 @@
 <template>
+    
     <section style="height: 87vh;text-align: center;">
         <div class="parametre" >
             <button class="btn" @click="ajout('sujet')">+ Sujet/Question</button>
@@ -13,6 +14,7 @@
             <button class="btn jaune" @click="insertion">Valider</button>
         </div> 
         <div class="contenue">
+            <input class="minuteur minuteurr" type="time" v-model="temps">
             <div>
                 <div class="component" v-for="contenue in exam" :key="contenue">
                     <i @click="suppressinContenue(contenue)" class="fa fa-close icon" style="z-index: 1;"></i>
@@ -75,18 +77,26 @@ export default{
             isInput:false,
             inputValeur:'',
             reponseValue:false,
-            afficheReponse:false
+            afficheReponse:false,
+            temps:'01:00'
         }
     },
     mounted(){
         axios.get("/Interface professeur/"+this.idCours+"/Création exam")
         .then((response)=>{
-            // console.log((response.data))
-            this.exam=response.data
+            // console.log((JSON.stringify({'examen':JSON.stringify(response.data),'temps':3600})))
+            this.exam=JSON.parse(response.data.examen)
+            let a=response.data.temps
+            let heure=`${Math.floor(a/3600)}`.length==1 ? `0${Math.floor(a/3600)}`:`${Math.floor(a/3600)}`
+            let minute=`${Math.floor((a%3600)/60)}`.length==1 ? `0${Math.floor((a%3600)/60)}`:`${Math.floor((a%3600)/60)}`
+            this.temps=`${heure}:${minute}`
         })
         .catch((error)=>{
             console.log(error)
         })
+    },
+    computed:{
+
     },
     methods:{
         ajout(type){
@@ -125,6 +135,9 @@ export default{
         insertion(){
             var data=new FormData()
             data.append('cours',JSON.stringify(this.exam))
+            let temps=this.temps.split(':')
+            const seconde=temps[0]*3600+temps[1]*60
+            data.append('temps',seconde)
             axios
                 .post("/Interface professeur/"+this.idCours+"/Création exam/",data)
                 .then((response)=>{
@@ -133,8 +146,7 @@ export default{
                 .catch((error)=>{
                     console.log(error)
                 })
-        }
-
+        },
     }
     
 }
@@ -335,4 +347,8 @@ height: 27px;
     flex-direction: row;
 
 */
+.minuteurr{
+    position: relative;
+    float: left;
+}
 </style>

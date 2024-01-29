@@ -1,5 +1,14 @@
 <template>
+    <transition name="chargement">
+        <div class="alert" v-if="fenetre">
+            <div>ON A VUE QUE VOUS AVEZ QUITTÉ <span style="color: black;">{{ tentative }}</span> FOIS CETTE ONGET!
+                <i @click="fenetre=false;">x</i>
+            </div>
+        </div>
+    </transition>
+    
     <section style="height: 87vh;text-align: center;">
+        <div class="minuteur" >Temps restant:{{ tempss }}</div>
         <div class="contenue">
             <table style="width: 100%;">
                 <tr class="component" v-for="contenue,index in exam" :key="contenue">
@@ -47,32 +56,69 @@ export default{
     data() {
         return {
             exam:[],
-            tentative:0
+            tentative:0,
+            temps:6000,
+            tempsRest:'',
+            fenetre:false
+        }
+    },
+    computed:{
+        tempss(){
+            return this.tempsRest
         }
     },
     mounted(){
+        
         const self=this
         window.addEventListener("blur", function() {
-            // La fenêtre du navigateur a perdu le focus
             self.tentative++
+            window.localStorage.setItem(`tentative${self.idCours}`,self.tentative)
         });
         window.addEventListener("focus", function() {
-            // La fenêtre du navigateur a regagné le focus
-            console.log("fenetre alerte")
-            console.log(self.tentative);
+            self.fenetre=true
         });
         axios.get("/Interface étudiant/"+this.idCours+"/exam")
-        .then((response)=>{
-            this.exam=response.data
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
+            .then((response)=>{
+                let t=window.localStorage.getItem(`temps${this.idCours}`);
+                this.exam=response.data.examen
+                this.temps=t==null ? response.data.temps:t;
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+        let tentativeSave=window.localStorage.getItem(`tentative${this.idCours}`)
+        this.tentative=tentativeSave==null ? 0:tentativeSave
+        setInterval(self.maj,10000)
+        setInterval(self.updateTimer,1000)
+        // setTimeout(document.documentElement.requestFullscreen(),1000)
     },
     methods:{
+        maj(){
+            axios.post("/Interface étudiant/"+this.idCours+"/exam",{
+                'reponse':this.exam
+            }).catch((error)=>{
+                console.log(error)
+            })
+        },
         terminer(){
-            console.log(this.exam)
-        }
+            axios.post("/Interface étudiant/"+this.idCours+"/exam",{
+                'reponse':this.exam,
+                'fenetre':this.tentative
+            })
+            window.location.href=window.location.href.slice(0,-7)
+        },
+        updateTimer() {
+            const heure=Math.floor(this.temps/3600)
+            const minute = Math.floor((this.temps%3600)/60);
+            const second = (this.temps%60);
+            this.tempsRest = `${heure}:${minute}:${second }`;
+            this.temps--;
+            window.localStorage.setItem(`temps${this.idCours}`,this.temps)
+            if(this.temps<0){
+                window.location.href=window.location.href.slice(0,-7)
+            }
+        },
+
     }
     
 }
@@ -280,12 +326,47 @@ export default{
 .icon:hover{
     color: rgb(219, 68, 68);
 }
-/* 
 
-height: 27px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-
-*/
+.chargement-enter-active{
+    animation: apparition1 .5s;
+}
+.chargement-leave-active{
+    animation: disparition1 .5s;
+}
+@keyframes apparition1 {
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+@keyframes disparition1 {
+    from{opacity: 1;}
+    to{opacity: 0;}
+}
+.alert{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000ba;
+}
+.alert > div{
+    background-color: #cd5454;
+    margin: auto;
+    color: aliceblue;
+    width: max-content;
+    margin-top: 40vh;
+    padding: 34px;
+    border-radius: 10px;
+}
+.alert > div > i{
+    position: relative;
+    top: -34px;
+    right: -22px;
+    padding: 10px;
+    transition: 0.5s;
+}
+.alert > div > i:hover{
+    color: black;
+}
 </style>
