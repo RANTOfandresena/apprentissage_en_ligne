@@ -134,6 +134,25 @@ class AdminController extends Controller
             }
         }
         // return $etudiants[0]['etudiant']->contenu_du_cours ;
-        return view('admin.resultats', ['etudiants' => $etudiants]);
+        return view('admin.resultats', ['etudiants' => $etudiants, 'matieres' => Matiere::all()]);
+    }
+
+    //Fonction qui permet de filtrer les utilisateurs selon leur type
+    public function filtrerUtilisateurs(string $type_user)
+    {
+        //Récupère l'utilisateur
+        $user = User::where('type_user', '=', $type_user)->get();
+
+        //Retourner les informations sous forme de json
+        // return response()->json(view('admin.utilisateurs', compact('user'))->render());
+        return $user;
+        // return response()->json(view('test.test', compact('user'))->render());
+    }
+
+    //Filtrer les résultats par cours
+    public function filtrerCoursResultats(Contenu_du_cour_etudiant $cours)
+    {
+
+        return 'ok';
     }
 }

@@ -7,9 +7,9 @@
 @section('contenu')
 
 <div class="navigation">
-    <a href="#"> Tous </a>
-    <a href="#"> Professeurs </a>
-    <a href="#"> Etudiants </a>
+    <button onclick="filtrerUtilisateurs('Tous')"> Tous </button>
+    <button onclick="filtrerUtilisateurs('professeur')"> Professeurs </button>
+    <button onclick="filtrerUtilisateurs('etudiants')"> Etudiants </button>
 </div>
 <div class="infoUsers">
     @if ($etat = 'Tous')
@@ -19,7 +19,7 @@
         <h2> Informations sur tous les étudiants </h2>
     </div>
 
-    <div class="infoEtudiants">
+    <div class="infoEtudiants filtre">
         @foreach ($info_etudiants as $etudiants )
             <div class="infoEtudiantsContenus">
                 <span class="infoUserSpan"> Etudiant </span>
@@ -66,7 +66,7 @@
         <h2> Informations sur tous les professeurs </h2>
         <h2> Informations sur tous les professeurs </h2>
     </div>
-    <div class="infoProfeseurs">
+    <div class="infoProfeseurs filtre">
         @foreach ($info_professeurs as $professeur)
             <div class="infoEtudiantsContenus">
                 <span class="infoUserSpan"> Professeur </span>
@@ -102,6 +102,8 @@
     </div>
     @endif
 </div>
+<div class="test">  </div>
+
 @endsection
 <script>
     document.addEventListener('DOMContentLoaded', function(){
@@ -117,4 +119,17 @@
         }
     });
 
+    //  Fonction qui permet de filtrer les utilisateurs
+    function filtrerUtilisateurs(utilisateur)
+    {
+        //Utiliser la reqêtte AJAX pour récupérer les informations filtrées
+        fetch(`users/filtre/type_user/${utilisateur}`)
+            .then(response => response.json())
+            .then(data => {
+                //Mise à jour de la liste de utilisateurs affichés
+                console.log(data);
+                // document.getElementById('test').innerHTML = data;
+            })
+            .catch(error => console.error('Erreur lors du filtrage de données : ', error));
+    }
 </script>

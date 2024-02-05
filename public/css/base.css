@@ -641,7 +641,7 @@ div.navigation > a {
     color: #000000;
 }
 
-/***************Animation de texte en vague*/
+/***************Animation de texte en vague************************/
 
 div.titre{
     position: relative;
@@ -764,6 +764,61 @@ div.infoProfeseurs{
     background-color: #3498db;
     transition: width 0.5s ease-in-out; /* Transition pour l'animation */
   }
+
+/*********************************RESULTAT***********************************/
+
+  /************************DROP DOWN MENU FILTER*******************/
+table#tableResultat{
+    width: 100%;
+    text-align: center;
+    border-collapse:collapse;
+    margin-top: 30px;
+}
+table#tableResultat th,tr{
+    border-bottom: 1px solid #ddd;
+}
+table#tableResultat th,td{
+    padding: 10px;
+}
+table#tableResultat td.note{
+    color : #FF0006;
+}
+table#tableResultat td.noteBien{
+    color: #0BFF00;
+}
+div.dropdownContent{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+div.dropdownContent a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+div.dropdownMenu{
+    position: relative;
+    display: inline-block;
+}
+div.dropdownMenu{
+    position: relative;
+    display: inline-block;
+}
+th.dropBtn:hover div{
+    display: block;
+}
+th.dropBtn:hover{
+    color: #02a0e6;
+    cursor: pointer;
+}
+div.dropdownContent a:hover {
+    background-color: #f1f1f1
+}
 
 /******************************************************************************************************/
 .navbar{
@@ -1257,7 +1312,6 @@ display: table;
 .cadenas img{
     width: 50%;
 }
-<<<<<<< HEAD
 /* --------------------------style checkbox------------------------- */
 .switch {
     position: relative;
@@ -1265,13 +1319,13 @@ display: table;
     width: 43px;
     height: 25px;
   }
-  
-  .switch input { 
+
+  .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  
+
   .slider {
     position: absolute;
     cursor: pointer;
@@ -1283,7 +1337,7 @@ display: table;
     -webkit-transition: .2s;
     transition: .4s;
   }
-  
+
   .slider:before {
     position: absolute;
     content: "";
@@ -1295,26 +1349,26 @@ display: table;
     -webkit-transition: .4s;
     transition: .4s;
   }
-  
+
   input:checked + .slider {
     background-color: #1ba12d;
   }
-  
+
   input:focus + .slider {
     box-shadow: 0 0 1px #1ba12d;
   }
-  
+
   input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
-  
+
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
-  
+
   .slider.round:before {
     border-radius: 50%;
   }
@@ -1332,5 +1386,3 @@ display: table;
 .minuteur:hover{
     opacity: 0.3;
 }
-=======
->>>>>>> 5d6da903f6e7fc4e9302a50c45a97f1b38c47779
