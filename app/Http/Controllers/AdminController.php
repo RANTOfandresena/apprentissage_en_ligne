@@ -150,9 +150,16 @@ class AdminController extends Controller
     }
 
     //Filtrer les résultats par cours
-    public function filtrerCoursResultats(Contenu_du_cour_etudiant $cours)
+    public function filtrerCoursResultats(Matiere $cours)
     {
+        $contenu_cours = $cours->contenu_du_cours;
+        // return Contenu_du_cour_etudiant::find($contenu->id) ;
+        foreach($contenu_cours  as  $contenu)
+        {
+            // return Contenu_du_cour_etudiant::find($contenu->id) ;
+            // return Contenu_du_cour_etudiant::where('contenu_du_cour_id', '=', '1');
+        }
+        
 
-        return 'ok';
     }
 }

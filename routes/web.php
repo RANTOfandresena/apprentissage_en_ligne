@@ -82,7 +82,7 @@ Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminCont
     Route::get('/users/filtre/type_user/{type_user}', 'filtrerUtilisateurs');
 
     //Filtre les cours ou matières affichées dans l'onglet resultat
-    Route::get('/Résultats/filtreCours/{cours}', 'filtrerCoursResultats')->name('filtrerCoursResutats');
+    Route::get('/Résultats/filtreCours/{cours}', 'filtrerCoursResultats')->name('filtrerResutats');
 });
 
 //INTERFACE PROFESSEUR

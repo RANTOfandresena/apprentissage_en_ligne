@@ -16,7 +16,7 @@
 
                 <div class="dropdownContent">
                     @foreach ($matieres as $cours )
-                        <a href="{{ route('admin.filtrerCoursResutats', ['cours' => $cours]) }}"> {{ $cours->matiere }}</a>
+                        <a href="{{ route('admin.filtrerResutats',['cours' => $cours->id]) }}"> {{ $cours->matiere }}</a>
                     @endforeach
                 </div>
             </div>

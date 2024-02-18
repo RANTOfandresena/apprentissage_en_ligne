@@ -233,6 +233,10 @@ div.partie1{
     z-index: 7;
     width: 100%;
 }
+div.croix{
+   display: flex;
+}
+
 h1.ODATA{
     position: absolute;
     top: 259px;
@@ -821,14 +825,20 @@ div.dropdownContent a:hover {
 }
 
 /******************************************************************************************************/
-.navbar{
+/****************************INTERFACE ETUDIANT*****************/
+/* .navbar{
     display: flex;
     width: 100%;
     height: 70px;
-    background-color: #001a4b;
+    background-color: #fffffff6;
+} */
+
+.navbarEtudiant{
+    display: flex;
+    width: 100%;
+    height: 70px;
+    background-color: #5d6d8d;
 }
-
-
 .navbar *{
     margin:8px
 }
@@ -836,11 +846,32 @@ div.dropdownContent a:hover {
     position: absolute;
     right: 0%;
 } */
-.link *{
+/* .link *{
     color: white;
+} */
+.linkEt{
+    position: absolute;
+    right: 90px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
 }
-.navbar h1{
-    color: white;
+.linkEt a{
+    margin-right: 25px;
+}
+span#logo{
+    background-image: url('assets/Logo_OPDT.png');
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    position: absolute;
+    top: -25px;
+}
+div.teteEt{
+    width: 100%;
+    height: 300px;
+    background-color: #010E30;
 }
 .navbar input{
     margin-left: 40px;
