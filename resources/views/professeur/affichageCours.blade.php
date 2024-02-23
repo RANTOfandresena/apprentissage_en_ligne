@@ -18,5 +18,4 @@
     </div>
     <div id="cours" data-id="{{$content}}"></div>
     @vite('resources/js/Cours/afiichageCours.js')
-    {{-- @vite('resources/js/Cours/appProf.js') --}}
 @endsection

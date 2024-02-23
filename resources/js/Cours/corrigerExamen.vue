@@ -1,13 +1,15 @@
 <template>
-    <section style="height: 87vh;text-align: center;">
+    <section style="height: 100vh;text-align: center;">
         <div class="parametre" >
             <button class="btn" style="border-radius: 10px" 
                 v-for="etudiant,i in etudiants" 
                 :key="etudiant"
-                @click="reponse=etudiant.reponse"
+                @click="clickEtudient(etudiant)"
             >{{ etudiant.nom }}</button>
         </div>
         <div class="contenue">
+        <!-- @click="reponse=etudiant.reponse;" -->
+        
             <table style="width: 100%;">
                 <tr class="component" v-for="contenue,index in reponse" :key="contenue">
                     <th v-if="contenue.type==='sujet'">
@@ -85,8 +87,8 @@ export default{
     mounted(){
         axios.get("/Interface professeur/"+this.idCours+"/etudiants")
         .then((response)=>{
-            this.etudiants=response.data.reponse
-            console.log(this.etudiants)
+            this.etudiants=response.data
+            // console.log(response.data)
         })
         .catch((error)=>{
             console.log(error)
@@ -100,10 +102,19 @@ export default{
             console.log(error)
         })
     },
+    // computed:{
+    //     reponsess(){
+    //         return this.reponse
+    //     }
+    // },
     methods:{
         terminer(){
             console.log(this.exam)
         },
+        clickEtudient(etudiant){
+            this.reponse=etudiant.reponse.reponse;
+            console.log(this.reponse)
+        }
     }
 }
 </script>

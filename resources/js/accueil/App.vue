@@ -2,10 +2,7 @@
     <div id="gg">
         <div id="a">
             <div class="cercle"></div>
-            <div id="carre" v-mouvement></div>
-            <div id="carre" v-mouvement></div>
-            <div id="carre" v-mouvement></div>
-            <div id="carre" v-mouvement></div>
+            <div id="carre" v-mouvement v-for="i in 6" :key="chp"></div>
         </div>
         <div class="ligne">
             <svg class="rectangle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180%" height="200%" viewBox="0 0 1954.346 1945.375">

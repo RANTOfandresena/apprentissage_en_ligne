@@ -255,4 +255,10 @@ class ProfesseurController extends Controller
         }
         return $data;
     }
+    public function corrigerExamen(Matiere $matiere, String $contenu){
+        return view('professeur.corrigerExamen',[
+            'matiere' => $matiere,
+            'content' => $contenu
+        ]);
+    }
 }

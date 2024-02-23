@@ -114,6 +114,7 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
 
     //Affichage des cours par matière
     Route::get('{matiere}-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
+    Route::get('{matiere}-{contenu}/Consulter les cours/examen', 'corrigerExamen')->name('corrigerExamen');
     Route::get('{contenu}-{stringId}/commentaire', 'getCommentaire');
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
     Route::post('{contenu}/commentaire', 'envoyerCommentaire');
@@ -209,5 +210,3 @@ Route::post('/reset-password', function (Request $request) {
 
 //Route d'envoie d'email de confirmation de changement de mot de passe
 Route::get('/verify/email/reset-password-confirmation', [VerificationController::class, 'verifyEmailBeforeChangePassword'])->name('verify.passwordReset');
-//Route qui renvoie un message de succès lorsque l'email est vérifié
-//Route qui renvoie un message de succès lorsque l'email est vérifié
