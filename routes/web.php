@@ -77,6 +77,12 @@ Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminCont
 
     //Affichage des notes des étudiants par ordre croissant dans l'interface admin
     Route::get('Résultats', 'showResultats')->name('resultats');
+
+    //Gère les requêttes AJAX pour filtrer les informations par utilisateurs
+    Route::get('/users/filtre/type_user/{type_user}', 'filtrerUtilisateurs');
+
+    //Filtre les cours ou matières affichées dans l'onglet resultat
+    Route::get('/Résultats/filtreCours/{cours}', 'filtrerCoursResultats')->name('filtrerResutats');
 });
 
 //INTERFACE PROFESSEUR

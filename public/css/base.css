@@ -233,6 +233,10 @@ div.partie1{
     z-index: 7;
     width: 100%;
 }
+div.croix{
+   display: flex;
+}
+
 h1.ODATA{
     position: absolute;
     top: 259px;
@@ -641,7 +645,7 @@ div.navigation > a {
     color: #000000;
 }
 
-/***************Animation de texte en vague*/
+/***************Animation de texte en vague************************/
 
 div.titre{
     position: relative;
@@ -765,15 +769,76 @@ div.infoProfeseurs{
     transition: width 0.5s ease-in-out; /* Transition pour l'animation */
   }
 
+/*********************************RESULTAT***********************************/
+
+  /************************DROP DOWN MENU FILTER*******************/
+table#tableResultat{
+    width: 100%;
+    text-align: center;
+    border-collapse:collapse;
+    margin-top: 30px;
+}
+table#tableResultat th,tr{
+    border-bottom: 1px solid #ddd;
+}
+table#tableResultat th,td{
+    padding: 10px;
+}
+table#tableResultat td.note{
+    color : #FF0006;
+}
+table#tableResultat td.noteBien{
+    color: #0BFF00;
+}
+div.dropdownContent{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+div.dropdownContent a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+div.dropdownMenu{
+    position: relative;
+    display: inline-block;
+}
+div.dropdownMenu{
+    position: relative;
+    display: inline-block;
+}
+th.dropBtn:hover div{
+    display: block;
+}
+th.dropBtn:hover{
+    color: #02a0e6;
+    cursor: pointer;
+}
+div.dropdownContent a:hover {
+    background-color: #f1f1f1
+}
+
 /******************************************************************************************************/
-.navbar{
+/****************************INTERFACE ETUDIANT*****************/
+/* .navbar{
     display: flex;
     width: 100%;
     height: 70px;
-    background-color: #001a4b;
+    background-color: #fffffff6;
+} */
+
+.navbarEtudiant{
+    display: flex;
+    width: 100%;
+    height: 70px;
+    background-color: #5d6d8d;
 }
-
-
 .navbar *{
     margin:8px
 }
@@ -781,11 +846,32 @@ div.infoProfeseurs{
     position: absolute;
     right: 0%;
 } */
-.link *{
+/* .link *{
     color: white;
+} */
+.linkEt{
+    position: absolute;
+    right: 90px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
 }
-.navbar h1{
-    color: white;
+.linkEt a{
+    margin-right: 25px;
+}
+span#logo{
+    background-image: url('assets/Logo_OPDT.png');
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    position: absolute;
+    top: -25px;
+}
+div.teteEt{
+    width: 100%;
+    height: 300px;
+    background-color: #010E30;
 }
 .navbar input{
     margin-left: 40px;
@@ -1264,13 +1350,13 @@ display: table;
     width: 43px;
     height: 25px;
   }
-  
-  .switch input { 
+
+  .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  
+
   .slider {
     position: absolute;
     cursor: pointer;
@@ -1282,7 +1368,7 @@ display: table;
     -webkit-transition: .2s;
     transition: .4s;
   }
-  
+
   .slider:before {
     position: absolute;
     content: "";
@@ -1294,26 +1380,26 @@ display: table;
     -webkit-transition: .4s;
     transition: .4s;
   }
-  
+
   input:checked + .slider {
     background-color: #1ba12d;
   }
-  
+
   input:focus + .slider {
     box-shadow: 0 0 1px #1ba12d;
   }
-  
+
   input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
-  
+
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
-  
+
   .slider.round:before {
     border-radius: 50%;
   }

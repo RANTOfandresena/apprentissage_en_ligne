@@ -4,9 +4,9 @@
      $routeName = request()->route()->getName();
 @endphp
 <div class="partie1">
-            <div class="navbar">
-            <h1>logo</h1>
-            <div class="link">
+            <div class="navbarEtudiant">
+            <span id="logo"></span>
+            <div class="linkEt">
                 <a href="#">Accueil</a>
 
                 {{-- Redirige vers la route du profil avec comme paramètre l'id de l'utilisateur --}}
@@ -20,8 +20,7 @@
                     <button> Déconnexion </button>
                 </form>
         </div>
-
-
+       
 
     {{-- Ces images et formes ne sont à afficher que dans la page d'accueil --}}
     @if($routeName == 'admin.accueil')
