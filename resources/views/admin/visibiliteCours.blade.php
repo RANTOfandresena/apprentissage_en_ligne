@@ -15,7 +15,7 @@
     <h4> Choisissez les département qui auront accès à ce cours </h4>
     <form method="post">
         @csrf
-        
+
         <div class="form-group">
             {{-- <select name="departement[]" id="departement" class="form-control" multiple>
                 <option value=""> Séléctionner un ou plusieurs département </option>

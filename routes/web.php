@@ -83,6 +83,11 @@ Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminCont
     //Gère les requêttes AJAX pour filtrer les informations par utilisateurs
     Route::get('/users/filtre/type_user/{type_user}', 'filtrerUtilisateurs');
 
+    //Gère les informations par département
+    Route::get('Départements', 'showDepartement')->name('departement');
+    Route::post('Départements', 'storeDepartement');
+    Route::get('Départements/{departement}', 'consulterDepartement')->name('depConsulter');
+
     //Filtre les cours ou matières affichées dans l'onglet resultat
     Route::get('/Résultats/filtreCours/{cours}', 'filtrerCoursResultats')->name('filtrerResutats');
 });

@@ -6,11 +6,11 @@
 
 @section('contenu')
 
-<div class="navigation">
+{{-- <div class="navigation">
     <button onclick="filtrerUtilisateurs('Tous')"> Tous </button>
     <button onclick="filtrerUtilisateurs('professeur')"> Professeurs </button>
     <button onclick="filtrerUtilisateurs('etudiants')"> Etudiants </button>
-</div>
+</div> --}}
 <div class="infoUsers">
     @if ($etat = 'Tous')
 

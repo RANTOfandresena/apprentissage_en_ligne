@@ -1,9 +1,9 @@
 /* fonts */
 
-@import url('https://fonts.googleapis.com/css2?family=Philosopher');
+/* @import url('https://fonts.googleapis.com/css2?family=Philosopher');
 @import url('https://fonts.googleapis.com/css2?family=Nothing You Could Do');
 @import url('https://fonts.googleapis.com/css2?family=Jura');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans'); */
 /*********************************************************************************************/
 body{
     margin:0;
@@ -80,7 +80,7 @@ input::placeholder {
     border: 1px solid #02A0E6;
     background-color: #02A0E6;
     display: flex;
-    width: 90vw;
+    width: 91vw;
     height: 10vh;
     justify-content: center;
     margin: auto;
@@ -550,6 +550,94 @@ footer .footer{
     font-size: 20px;
     letter-spacing: 4px;
     font-weight: lighter;
+}
+
+/************************AJOUT DEPARTEMENT ADMIN******************************************/
+form#add_dep label{
+    font-family: 'Philosopher';
+    color: #00143d;
+}
+form#add_dep{
+    display: flex;
+    margin: 20px;
+    padding: 5px;
+    justify-content: center;
+    flex-direction: column;
+}
+form#add_dep button{
+    padding: 6px;
+    background-color: #00143d;
+    border: 1px solid #00143d;
+    color: #fff;
+    margin-top: 5px;
+}
+form#add_dep button:hover{
+    transition: 0.5s;
+    background-color: #febd01;
+    border:  1px solid #febd01;
+    color: #00143d;
+    cursor: pointer;
+}
+form#add_dep input{
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 5px;
+}
+form#add_dep input:focus{
+    transition: 0.7s;
+    border: 1px solid #02a0e6;
+    outline: none;
+}
+table#info_dep{
+    width: 100%;
+    text-align: center;
+    border-collapse:collapse;
+    margin-top: 30px;
+}
+table#info_dep button{
+    padding: 5px;
+    width: 50%;
+    margin:5px;
+}
+table#info_dep td#btn_dep{
+    display: flex;
+    justify-content: center;
+}
+
+table#info_dep td#btn_dep button#consult_dep{
+    color:#fff;
+    background-color: #001a4b;
+    border:1px solid #001a4b;
+    /* padding: 5px; */
+    border-radius: 3px;
+}
+table#info_dep td#btn_dep button#suppr_dep{
+    color:#001a4b;
+    background-color: #febd01;
+    border:1px solid #febd01;
+    /* padding: 5px; */
+    border-radius: 3px;
+}
+table#info_dep td#btn_dep button#consult_dep:hover{
+    transition: 0.5s;
+    color:#001a4b;
+    background-color:  #fff;
+    border: 1px solid #001a4b;
+    cursor: pointer;
+    text-shadow: 2px 2px 2px #b1b1b1;
+}
+table#info_dep td#btn_dep button#suppr_dep:hover{
+    transition: 0.5s;
+    color:#febd01;
+    background-color:  #fff;
+    border:1px solid #febd01;
+    cursor: pointer;
+    text-shadow: 2px 2px 2px #fff0f0;
+}
+td#btn_dep a{
+    text-decoration: none;
+    width: 100%;
+    margin: 0;
 }
 
 /**************************GESTION DE COMPTE UTILISATEUR - ADMINISTRATEUR***********************************/
