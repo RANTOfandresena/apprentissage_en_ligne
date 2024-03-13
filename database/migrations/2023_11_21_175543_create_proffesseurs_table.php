@@ -43,8 +43,8 @@ return new class extends Migration
         Schema::table('matieres',function(Blueprint $table){
             $table->dropForeignIdFor(Proffesseur::class);
         });
-        Schema::table('proffesseurs',function(Blueprint $table){
-            $table->dropForeignIdFor(User::class);
-        });
+        // Schema::table('proffesseurs',function(Blueprint $table){
+        //     $table->dropForeignIdFor(User::class);
+        // });
     }
 };

@@ -16,48 +16,78 @@
 
     <div class="titre">
         <h2> Informations sur tous les étudiants </h2>
-        <h2> Informations sur tous les étudiants </h2>
     </div>
 
     <div class="infoEtudiants filtre">
         @foreach ($info_etudiants as $etudiants )
             <div class="infoEtudiantsContenus">
-                <span class="infoUserSpan"> Etudiant </span>
-                <div class="profilePicture"></div>
-                <p> Nom : {{ $etudiants -> nom }}</p>
-                <p> Prénom : {{ $etudiants -> prenom }}</p>
-                <p> Téléphone : {{ $etudiants -> telephone  }}</p>
-                <p> Email : {{ $etudiants -> email }} </p>
-                <p> Département : {{ $etudiants -> departement -> nom}}</p>
-                <p> APPRENTISSAGE </p>
-                <p>
+                <!-- <div class="containerr" onclick="this.classList.toggle('change')"> -->
+                <div class="containerr" onclick="option(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
 
-                    @php
-                        $matieres = $etudiants -> departement -> matieres;
-                    @endphp
-                    @if ($matieres->isEmpty())
-                        Aucune matière à apprendre
-                    @else
-                        @foreach ($matieres as $matiere)
-                            {{ $matiere->matiere }}:
-
-                            @php
-                                $progression_etudiant = $matiere->progressionContenu_du_cour($etudiants);
-                                $total = $matiere -> progression();
-                                if($total==0)
-                                {
-                                    $total = 1;
-                                }
-                                $progression_pourcentage = ($progression_etudiant / $total ) * 100;
-                            @endphp
-                            <div class="progress">
-                                <div class="progress-bar" data-pourcentage="{{ $progression_pourcentage }}" id="" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="option affOption">
+                    <div>
+                        <div style="background-color: black;color:white">Changer le type d'utilisateur</div>
+                        <div class="modifType">
+                            <a class="direc" href="{{route('admin.changeTypeUser',['user'  => $etudiants->user->id,'type'=>'professeur','idDepart'=> 0])}}">changer en professeur</a>
+                            <a class="direc" href="{{route('admin.changeTypeUser',['user'  => $etudiants->user->id,'type'=>'admin','idDepart'=> 0])}}">changer en administrateur</a>
+                            <div class="etudientDep">
+                                <p style="color: white;margin-bottom: 0;">changer en etudiant</p>
+                                <div >
+                                    <h4 style="margin-top: 0;margin-bottom: 0;">choisir le departement</h4>
+                                    <div class="depp">
+                                        @foreach ($departement as $dep)
+                                            <a class="direc" href="{{route('admin.changeTypeUser',['user'  => $etudiants->user->id,'type'=>'etudiants','idDepart'=> $dep->id])}}">{{$dep->nom}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
-                            {{ $progression_pourcentage }}%
-                            <br>
-                        @endforeach
-                    @endif
-                </p>
+                        </div>
+                    </div>
+                    <div style="background-color: brown;"><a href="{{route('admin.suppreUser',['user'  => $etudiants->user->id])}}">Supprimer cette utilisateur</a></div>
+                </div>
+
+                <div class="">
+                    <span class="infoUserSpan"> Etudiant </span>
+                    <div class="profilePicture"></div>
+                    <p> Nom : {{ $etudiants -> nom }}</p>
+                    <p> Prénom : {{ $etudiants -> prenom }}</p>
+                    <p> Téléphone : {{ $etudiants -> telephone  }}</p>
+                    <p> Email : {{ $etudiants -> email }} </p>
+                    <p> Département : {{ $etudiants -> departement -> nom}}</p>
+                    <p> APPRENTISSAGE </p>
+                    <p>
+
+                        @php
+                            $matieres = $etudiants -> departement -> matieres;
+                        @endphp
+                        @if ($matieres->isEmpty())
+                            Aucune matière à apprendre
+                        @else
+                            @foreach ($matieres as $matiere)
+                                {{ $matiere->matiere }}:
+
+                                @php
+                                    $progression_etudiant = $matiere->progressionContenu_du_cour($etudiants);
+                                    $total = $matiere -> progression();
+                                    if($total==0)
+                                    {
+                                        $total = 1;
+                                    }
+                                    $progression_pourcentage = ($progression_etudiant / $total ) * 100;
+                                @endphp
+                                <div class="progress">
+                                    <div class="progress-bar" data-pourcentage="{{ $progression_pourcentage }}" id="" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                {{ $progression_pourcentage }}%
+                                <br>
+                            @endforeach
+                        @endif
+                    </p>
+                </div>
             </div>
         @endforeach
     </div>
@@ -69,33 +99,65 @@
     <div class="infoProfeseurs filtre">
         @foreach ($info_professeurs as $professeur)
             <div class="infoEtudiantsContenus">
-                <span class="infoUserSpan"> Professeur </span>
-                <div class="profilePicture"></div>
-                <p> Nom : {{ $professeur->nom }} </p>
-                <p> Prénoms : {{ $professeur->prenom }}</p>
-                <p> Téléphone : {{ $professeur->telephone }}</p>
-                <p> Email : {{ $professeur->email }}</p>
-                <p> COURS CREER </p>
-                <p>
-                    @php
-                         $matieres =  $professeur->matieres
-                    @endphp
-                    @if ($matieres->isEmpty())
-                        <p> Aucune contribution </p>
-                    @else
-                        @foreach ($matieres as $matiere)
-                            <p>
-                                {{ $matiere->matiere }}
-                                @php
-                                    $contenus = $matiere->contenu_du_cours
-                                @endphp
-                                @foreach ( $contenus as  $contenu )
-                                <span> {{  $contenu->etudiant->count()  }} apprenants </span>
-                                @endforeach
-                            </p>
-                        @endforeach
-                    @endif
-                </p>
+                <div class="containerr" onclick="option(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+
+                <div class="option affOption">
+                    <div>
+                        <div style="background-color: black;color:white">Changer le type d'utilisateur</div>
+                        <div class="modifType">
+                            <a class="direc" href="{{route('admin.changeTypeUser',['user'=> $professeur->user->id,'type'=>'professeur','idDepart'=> 0])}}">changer en professeur</a>
+                            <a class="direc" href="{{route('admin.changeTypeUser',['user'=> $professeur->user->id,'type'=>'admin','idDepart'=> 0])}}">changer en administrateur</a>
+                            <div class="etudientDep">
+                                <p style="color: white;margin-bottom: 0;">changer en etudiant</p>
+                                <div >
+                                    <h4 style="margin-top: 0;margin-bottom: 0;">choisir le departement</h4>
+                                    <div class="depp">
+                                        @foreach ($departement as $dep)
+                                            <a class="direc" href="{{route('admin.changeTypeUser',['user'  => $professeur->user->id,'type'=>'etudiants','idDepart'=> $dep->id])}}">{{$dep->nom}}</a>
+                                        @endforeach
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div style="background-color: brown;"><a href="{{route('admin.suppreUser',['user'  => $professeur->user->id])}}">Supprimer cette utilisateur</a></div>
+                </div>
+
+                <div class="">
+                    <span class="infoUserSpan"> Professeur </span>
+                    <div class="profilePicture"></div>
+                    <p> Nom : {{ $professeur->nom }} </p>
+                    <p> Prénoms : {{ $professeur->prenom }}</p>
+                    <p> Téléphone : {{ $professeur->telephone }}</p>
+                    <p> Email : {{ $professeur->email }}</p>
+                    <p> COURS CREER </p>
+                    <p>
+                        @php
+                            $matieres =  $professeur->matieres
+                        @endphp
+                        @if ($matieres->isEmpty())
+                            <p> Aucune contribution </p>
+                        @else
+                            @foreach ($matieres as $matiere)
+                                <p>
+                                    {{ $matiere->matiere }}
+                                    @php
+                                        $contenus = $matiere->contenu_du_cours
+                                    @endphp
+                                    @foreach ( $contenus as  $contenu )
+                                    <span> {{  $contenu->etudiant->count()  }} apprenants </span>
+                                    @endforeach
+                                </p>
+                            @endforeach
+                        @endif
+                    </p>
+                </div>
             </div>
         @endforeach
 
@@ -103,8 +165,6 @@
     @endif
 </div>
 <div class="test">  </div>
-
-@endsection
 <script>
     document.addEventListener('DOMContentLoaded', function(){
         var progressBars = document.querySelectorAll('.progress-bar');
@@ -132,4 +192,21 @@
             })
             .catch(error => console.error('Erreur lors du filtrage de données : ', error));
     }
+    function option(balise){
+        balise.classList.toggle('change')
+        const element=balise.parentElement.children
+        element[1].classList.toggle('affOption')
+        element[2].classList.toggle('afflist')
+    }
+    var lien = document.querySelectorAll('.direc')
+    for(var i=0; i < lien.length ;i++){
+        lien[i].addEventListener('click',function(event){
+            const verif=confirm("vous voulez vraiment changer le type d'utilisateur de cette utilisateur?")
+            if(verif==false){
+                event.preventDefault()
+            }
+        })
+    }
 </script>
+@endsection
+

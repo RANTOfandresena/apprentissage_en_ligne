@@ -35,8 +35,8 @@ return new class extends Migration
     {
         Schema::dropIfExists('administrateurs');
 
-        Schema::table('administrateurs',function(Blueprint $table){
-            $table->dropForeignIdFor(User::class);
-        });
+        // Schema::table('administrateurs',function(Blueprint $table){
+        //     $table->dropForeignIdFor(User::class);
+        // });
     }
 };

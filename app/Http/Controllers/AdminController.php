@@ -12,6 +12,7 @@ use App\Models\Matiere;
 use App\Models\Proffesseur;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -64,6 +65,7 @@ class AdminController extends Controller
             'info_etudiants' => Etudiant::all(),
             'info_professeurs' => Proffesseur::all(),
             'etat' => 'Tous', //L'état de retour des informations
+            'departement' => Departement::all(),
         ]);
     }
 
@@ -159,7 +161,71 @@ class AdminController extends Controller
             // return Contenu_du_cour_etudiant::find($contenu->id) ;
             // return Contenu_du_cour_etudiant::where('contenu_du_cour_id', '=', '1');
         }
-        
 
+
+    }
+
+    public function changeTypeUser(User $user,string $type,int $idDepart){
+        if(Auth::user()->type_user=='admin'){
+            if($type=='etudiants'){
+                $etudiant = Etudiant::create([
+                    'nom' => $user->name,
+                    'prenom' => $user->name,
+                    'telephone' => 034232223,
+                    'email' => $user->email,
+                    'departement_id'=> $idDepart,
+                ]);
+                $etudiant->save();
+                $user->supprimmType();
+                $user->delete();
+                User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'type_user' => $type,
+                    'password' => Hash::make($user->email),
+                    'etudiant_id'=> $etudiant->id
+                ]);
+            }
+            if($type=='admin'){
+                $admin = Administrateur::create([
+                    'email' => $user->email,
+                    'post'=> "_"
+                ]);
+                $admin->save();
+                $user->supprimmType();
+                $user->delete();
+                User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'type_user' => $type,
+                    'password' => Hash::make($user->email),
+                    'administrateur_id'=> $admin->id
+                ]);
+            }
+            if($type=='professeur'){
+                $prof = Proffesseur::create([
+                    'nom' => $user->name,
+                    'prenom' => $user->name,
+                    'telephone' => '03678998779',
+                    'email' => $user->email,
+                ]);
+                $prof->save();
+                $user->supprimmType();
+                $user->delete();
+                User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'type_user' => $type,
+                    'password' => Hash::make($user->email),
+                    'proffesseur_id'=> $prof->id
+                ]);
+            }
+            return redirect()->route('admin.utilisateurs')->with("success", "Type d'utilisateur modifier avec succes");
+        }
+    }
+    public function suppreUser(User $user){
+        $user->supprimmType();
+        $user->delete();
+        return redirect()->route('admin.utilisateurs')->with("success", "compte supprimé avec succes");
     }
 }
