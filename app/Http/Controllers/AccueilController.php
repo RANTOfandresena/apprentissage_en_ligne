@@ -21,7 +21,7 @@ class AccueilController extends Controller
 {
     public function redirection()
     {
-        //Création compte admin par défaut
+        // Création compte admin par défaut
         // $post = Administrateur::create([
         //     'email' => 'angevoni@gmail.com',
         //     'post'=> 'stagiaire'
@@ -51,8 +51,7 @@ class AccueilController extends Controller
     }
     public function video()
     {
-        $contenu=Contenu_du_cour::find(1);
-        return $contenu->modelExam();
+        return Auth::user()->supprimmType();
     }
 
     public function createAccount()

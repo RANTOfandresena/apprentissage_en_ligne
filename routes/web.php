@@ -54,7 +54,7 @@ Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout')
 //INTERFACE ADMINISTRATEUR
 Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminController::class)->group(function(){
     Route::get('/', 'accueil')->name('accueil');
-    Route::get('/Informations utilisateurs/', 'consulter')->name('utilisateurs');
+    Route::get('/Informations utilisateurs', 'consulter')->name('utilisateurs');
     // Route::post('/Espace professeur', 'insertion');
 
     //APPROBATION D'UN COMPTE UTILISATEUR
@@ -62,6 +62,8 @@ Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminCont
     // Route::patch('/Gestion de compte utilisateur', 'approuver');
     Route::get('{user}/Gestion d\'utilisateur', 'rediRectApprouver')->name('approuver');
     Route::patch('{user}/Gestion d\'utilisateur', 'approuver');
+    Route::get('{user}-{type}-{idDepart}/changement', 'changeTypeUser')->name('changeTypeUser');
+    Route::get('{user}/suppreUser', 'suppreUser')->name('suppreUser');
 
     //AFFICHAGE ET GESTION DE LA VISIBILITE DES COURS
                 //Affiche toutes les matières existantes

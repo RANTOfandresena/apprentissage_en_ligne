@@ -30,12 +30,12 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Contenu_du_cour::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Etudiant::class)->constrained()->cascadeOnDelete();
-            $table->primary(['contenu_du_cour_id','etudiant_id']);
             $table->json('reponse_examen');
             $table->integer('note');
-            $table->integer('progression');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
+            // $table->integer('progression');
+            // $table->primary(['contenu_du_cour_id','etudiant_id']);
+            // $table->timestamps('created_at');
+            // $table->timestamps('updated_at');
         });
         Schema::table('users', function(Blueprint $table){
             $table->foreignIdFor(Etudiant::class)->nullable()->constrained()->cascadeOnDelete();
@@ -52,8 +52,8 @@ return new class extends Migration
         Schema::dropIfExists('contenu_du_cours_etudiant');
         Schema::dropIfExists('etudiant_matiere');
         Schema::dropIfExists('etudiants');
-        Schema::table('etudiants',function(Blueprint $table){
-            $table->dropForeignIdFor(User::class);
-        });
+        // Schema::table('etudiants',function(Blueprint $table){
+        //     $table->dropForeignIdFor(User::class);
+        // });
     }
 };

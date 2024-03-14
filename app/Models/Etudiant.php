@@ -26,5 +26,9 @@ class Etudiant extends Model
     {
         return $this->belongsToMany(Contenu_du_cour::class);
     }
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }
 

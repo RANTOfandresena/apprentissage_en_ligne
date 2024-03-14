@@ -13,4 +13,8 @@ class Administrateur extends Model
         'email',
         'post'
     ];
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

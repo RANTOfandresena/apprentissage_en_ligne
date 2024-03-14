@@ -62,12 +62,11 @@ class User extends Authenticatable implements CanResetPassword
     {
         return $this->belongsTo(Administrateur::class, 'administrateur_id');
     }
-
     public function type(String $type)
     {
         if($type=='admin')
         {
-            return $this->administrateur;
+            return $this->admin;
         }
         if($type=='professeur')
         {
@@ -86,5 +85,9 @@ class User extends Authenticatable implements CanResetPassword
         return $this->where('email', $username)
                     ->orWhere('username', $username)
                     ->first();
+    }
+    public function supprimmType(){
+        $type=$this->type($this->type_user);
+        return $type->delete();
     }
 }
