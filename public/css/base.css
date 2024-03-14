@@ -639,7 +639,10 @@ td#btn_dep a{
     width: 100%;
     margin: 0;
 }
-
+h4#titre_dep{
+    text-align: center;
+    color:#001a4b;
+}
 /**************************GESTION DE COMPTE UTILISATEUR - ADMINISTRATEUR***********************************/
 div.partie2_compteUt{
     position: relative;
