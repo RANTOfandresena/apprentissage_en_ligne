@@ -159,7 +159,25 @@ class AdminController extends Controller
             // return Contenu_du_cour_etudiant::find($contenu->id) ;
             // return Contenu_du_cour_etudiant::where('contenu_du_cour_id', '=', '1');
         }
-        
 
+
+    }
+
+    //Gestion de départements
+    public function showDepartement()
+    {
+        return view('admin.departement', ['departements' => Departement::all()]);
+    }
+    public function storeDepartement(Request $request)
+    {
+        Departement::create([
+            'nom' => $request->input('departement')
+        ]);
+        return redirect()->route('admin.departement')->with("success", "Nouveau département ajouté");;
+    }
+    public function consulterDepartement(Departement $departement)
+    {
+        // return view('admin.departement', ['departements' => Departement::all()]);
+        return view('admin.departement', ['departements' => $departement]);
     }
 }
