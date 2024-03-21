@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('approved')->default(false);
             $table->rememberToken();
             $table->timestamps();
+            $table->string('profilImage')->nullable()->default('Présentiel.png');
         });
     }
 

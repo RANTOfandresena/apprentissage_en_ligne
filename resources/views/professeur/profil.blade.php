@@ -6,10 +6,17 @@
 @include('professeur.navbarProf')
 
 @section('contenu')
-
-    <p> Nom : {{ $professeur->nom }} </p>
-    <p> Prénom : {{ $professeur->prenom }} </p>
-    <p> Téléphone : {{ $professeur->telephone }}</p>
-    <p> Email : {{ $professeur->email }}</p>
-    <a href="{{route('professeur.resetPassword', ['professeur' => $professeur->user->id])}} "> <button> Changer de mot de passe </button> </a>
-@endsection
+    <div class="containerProfilProf">
+        <div class="PhotoProfilProf">
+            <img src="{{ asset('images/'. Auth::user()->profilImage) }}" id="imageProfil" alt="Photo de profil">
+            <a href="{{ route('changeProfilPictureRedirect') }}"><button id="btnChangePicture"> Changer la photo de profil </button></a>
+            {{-- <a href="{{route('professeur.resetPassword', ['professeur' => $professeur->user->id])}} " > <button id="btnChangePicture"> Changer de mot de passe </button> </a> --}}
+        </div>
+        <div class="ProfilProf">
+            <p> <span> Nom : </span>  {{ $professeur->nom }} </p>
+            <p> <span> Prénom : </span>  {{ $professeur->prenom }} </p>
+            <p> <span> Téléphone : </span>  {{ $professeur->telephone }}</p>
+            <p> <span> Email : </span>  {{ $professeur->email }}</p>
+        </div>
+    </div>
+    @endsection

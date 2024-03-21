@@ -39,9 +39,10 @@
                 <td> {{ $departement->etudiant->count() }}</td>
                 <td id="btn_dep">
                     <a href="{{ route('admin.depConsulter', ['departement'  => $departement ]) }}" id="consult_depA"> <button id="consult_dep"> Consulter </button> </a>
-                    <a href="http://" id="suppr_depA"> <button id="suppr_dep"> Supprimer </button> </a>
+                    <a class="suppr" href="{{ route('admin.supprimeDepartement', ['departement'  => $departement ]) }}" id="suppr_depA"> <button id="suppr_dep"> Supprimer </button> </a>
                 </td>
             </tr>
+
         @endforeach
 @endif
 @if($routeName == 'admin.depConsulter')
@@ -49,7 +50,7 @@
     <div class="card_infos">
         <h4 id="titre_dep"> {{ $departements->nom }}</h4>
         <h3> Liste des membres du département </h3>
-        <table id="">
+        <table id="table_infos_dep">
             <tr>
                 <th> Nom et prénoms </th>
                 <th> Téléphone </th>
@@ -63,14 +64,32 @@
             </tr>
             @endforeach
         </table>
+
         <h3> Cours </h3>
-        @foreach ($departements->matieres as $matiere)
-            <button> {{ $matiere->matiere }} </button>
-        @endforeach
+        <div id="cours_dep_2">
+            @foreach ($departements->matieres as $matiere)
+                @php
+                    $num = $loop->index + 1;
+                    $class = "cours".$num
+                @endphp
+                    <a href="#"> <button class={{ $class }}> {{ $matiere->matiere }} </button> </a>
+            @endforeach
+        </div>
     </div>
 @endif
-
-
     </table>
+
+    <script>
+        var lien=document.querySelectorAll('.suppr')
+        console.log('fjie')
+        for(var i=0;i!=lien.length;i++){
+            lien[i].addEventListener('click',function(e){
+                const verif=confirm("vous voulez vraiment supprimer cette departement?")
+                if(verif==false){
+                    event.preventDefault()
+                }
+            })
+        }
+    </script>
 @endsection
 

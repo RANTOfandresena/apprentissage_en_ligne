@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EngagerProf;
 use App\Mail\VerificationEmail;
 use App\Models\Etudiant;
+use App\Models\Matiere;
 use App\Models\Proffesseur;
 use App\Models\Departement;
 use App\Models\User;
@@ -21,7 +22,7 @@ class AccueilController extends Controller
 {
     public function redirection()
     {
-        // Création compte admin par défaut
+        // // Création compte admin par défaut
         // $post = Administrateur::create([
         //     'email' => 'angevoni@gmail.com',
         //     'post'=> 'stagiaire'
@@ -30,10 +31,13 @@ class AccueilController extends Controller
         //     'name' => 'Voni',
         //     'email' => $post->email,
         //     'type_user' => 'admin',
-        //     'password' => Hash::make('a'),
+        //     'password' => Hash::make('metyy'),
         //     'administrateur_id'=> $post->id
         // ]);
 
+        // Departement::create([
+        //     'nom' => 'Service client',
+        // ]);
 
         // si l'utilisateur est deja connecter
         if(auth()->check()){
@@ -49,10 +53,16 @@ class AccueilController extends Controller
         // si l'utilisateur n'est pas connecter
         return view('accueil.home');
     }
-    public function video()
+
+    //Show leçons hors connexion
+    public function showLesona()
     {
-        return Auth::user()->supprimmType();
+        return view('accueil.lecon', ['matieres' => Matiere::all()] );
     }
+    // public function video()
+    // {
+    //     return Auth::user()->supprimmType();
+    // }
 
     public function createAccount()
     {

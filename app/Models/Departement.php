@@ -24,4 +24,9 @@ class Departement extends Model
     {
         return $this->hasMany(Etudiant::class);
     }
+
+    public function deleteDepartement()
+    {
+        return $this->delete();
+    }
 }

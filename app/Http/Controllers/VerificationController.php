@@ -50,6 +50,6 @@ class VerificationController extends Controller
 
         Mail::to($user->email)->send(new ResetPassword($resetPasswordLink));
 
-        return 'An email has been sent';
+        return back()->with('success','An email has been sent' );
     }
 }
