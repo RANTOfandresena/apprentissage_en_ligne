@@ -23,6 +23,7 @@
         <div>
             <label for="mdp"> Mot de passe: </label>
             <input type="password" name="password" id="mdp" value="{{ old('password') }}">
+            <input type="checkbox"id="box">
         </div>
         <div>
             @error('password')
@@ -39,5 +40,22 @@
         </div>
     </form>
 </div>
+<script>
+    const input=document.getElementById('mdp')
+    const box=document.getElementById('box')
+    var temps;
+    box.addEventListener("click",()=>{
+        clearTimeout(temps);
+        if(box.checked){
+            input.setAttribute('type','text');
+        }else{
+            input.setAttribute('type','password');
+        }
+        temps=setTimeout(function(){
+            input.setAttribute('type','password');
+            box.checked=false;
+        }, 1000);
+    })
+</script>
 
 @endsection
