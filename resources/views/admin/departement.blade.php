@@ -47,9 +47,9 @@
 @if($routeName == 'admin.depConsulter')
     <a href="{{ route('admin.departement') }}"> <button> Retour </button></a>
     <div class="card_infos">
-        <h4> {{ $departements->nom }}</h4>
+        <h4 id="titre_dep"> {{ $departements->nom }}</h4>
         <h3> Liste des membres du département </h3>
-        <table>
+        <table id="">
             <tr>
                 <th> Nom et prénoms </th>
                 <th> Téléphone </th>
