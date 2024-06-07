@@ -9,6 +9,7 @@ use App\Models\Departement;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class EtudiantController extends Controller
 {
@@ -17,7 +18,9 @@ class EtudiantController extends Controller
 
         $departement =  Auth::user()->type(Auth::user()->type_user)->departement;
         return view('etudiants.accueil', [
-            'matieres' => $departement->matieres,
+            // 'matieresRecents'=>Matiere::latest()->take(3)->get(),
+            'matieresRecents'=>$departement->matieres()->latest()->take(3)->get(),
+            // 'matieres' => $departement->matieres,
             'departement' => $departement->nom,
         ]);
     }
@@ -25,14 +28,14 @@ class EtudiantController extends Controller
     {
         // return Auth::user()->type('etudiants')->contenu_du_cours->find($contenu);
         // return Auth::user()->type('etudiants')->id;
-        
+
         // test1
         // return $matiere->progression(Auth::user()->type('etudiants'));
         // test2
         // return $matiere->progression();
 
-        
-        
+
+
         $info1= Contenu_du_cour_etudiant::where('etudiant_id','=',Auth::user()->type('etudiants')->id)->get();
         if(count($info1)==0){
             Contenu_du_cour_etudiant::create([
@@ -47,7 +50,7 @@ class EtudiantController extends Controller
             'matiere' => $matiere,
             'content' => $contenu
         ]);
-        
+
     }
     public function getExam(Contenu_du_cour $contenu){
         return $contenu->sujetEtudient();
@@ -90,6 +93,21 @@ class EtudiantController extends Controller
                 'contenu' => $contenu
             ]));
         }
-        
+
+    }
+
+    //Profil étudiant
+    public function showProfil()
+    {
+        $departement =  Auth::user()->type(Auth::user()->type_user)->departement;
+        // $matiereEnCoursApprentissage =  $departement->matieres[0]->contenu_du_cours->where('progression', '<' ,1) ;
+        $matiereEnCoursApprentissage =  $departement->matieres; 
+        // return  $matiereEnCoursApprentissage;
+        return view('etudiants.profil', ['etudiant'=> Auth::user()->type('etudiants'), 'matiereEnCours' =>  $matiereEnCoursApprentissage ]);
+    }
+    public function showMatiereEtudiant()
+    {
+        $departement =  Auth::user()->type(Auth::user()->type_user)->departement;
+        return view('etudiants.matiere', ['matieres' => $departement->matieres]);
     }
 }

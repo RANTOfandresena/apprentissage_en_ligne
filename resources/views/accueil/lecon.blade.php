@@ -4,16 +4,7 @@
 
 @include('admin.navbarAdmin')
 
-@section('contenu')
-
-    @php
-        $routeName = request()->route()->getName();
-    @endphp
-
-{{-- LISTE DES COURS CREER --}}
-
-{{-- STYLE --}}
-@if($routeName == 'admin.cours')
+@section('contenuOffline')
 
 <style>
     .matiere{
@@ -70,7 +61,7 @@
     }
 </style>
 
-<div class="cours">
+<div class="coursOffline">
     <h3
         style="font-family: 'Philosopher';
         color: #00143d;"
@@ -84,10 +75,10 @@
                 <h2 class="titreCours">{{ $matiere->matiere }}</h2>
                 <p class="categoryCours">Catégorie : {{ $matiere->categorie->categorie }} </p>
                 <p class="profTitulaireCours"> {{ $matiere->proffesseur->prenom}} </p>
-                <section>
+                {{-- <section>
                     <div style="background-color:green;border-bottom-left-radius: 10px;cursor:pointer;"> <a style="color:#fff" href="{{ route('admin.affichageCoursAdmin', ['matiere' => $matiere->id, 'contenu' =>  $matiere->contenu_du_cours[0]->id]) }}" class="matiere"> Voir </a> </div>
                     <div style="background-color:red;border-bottom-right-radius: 10px;"> <a style="color:#fff" href="{{ route('admin.visibiliteCours', ['cours'  => $matiere->id ]) }}" class="matiere"> Visibilité par département</a></div>
-                </section>
+                </section> --}}
             </div>
         @endforeach
         {{-- <div style="text-align: center;padding-top: -7%;">
@@ -95,20 +86,4 @@
         </div> --}}
     </div>
 </div>
-@endif
-
-@if($routeName == 'admin.affichageCoursAdmin')
-{{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia omnis cumque repellendus accusantium magnam quibusdam quae reprehenderit praesentium repudiandae, incidunt, error atque ullam in suscipit maxime! Perspiciatis laboriosam voluptas pariatur?</p> --}}
-    <div class="niveau">
-        @foreach ($matiere->contenu_du_cours as $contenu )
-            <div
-            @if( $contenu->id == $content)
-                class='active'
-            @endif
-            ><a href="{{ route('admin.affichageCoursAdmin' , ['matiere' => $matiere->id, 'contenu' =>  $contenu->id ]) }}"> Niveau {{ $contenu->niveau }} </a></div>
-        @endforeach
-    </div>
-    <div id="cours" data-id="{{$content}}"></div>
-    @vite('resources/js/Cours/afiichageCours.js')
-@endif
 @endsection

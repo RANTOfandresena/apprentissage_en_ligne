@@ -92,8 +92,8 @@
                 <h1 style="color: white; margin-top: 0px;">logo</h1>
                 <a href="#">Home</a>
                 <a href=" {{route('auth.login')}}">Se connecter</a>
-                <a href="#">contact</a>
-                <a href="#">Lecon</a>
+                <a href="{{ route('create.account') }}"> S'inscrire </a>
+                <a href="#">Leçons</a>
                 <input class="recherche" type="text" placeholder="recherche">
 
             </div>

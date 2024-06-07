@@ -63,5 +63,13 @@ class Matiere extends Model
         }
         return $i;
     }
+    public function resultatExamen()
+    {
+        foreach($this->contenu_du_cours as $cour)
+        {
+            $note = $cour->note;
+        }
+        return $note;
+    }
 
 }

@@ -15,7 +15,7 @@
                     @endif>
                 Accueil</a>
                 <a href="{{ route('admin.cours') }}"
-                    @if($routeName == 'admin.cours')
+                    @if($routeName == 'admin.cours' || $routeName == 'admin.visibiliteCours')
                         class="active"
                     @else
                         class="inactive"

@@ -105,7 +105,6 @@ class AdminController extends Controller
         // Departement::create([
         //     'nom'  => 'Marketing',
         // ]);
-
         return view('admin.visibiliteCours', [
             'cours'         => $cours,
             'departements'  => Departement::select('id', 'nom')->get(), //Séléctionne l'id et le nom de chaque département
@@ -117,7 +116,7 @@ class AdminController extends Controller
     {
         // dd( $request->input('departement'));
         $cours->departement()->sync($request->validated('departement'));
-        return 'Modification effectuée!';
+        return redirect()->route('admin.cours')->with("success", "Modification effectuée");
     }
 
     //Afficher les notes par ordre croissant
@@ -149,6 +148,24 @@ class AdminController extends Controller
         // return response()->json(view('admin.utilisateurs', compact('user'))->render());
         return $user;
         // return response()->json(view('test.test', compact('user'))->render());
+    }
+
+    //Affichage cours
+    public function affichageCours(Matiere $matiere, String $contenu)
+    {
+        // return Auth::user()->type('etudiants')->contenu_du_cours->find($contenu);
+        // return Auth::user()->type('etudiants')->id;
+
+        // test1
+        // return $matiere->progression(Auth::user()->type('etudiants'));
+        // test2
+        // return $matiere->progression();
+
+        return view('admin.cours',[
+            'matiere' => $matiere,
+            'content' => $contenu
+        ]);
+
     }
 
     //Filtrer les résultats par cours
@@ -227,7 +244,8 @@ class AdminController extends Controller
         $user->supprimmType();
         $user->delete();
         return redirect()->route('admin.utilisateurs')->with("success", "compte supprimé avec succes");
-    
+    }
+
     //Gestion de départements
     public function showDepartement()
     {
@@ -238,11 +256,10 @@ class AdminController extends Controller
         Departement::create([
             'nom' => $request->input('departement')
         ]);
-        return redirect()->route('admin.departement')->with("success", "Nouveau département ajouté");;
+        return redirect()->route('admin.departement')->with("success", "Nouveau département ajouté");
     }
     public function consulterDepartement(Departement $departement)
     {
-        // return view('admin.departement', ['departements' => Departement::all()]);
         return view('admin.departement', ['departements' => $departement]);
     }
 }

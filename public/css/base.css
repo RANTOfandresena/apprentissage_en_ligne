@@ -109,6 +109,9 @@ input::placeholder {
     font-family: 'Fira Sans';
     font-size: 15px;
 }
+.linkAdmin a{
+    text-decoration: none;
+}
 .linkAdmin input{
  width: 163px;
 }
@@ -326,6 +329,12 @@ div.contenairCoursRecents{
     align-items: stretch;
     height: 219px;
 }
+div.contenairCoursRecents a{
+    margin:2px;
+    text-decoration: none;
+    color: #000000;
+    font-family: 'Philosopher';
+}
 div.coursRecents2{
     flex:1;
     margin: 20px;
@@ -455,14 +464,14 @@ div.allFleche{
 }
 div.directs{
     position: relative;
-    top: -277px;
-    right: -62px;
-    line-height: 6.5;
+    top: -203px;
+    right: -10px;
+    line-height: 3.5;
     font-family: 'Fira Sans';
     font-size: 14px;
 }
 
-p#direct1{
+/* p#direct1{
     line-height: 0.5;
 }
 p#direct2{
@@ -475,7 +484,36 @@ p#direct3{
 p#direct4{
     line-height: 2;
     margin-top: -9px;
+} */
+/************/
+a#direct1{
+    color: #000000;
 }
+a#direct2{
+    position: relative;
+    top: 15px;
+    color: #000000;
+}
+a#direct3{
+    position: relative;
+    top: -17px;
+    color: #000000;
+}
+a#direct4{
+    position: relative;
+    top: -4px;
+    color: #000000;
+    padding: 20px;
+}
+
+a#direct1:hover, a#direct2:hover, a#direct3:hover, a#direct4:hover{
+    transition: 0.5s;
+    color : #00143d ;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/************/
 div.partie4{
     /* border: 1px solid black; */
     width: 100%;
@@ -643,6 +681,40 @@ h4#titre_dep{
     text-align: center;
     color:#001a4b;
 }
+table#table_infos_dep{
+    width:100%;
+    text-align-last: left;
+}
+table#table_infos_dep, table#table_infos_dep tr, table#table_infos_dep td, table#table_infos_dep th {
+    border-bottom: 1px solid #ddd;
+    border-collapse: collapse;
+}
+table#table_infos_dep th{
+    background-color: #00143d;
+    color: #fff;
+    text-align: center;
+}
+div#cours_dep_2 button{
+    padding: 21px;
+    border: 1px solid #febd01;
+    background-color: #febd01;
+    color: #00143d;
+    border-radius: 5px;
+    font-weight: bold;
+}
+div#cours_dep_2{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+div#cours_dep_2 button:hover{
+    transition: 1s;
+    color: #fff;
+    font-size: 12px;
+    background-color: #00143d;
+    border: 2px solid #00143d;
+    cursor: pointer;
+}
 /**************************GESTION DE COMPTE UTILISATEUR - ADMINISTRATEUR***********************************/
 div.partie2_compteUt{
     position: relative;
@@ -778,9 +850,9 @@ div.infoEtudiants{
     margin-bottom: 100px;
     margin-left: 100px ;
     margin-right:100px ;
-    height: 566px;
+    height: 360px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 éléments par ligne */
+    grid-template-columns: repeat(4, 1fr); /*4 éléments par ligne*/
     grid-gap: 20px; /* Espacement entre les éléments */
 }
 div.infoEtudiantsContenus{
@@ -860,7 +932,15 @@ div.infoEtudiantsContenus > p{
 ::-webkit-scrollbar-horizontal {
     height: 12px; /* Hauteur de la barre */
   }
-div.profilePicture{
+/* div.profilePicture{
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    box-shadow: #ddd -5px 2px 2px;
+} */
+img.profilePicture{
     margin: auto;
     border: 1px solid #ddd;
     border-radius: 50%;
@@ -974,10 +1054,36 @@ div.dropdownContent a:hover {
     display: flex;
     width: 100%;
     height: 70px;
-    background-color: #5d6d8d;
+    background-color: rgb(0, 0, 71);
+    font-family: 'Jura';
 }
 .navbar *{
     margin:8px
+}
+.activeEtudiant{
+    color:#FFBD00;
+    text-shadow: 1px 2px 3px #008cffd2;
+    border-bottom: 3px solid #febd01;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 17px;
+}
+.btn_deconnexion_etudiant{
+    border: 1px solid #febd01;
+    background-color: #00143d;
+    border-radius: 6px;
+    color: #febd01;
+    padding: 15px;
+    /* transition: 0.5s; */
+    margin-right: 25px;
+    font-weight: 600;
+}
+.btn_deconnexion_etudiant:hover{
+    background-color: #febd01;
+    color:#000000;
+    font-weight: 600;
+    transition: 0.5s;
+    cursor: pointer;
 }
 /* .link{
     position: absolute;
@@ -989,13 +1095,31 @@ div.dropdownContent a:hover {
 .linkEt{
     position: absolute;
     right: 90px;
-    top: 20px;
+    top: 6px;
     display: flex;
     align-items: center;
     margin-right: 25px;
 }
 .linkEt a{
     margin-right: 25px;
+    font-weight: bold;
+}
+.linkEt a:hover{
+    transition:0.2s;
+    text-shadow: 1px 3px 3px #2f00ffd2;
+    color:#ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 2px solid #ffffff;
+}
+div.teteEt h1{
+    position: absolute;
+    color: #fff;
+    margin-left: 162px;
+    margin-top: 101px;
+    -webkit-text-stroke: 1px #03a9f4;
+    color:#00071a;
+    font-size: 40px;
 }
 span#logo{
     background-image: url('assets/Logo_OPDT.png');
@@ -1008,7 +1132,7 @@ span#logo{
 div.teteEt{
     width: 100%;
     height: 300px;
-    background-color: #010E30;
+    background-color: #00071a;
 }
 .navbar input{
     margin-left: 40px;
@@ -1016,7 +1140,109 @@ div.teteEt{
     border-radius: 17px;
     border: none;
 }
+h2.IntroEtAcc{
+    color:#00143d !important;
+    font-family: 'Philosopher';
+}
+p#depEt{
+    color: #03a9f4;
+    position: relative;
+    right: 410px;
+    width: 78px;
+    font-weight: bold;
+    font-style: oblique;
+    text-overflow: 2px 2px 2px #02a0e6;
+    text-shadow: 2px 2px 2px #02a0e6;
+}
+p#progessEt{
+    color:#febd01;
+}
+h3#CatégorieCoursEt{
+    color: #000000;
+    text-align: center;
+    font-size: smaller;
+}
 
+#EtCours{
+    display: list-item;
+    position: relative;
+    left: 150px;
+    text-align: justify;
+}
+p#AucunCoursTermine{
+    color:#001a4b;
+    font-family: 'Philosopher';
+    text-align: center;
+}
+div.ProfilEt1{
+    position: relative;
+    left:20px;
+}
+div#cardLecon
+{
+    position: relative;
+    left:100px;
+}
+/**********************************************PROFIL ETUDIANT**********************************/
+img#imageProfil{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+div.CollectET{
+    display: flex;
+    justify-content: center;
+}
+div.Noms{
+    margin-top: 30px;
+}
+div.Noms p span{
+    font-style: italic;
+    font-weight: bold;
+}
+div.Noms p{
+    font-family: 'Philosopher';
+}
+button#btnChangePicture{
+    border: 1px solid #02a0e6 ;
+    background-color: #02a0e6;
+    color:#fff; 
+    padding: 20px;
+    border-radius: 5px;
+}
+button#btnChangePicture:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    border: 1px solid #02a0e6 ;
+    background-color: #fff;
+    color:#02a0e6; 
+}
+div.PhotoProfilProf{
+    display: block;
+}
+div.ProfilProf p span{
+    font-style: italic;
+    font-weight: bold;
+    font-family: 'Philosopher';
+}
+div.containerProfilProf{
+    display: flex;
+    justify-content: center;
+}
+button.btn_deconnexion_professeur{
+    border: 1px solid #febd01 !important ;
+    color:#febd01;
+    background-color: #001a4b !important;
+    padding: 12px;
+    border-radius: 5px;
+}
+button.btn_deconnexion_professeur:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    border: 1px solid #febd01  !important;
+    color:#FFF  !important;
+    background-color: #febd01  !important;
+}
 /******************* LOGIN *********************/
 h3{
     color: #00a3e6;
@@ -1426,6 +1652,19 @@ label{
     background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
+    /* position: absolute;
+    z-index: 100; */
+}
+.coursOffline{
+    text-align: center;
+    /* background-color: white; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: absolute;
+    z-index: 100;
+}
+.coursOffline .lecon > div{
+    background-color: #FFF;
 }
 .cours h2,h3{
     color: #06b3e3;
@@ -1457,11 +1696,13 @@ display: table;
 }
 .courrss .lecon > div:hover section{
     display:block;
+    cursor: pointer;
 }
 .courrss .lecon > div >section >div {
     float:left;
     width:50%;
     height:30px;
+    cursor: pointer;
 }
 .courrss .lecon > div >section >a {
     float:left;

@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <title> @yield('titre') </title>
 </head>
 <body>
-
+   
     @php
         $routeName = request()->route()->getName();
 
@@ -30,8 +30,11 @@
             {{-- ETUDIANTS --}}
                 {{-- PROFESSEURS --}}
                 <div> @yield('navbar') </div>
+                @if(session('success'))
+                    <div class="message"> {{session("success")}} </div>
+                @endif
                 <div> @yield('contenu') </div>
-
+                
                 {{-- Si l'utilisateur essaie de changer brutalement la route, on le redirige vers l'accueil approprié --}}
                 @if($routeName == 'accueil')
 
@@ -42,9 +45,7 @@
                     @endphp
                 @endif
                 {{-- Affichage des messages --}}
-                @if(session('success'))
-                    <div class="message"> {{session("success")}} </div>
-                @endif
+              
     @endauth
     {{-- Utilisateurs non connectés --}}
     @guest
@@ -66,8 +67,8 @@
                         <h1 style="color: white; margin-top: 0px;">logo</h1>
                         <a href="{{ route('accueil') }}">Home</a>
                         <a href=" {{route('auth.login')}}">Connecter</a>
-                        <a href="#">contact</a>
-                        <a href="#">Lecon</a>
+                        <a href="{{ route('create.account') }}"> S'inscrire </a>
+                        <a href="{{ route('accueil.lecon') }}">Lecon</a>
                         <input class="recherche" type="text" placeholder="recherche">
 
                     </div>

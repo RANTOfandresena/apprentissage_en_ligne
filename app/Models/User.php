@@ -28,7 +28,8 @@ class User extends Authenticatable implements CanResetPassword
         'proffesseur_id',
         'administrateur_id',
         'approved',
-        'email_verification_token'
+        'email_verification_token',
+        'profilImage'
     ];
 
     /**

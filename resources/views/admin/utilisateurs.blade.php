@@ -16,6 +16,7 @@
 
     <div class="titre">
         <h2> Informations sur tous les étudiants </h2>
+        <h2> Informations sur tous les étudiants </h2>
     </div>
 
     <div class="infoEtudiants filtre">
@@ -32,11 +33,14 @@
                     <div>
                         <div style="background-color: black;color:white">Changer le type d'utilisateur</div>
                         <div class="modifType">
+                            {{-- @php
+                                dd($etudiants->user->id)
+                            @endphp --}}
                             <a class="direc" href="{{route('admin.changeTypeUser',['user'  => $etudiants->user->id,'type'=>'professeur','idDepart'=> 0])}}">changer en professeur</a>
                             <a class="direc" href="{{route('admin.changeTypeUser',['user'  => $etudiants->user->id,'type'=>'admin','idDepart'=> 0])}}">changer en administrateur</a>
                             <div class="etudientDep">
                                 <p style="color: white;margin-bottom: 0;">changer en etudiant</p>
-                                <div >
+                                <div>
                                     <h4 style="margin-top: 0;margin-bottom: 0;">choisir le departement</h4>
                                     <div class="depp">
                                         @foreach ($departement as $dep)
@@ -52,7 +56,9 @@
 
                 <div class="">
                     <span class="infoUserSpan"> Etudiant </span>
-                    <div class="profilePicture"></div>
+                    <img src="{{ asset('images/'. $etudiants->user->profilImage) }}" alt="photo_profil" class="profilePicture">
+                    
+                    {{-- <div class="profilePicture"></div> --}}
                     <p> Nom : {{ $etudiants -> nom }}</p>
                     <p> Prénom : {{ $etudiants -> prenom }}</p>
                     <p> Téléphone : {{ $etudiants -> telephone  }}</p>
@@ -131,7 +137,7 @@
 
                 <div class="">
                     <span class="infoUserSpan"> Professeur </span>
-                    <div class="profilePicture"></div>
+                    <img src="{{ asset('images/'.$professeur->user->profilImage) }}" alt="photo_profil" class="profilePicture">
                     <p> Nom : {{ $professeur->nom }} </p>
                     <p> Prénoms : {{ $professeur->prenom }}</p>
                     <p> Téléphone : {{ $professeur->telephone }}</p>

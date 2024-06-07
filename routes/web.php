@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\ProfesseurController;
+use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\VerificationController;
@@ -33,6 +34,11 @@ use Illuminate\Support\Facades\Route;
 //Accueil principal
 Route::get('/', [AccueilController::class, 'redirection'])->name('accueil');
 Route::get('/video', [AccueilController::class, 'video'])->name('video');
+Route::get('/Leçons existantes', [AccueilController::class, 'showLesona'])->name('accueil.lecon');
+
+//Changer la photo de profil
+Route::get('Changer votre photo de profil', [ProfilUserController::class, 'changeProfilPictureRedirect'])->name('changeProfilPictureRedirect');
+Route::post('Changer votre photo de profil', [ProfilUserController::class, 'storeProfilPicture'])->name('profil.store');
 
 //Création de compte
 Route::get('/account', [AccueilController::class, 'createAccount'])->name('create.account');
@@ -72,10 +78,11 @@ Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminCont
             'matieres' => Matiere::all(),
         ]);
     })->name('cours');
+    Route::get('Cours/{matiere}/{contenu}', 'affichageCours')->name('affichageCoursAdmin');
 
                 //Retourne la vue pour le choix des département à bénéficier des cours
-    Route::get('Cours/{cours}/Visibilité par département', 'ViewVisibiliteCours')->name('visibiliteCours');
-    Route::post('Cours/{cours}/Visibilité par département', 'storeDepartementMatiere');
+    Route::get('Coursdep/{cours}/Visibilité par département', 'ViewVisibiliteCours')->name('visibiliteCours');
+    Route::post('Coursdep/{cours}/Visibilité par département', 'storeDepartementMatiere');
 
     //Affichage des notes des étudiants par ordre croissant dans l'interface admin
     Route::get('Résultats', 'showResultats')->name('resultats');
@@ -87,6 +94,8 @@ Route::prefix('/Interface administrateur')->name('admin.')->controller(AdminCont
     Route::get('Départements', 'showDepartement')->name('departement');
     Route::post('Départements', 'storeDepartement');
     Route::get('Départements/{departement}', 'consulterDepartement')->name('depConsulter');
+    Route::get('Départements/supprimé/{departement}', 'supprimeDepartement')->name('supprimeDepartement');
+
 
     //Filtre les cours ou matières affichées dans l'onglet resultat
     Route::get('/Résultats/filtreCours/{cours}', 'filtrerCoursResultats')->name('filtrerResutats');
@@ -139,8 +148,9 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
 // INTERFACE ETUDIANT
 Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantController::class)->group(function(){
     Route::get('/accueil', 'accueilRedirect')->name('accueil');
-
-    Route::get('{matiere}-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
+    Route::get('matiere', 'showMatiereEtudiant')->name('matiere');
+    
+    Route::get('{matiere},-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
     Route::get('{contenu}-{stringId}/commentaire', 'getCommentaire');
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');
 
@@ -148,6 +158,8 @@ Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantCon
 
     Route::get('{contenu}/exam', 'getExam')->name('examen');
     Route::post('{contenu}/exam', 'setExam');
+    //Profil étudiant
+    Route::get('Profil', 'showProfil')->name('profil');
 
 });
 
