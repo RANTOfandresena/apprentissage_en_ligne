@@ -24,9 +24,26 @@ class ProfilUserController extends Controller
         $user = Auth::user();
         $user->profilImage = $image;
         $user->save();
-        
+
         return back()
             ->with('success', 'Image enregistré avec succès')
             ->with('image',$image);
+    }
+    public function changeEmailAdress()
+    {
+        return view('profil.changeEmail');
+    }
+    public function updateEmail(Request $request, $userId)
+    {
+        $request->validate([
+            'email' => 'required|email|unique:users,email',
+        ]);
+
+        $user = User::findOrFail($userId);
+        $user->email = $request->email;
+        $user->save();
+
+         return back()
+        ->with('success', 'Votre adresse email a été changé');
     }
 }

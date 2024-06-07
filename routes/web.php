@@ -36,6 +36,10 @@ Route::get('/', [AccueilController::class, 'redirection'])->name('accueil');
 Route::get('/video', [AccueilController::class, 'video'])->name('video');
 Route::get('/Leçons existantes', [AccueilController::class, 'showLesona'])->name('accueil.lecon');
 
+//Changer d'adresse email
+Route::get('/changeEmailAdress', [ProfilUserController::class, 'changeEmailAdress'])->name('changeEmailAdress');
+Route::post('/changeEmailAdress/{userId}', [ProfilUserController::class, 'updateEmail'])->name('email.store');
+
 //Changer la photo de profil
 Route::get('Changer votre photo de profil', [ProfilUserController::class, 'changeProfilPictureRedirect'])->name('changeProfilPictureRedirect');
 Route::post('Changer votre photo de profil', [ProfilUserController::class, 'storeProfilPicture'])->name('profil.store');
@@ -149,7 +153,7 @@ Route::prefix('/Interface professeur')->name('professeur.')->controller(Professe
 Route::prefix('/Interface étudiant')->name('etudiant.')->controller(EtudiantController::class)->group(function(){
     Route::get('/accueil', 'accueilRedirect')->name('accueil');
     Route::get('matiere', 'showMatiereEtudiant')->name('matiere');
-    
+
     Route::get('{matiere},-{contenu}/Consulter les cours', 'affichageCours')->name('affichageCours');
     Route::get('{contenu}-{stringId}/commentaire', 'getCommentaire');
     Route::get('{contenu}-{nb}/nbcommentaire', 'getNbCommentaire');

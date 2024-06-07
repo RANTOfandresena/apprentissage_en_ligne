@@ -17,6 +17,8 @@
             <p> <span> Prénom : </span>  {{ $professeur->prenom }} </p>
             <p> <span> Téléphone : </span>  {{ $professeur->telephone }}</p>
             <p> <span> Email : </span>  {{ $professeur->email }}</p>
+            <p> <span> Email : </span>  {{ $professeur->email }}</p> <span> <a href="{{ route('changeEmailAdress') }}"> <button id="btnChangePicture"> Changer d'adresse email</button> </a> </span>
+
         </div>
     </div>
     @endsection

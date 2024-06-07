@@ -89,7 +89,8 @@
         </div>
 
             <div class="accueil">
-                <h1 style="color: white; margin-top: 0px;">logo</h1>
+                {{-- <h1 style="color: white; margin-top: 0px;">logo</h1> --}}
+                <img src="{{ asset('css/assets/Logo_OPDT.png') }}" alt="logo">
                 <a href="#">Home</a>
                 <a href=" {{route('auth.login')}}">Se connecter</a>
                 <a href="{{ route('create.account') }}"> S'inscrire </a>
