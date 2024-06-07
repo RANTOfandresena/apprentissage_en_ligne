@@ -165,7 +165,6 @@ class AdminController extends Controller
 
     }
 
-<<<<<<< HEAD
     public function changeTypeUser(User $user,string $type,int $idDepart){
         if(Auth::user()->type_user=='admin'){
             if($type=='etudiants'){
@@ -228,7 +227,7 @@ class AdminController extends Controller
         $user->supprimmType();
         $user->delete();
         return redirect()->route('admin.utilisateurs')->with("success", "compte supprimé avec succes");
-=======
+    
     //Gestion de départements
     public function showDepartement()
     {
@@ -245,6 +244,5 @@ class AdminController extends Controller
     {
         // return view('admin.departement', ['departements' => Departement::all()]);
         return view('admin.departement', ['departements' => $departement]);
->>>>>>> ea4207efdd76739250a47c837eb885655446f40c
     }
 }
