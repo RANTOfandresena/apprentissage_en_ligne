@@ -1184,6 +1184,41 @@ div#cardLecon
     left:100px;
 }
 /**********************************************PROFIL ETUDIANT**********************************/
+form#formProfil{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+form#formProfil input{
+    padding: 3px;
+    border: 2px solid #001a4b;
+    outline: none;
+    border-radius: 3px;
+    width: 500px;
+}
+form#formProfil input:focus{
+    transition: 0.5s;
+    padding: 3px;
+    border: 2px solid #febd01;
+    outline: none;
+    border-radius: 3px;
+    width: 500px;
+}
+
+form#formProfil button{
+    border: 1px solid #02a0e6 ;
+    background-color: #02a0e6;
+    color:#fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+form#formProfil button:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    border: 1px solid #02a0e6 ;
+    background-color: #fff;
+    color:#02a0e6;
+}
 img#imageProfil{
     width: 200px;
     height: 200px;
@@ -1206,7 +1241,7 @@ div.Noms p{
 button#btnChangePicture{
     border: 1px solid #02a0e6 ;
     background-color: #02a0e6;
-    color:#fff; 
+    color:#fff;
     padding: 20px;
     border-radius: 5px;
 }
@@ -1215,7 +1250,7 @@ button#btnChangePicture:hover{
     transition: 0.5s;
     border: 1px solid #02a0e6 ;
     background-color: #fff;
-    color:#02a0e6; 
+    color:#02a0e6;
 }
 div.PhotoProfilProf{
     display: block;

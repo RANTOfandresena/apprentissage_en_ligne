@@ -7,6 +7,7 @@
 @section('contenu')
 
 <div class="partie2_compteUt">
+    <p> <span> Email : </span>  {{ Auth::user()->email }}</p> <span> <a href="{{ route('changeEmailAdress') }}"> <button id="btnChangePicture"> Changer d'adresse email</button> </a> </span>
 
     <h3> Statistique des utilisateurs de cette plateforme et des adhésions </h3>
     <div class="statistiquesCompte">

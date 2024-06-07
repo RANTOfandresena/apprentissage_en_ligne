@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('titre', 'Photo de profil')
+@section('titre', 'Adresse email')
 
 @php
     $user = Auth::user()->type_user;
@@ -15,9 +15,9 @@
 @endif
 
 @section('contenu')
-<form action="{{ route('profil.store')}}" method="post" enctype="multipart/form-data" id="formProfil">
-    @csrf
-    <input type="file" name="profilImage" id="profilImage">
-    <button type="submit"> Envoyer </button>
-</form>
+    <form action="{{ route('email.store', ['userId' => Auth::user()->id])}}" method="post" id="formProfil">
+        @csrf
+        <input type="email" name="email" id="email">
+        <button> Valider </button>
+    </form>
 @endsection
