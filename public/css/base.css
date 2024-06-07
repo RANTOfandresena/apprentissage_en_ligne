@@ -1345,6 +1345,8 @@ label{
     bottom: 14%;
     background-color: #EDE7F6;
     box-shadow: 20px -19px 0px 11px #00a3e6;
+    background-image: url(assets/souriante-jeune-enseignante-debout-devant-tableau-noir-tenant-echoue-pour-conseil-montrant-pouce-vers-haut-dans-salle-classe.jpg);
+    background-size: cover;
 }
 /* *********************list users*********************** */
 .listUser, .listUser td{

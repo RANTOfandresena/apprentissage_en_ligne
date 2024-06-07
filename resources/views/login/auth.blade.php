@@ -4,7 +4,7 @@
 
 @section('home')
 <div class="login">
-    <div class="gauche"> </div>
+    <div class="gauche"></div>
     <form class="formulaire" action="{{ route("auth.login") }}" method="post">
 
         @csrf
