@@ -13,7 +13,7 @@
     <title> @yield('titre') </title>
 </head>
 <body>
-   
+
     @php
         $routeName = request()->route()->getName();
 
@@ -34,7 +34,7 @@
                     <div class="message"> {{session("success")}} </div>
                 @endif
                 <div> @yield('contenu') </div>
-                
+
                 {{-- Si l'utilisateur essaie de changer brutalement la route, on le redirige vers l'accueil approprié --}}
                 @if($routeName == 'accueil')
 
@@ -45,7 +45,7 @@
                     @endphp
                 @endif
                 {{-- Affichage des messages --}}
-              
+
     @endauth
     {{-- Utilisateurs non connectés --}}
     @guest

@@ -262,4 +262,10 @@ class AdminController extends Controller
     {
         return view('admin.departement', ['departements' => $departement]);
     }
+    public function supprimeDepartement(Departement $departement)
+    {
+        $nomDepartement = $departement->nom;
+        $departement->deleteDepartement();
+        return redirect()->route('admin.departement')->with("success", "Département ".$nomDepartement." supprimé");
+    }
 }
